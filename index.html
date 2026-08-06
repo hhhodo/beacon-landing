@@ -29,7 +29,7 @@ spacing=space-section
 
 <!--
 Hero        — full-bleed
-Intro       — 4-8
+Intro       — full-bleed collage + overlaid text (offset)
 Features    — 3-3-3-3
 Work        — 4-4-4
 CTA         — 5-7
@@ -63,15 +63,18 @@ Footer      — full-bleed
   </section>
 
   <section class="section" id="intro">
-    <div class="container container--wide grid">
-      <div class="intro__media" style="grid-column: span 4;">
-        <div class="img img--4-3"></div>
+    <div class="container container--wide">
+      <div class="intro__collage">
+        <div class="img img--a"></div>
+        <div class="img img--b"></div>
+        <div class="img img--c"></div>
+        <div class="img img--d"></div>
+        <div class="img img--e"></div>
       </div>
-      <div class="intro__body" style="grid-column: span 8;">
+      <div class="intro__text">
         <span class="badge">ABOUT BEACON</span>
-        <h2>신경 쓰지 않아도<br>BEACON이 지켜주니까</h2>
-        <p class="body-1 subtle measure">캠페인 기획부터 소재 제작, 성과 분석까지 — 마케팅 전 과정을 하나의 대시보드에서 관리합니다. 사람이 아니라 데이터가 다음 액션을 제안합니다.</p>
-        <a class="nav__link" href="#features">서비스 자세히 보기 →</a>
+        <h2>데이터 마케팅 실천으로<br>브랜드의 미래를 밝힙니다</h2>
+        <a class="nav__link" href="#features">BEACON 데이터 전략 자세히 보기 →</a>
       </div>
     </div>
   </section>
@@ -83,7 +86,7 @@ Footer      — full-bleed
       <div class="grid" style="margin-top:var(--space-8);">
         <div style="grid-column: span 3;">
           <article class="feature-card">
-            <div class="img"></div>
+            <div class="feature-card__header feature-card__header--1"><span class="badge">01</span></div>
             <div class="feature-card__body">
               <h3 class="h3">데이터 분석</h3>
               <p class="body-2 subtle">채널별 성과를 실시간으로 통합 분석합니다.</p>
@@ -92,7 +95,7 @@ Footer      — full-bleed
         </div>
         <div style="grid-column: span 3;">
           <article class="feature-card">
-            <div class="img"></div>
+            <div class="feature-card__header feature-card__header--2"><span class="badge">02</span></div>
             <div class="feature-card__body">
               <h3 class="h3">캠페인 자동화</h3>
               <p class="body-2 subtle">타겟과 예산에 맞춰 캠페인을 자동으로 최적화합니다.</p>
@@ -101,7 +104,7 @@ Footer      — full-bleed
         </div>
         <div style="grid-column: span 3;">
           <article class="feature-card">
-            <div class="img"></div>
+            <div class="feature-card__header feature-card__header--3"><span class="badge">03</span></div>
             <div class="feature-card__body">
               <h3 class="h3">크리에이티브 제작</h3>
               <p class="body-2 subtle">브랜드 톤에 맞는 소재를 빠르게 생성합니다.</p>
@@ -110,7 +113,7 @@ Footer      — full-bleed
         </div>
         <div style="grid-column: span 3;">
           <article class="feature-card">
-            <div class="img"></div>
+            <div class="feature-card__header feature-card__header--4"><span class="badge">04</span></div>
             <div class="feature-card__body">
               <h3 class="h3">실시간 리포트</h3>
               <p class="body-2 subtle">의사결정에 필요한 지표를 한눈에 확인합니다.</p>

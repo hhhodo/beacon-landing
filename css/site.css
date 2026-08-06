@@ -44,15 +44,32 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;}
 .hero__title{max-width:16ch;}
 .hero__body{max-width:var(--measure);color:var(--text-subtle);}
 
-/* ---------- intro (4-8) ---------- */
-.intro__media .img{aspect-ratio:4/5;border-radius:var(--radius-lg);}
-.intro__body{display:flex;flex-direction:column;gap:var(--space-5);justify-content:center;height:100%;}
+/* ---------- intro: asymmetric collage + overlaid text (matches Figma) ---------- */
+.intro__collage{position:relative;width:100%;height:560px;margin-bottom:var(--space-9);}
+.intro__collage .img{position:absolute;border-radius:var(--radius-md);}
+.intro__collage .img--a{width:15%;aspect-ratio:1/1;top:0;left:8%;}
+.intro__collage .img--b{width:46%;aspect-ratio:16/10;top:6%;left:32%;border-radius:var(--radius-lg);}
+.intro__collage .img--c{width:9%;aspect-ratio:1/1;top:62%;left:2%;border-radius:var(--radius-circle);}
+.intro__collage .img--d{width:13%;aspect-ratio:1/1;top:52%;right:12%;border-radius:var(--radius-circle);}
+.intro__collage .img--e{width:19%;aspect-ratio:1/1;top:66%;left:42%;border-radius:var(--radius-circle);}
+.intro__text{max-width:44%;display:flex;flex-direction:column;gap:var(--space-3);}
+@media (max-width:1024px){
+  .intro__collage{height:400px;}
+}
+@media (max-width:768px){
+  .intro__collage{display:none;}
+  .intro__text{max-width:100%;}
+}
 
-/* ---------- features (3-3-3-3) ---------- */
-.feature-card{display:flex;flex-direction:column;gap:var(--space-5);
-  padding:var(--space-6);border:var(--border-1);border-radius:var(--radius-lg);height:100%;}
-.feature-card .img{aspect-ratio:1/1;border-radius:var(--radius-md);}
-.feature-card__body{display:flex;flex-direction:column;gap:var(--space-3);}
+/* ---------- features (3-3-3-3): portrait card, colored header band ---------- */
+.feature-card{display:flex;flex-direction:column;border:var(--border-1);
+  border-radius:var(--radius-lg);overflow:hidden;height:100%;}
+.feature-card__header{aspect-ratio:4/3;display:flex;align-items:flex-start;padding:var(--space-4);}
+.feature-card__header--1{background:var(--color-primary-100);}
+.feature-card__header--2{background:var(--color-primary-200);}
+.feature-card__header--3{background:var(--color-primary-100);}
+.feature-card__header--4{background:var(--color-primary-200);}
+.feature-card__body{display:flex;flex-direction:column;gap:var(--space-2);padding:var(--space-5);}
 
 /* ---------- work (4-4-4, stacked media/body per card) ---------- */
 .work-card{display:flex;flex-direction:column;gap:var(--space-5);
