@@ -1,6 +1,11 @@
 /* =========================================================
    BEACON — component styles. Tokens only, per styles.css.
+   Figma reference uses Noto Sans KR (not Pretendard) — overridden here
+   per md rule: detected font-family always wins over the default.
    ========================================================= */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap");
+
+body{font-family:'Noto Sans KR','Pretendard',sans-serif;}
 
 /* ---------- nav ---------- */
 .nav{position:sticky;top:0;left:0;right:0;z-index:50;
@@ -28,38 +33,36 @@
 .section--tint{background:var(--color-primary-050);}
 
 /* ---------- hero ---------- */
-.hero{position:relative;width:100%;color:var(--text-default-inverse);}
+/* Figma: dark text over a light image, legibility from a white gradient
+   fading in at the bottom — not white text over a dark scrim. */
+.hero{position:relative;width:100%;color:var(--text-default);}
 .hero .img{position:absolute;inset:0;border-radius:0;}
-.hero__scrim{position:absolute;inset:0;background:var(--color-primary-900);opacity:.55;}
+.hero__scrim{position:absolute;inset:0;
+  background:linear-gradient(180deg, rgba(255,255,255,0) 40%, rgba(255,255,255,.85) 75%, var(--color-canvas) 100%);}
 .hero__inner{position:relative;padding-block:var(--space-13) var(--space-12);
   display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-6);}
 .hero__title{max-width:16ch;}
-.hero__body{max-width:var(--measure);color:var(--text-subtle-inverse);}
+.hero__body{max-width:var(--measure);color:var(--text-subtle);}
 
 /* ---------- intro (4-8) ---------- */
-.intro__media .img{aspect-ratio:4/5;border-radius:var(--radius-sm);}
+.intro__media .img{aspect-ratio:4/5;border-radius:var(--radius-lg);}
 .intro__body{display:flex;flex-direction:column;gap:var(--space-5);justify-content:center;height:100%;}
 
 /* ---------- features (3-3-3-3) ---------- */
 .feature-card{display:flex;flex-direction:column;gap:var(--space-5);
-  padding:var(--space-6);border:var(--border-1);border-radius:var(--radius-sm);height:100%;}
-.feature-card .img{aspect-ratio:1/1;border-radius:var(--radius-sm);}
+  padding:var(--space-6);border:var(--border-1);border-radius:var(--radius-lg);height:100%;}
+.feature-card .img{aspect-ratio:1/1;border-radius:var(--radius-md);}
 .feature-card__body{display:flex;flex-direction:column;gap:var(--space-3);}
 
-/* ---------- work (6-6, inner 5-7) ---------- */
-.work-card{display:grid;grid-template-columns:5fr 7fr;gap:var(--space-6);
-  border:var(--border-1);border-radius:var(--radius-sm);overflow:hidden;height:100%;}
-.work-card__body{padding:var(--space-6);display:flex;flex-direction:column;gap:var(--space-5);}
-.work-card__media{align-self:stretch;}
-.work-card__media .img{width:100%;height:100%;min-height:280px;border-radius:0;}
+/* ---------- work (4-4-4, stacked media/body per card) ---------- */
+.work-card{display:flex;flex-direction:column;gap:var(--space-5);
+  border:var(--border-1);border-radius:var(--radius-lg);overflow:hidden;height:100%;}
+.work-card__media .img{width:100%;aspect-ratio:4/3;border-radius:0;}
+.work-card__body{padding:var(--space-6);padding-top:0;display:flex;flex-direction:column;gap:var(--space-5);}
 .work-card__stats{display:flex;flex-direction:column;gap:var(--space-3);}
 .work-card__stat{display:flex;justify-content:space-between;gap:var(--space-3);
   padding-block:var(--space-3);border-top:var(--border-1);}
 .work-card__stat:first-child{border-top:none;}
-@media (max-width:768px){
-  .work-card{grid-template-columns:1fr;}
-  .work-card__media .img{aspect-ratio:4/3;min-height:0;}
-}
 
 /* ---------- cta (5-7) ---------- */
 .cta{background:var(--color-primary-050);}

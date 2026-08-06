@@ -18,7 +18,7 @@ image=high
 color=mono
 
 image-radius=soft
-card-radius=soft
+card-radius=round
 button-radius=soft
 
 border=hairline
@@ -31,7 +31,7 @@ spacing=space-section
 Hero        — full-bleed
 Intro       — 4-8
 Features    — 3-3-3-3
-Work        — 6-6 (inner 5-7)
+Work        — 4-4-4
 CTA         — 5-7
 Footer      — full-bleed
 -->
@@ -125,8 +125,9 @@ Footer      — full-bleed
     <div class="container container--wide">
       <h2>숫자로 보는 성과</h2>
       <div class="grid" style="margin-top:var(--space-8);">
-        <div style="grid-column: span 6;">
+        <div style="grid-column: span 4;">
           <article class="work-card">
+            <div class="work-card__media"><div class="img"></div></div>
             <div class="work-card__body">
               <span class="badge">Case</span>
               <h3 class="h3">이커머스 브랜드 A</h3>
@@ -136,11 +137,11 @@ Footer      — full-bleed
                 <div class="work-card__stat"><span class="subtle">운영 기간</span><span>6개월</span></div>
               </div>
             </div>
-            <div class="work-card__media"><div class="img"></div></div>
           </article>
         </div>
-        <div style="grid-column: span 6;">
+        <div style="grid-column: span 4;">
           <article class="work-card">
+            <div class="work-card__media"><div class="img"></div></div>
             <div class="work-card__body">
               <span class="badge">Case</span>
               <h3 class="h3">F&amp;B 프랜차이즈 B</h3>
@@ -150,7 +151,20 @@ Footer      — full-bleed
                 <div class="work-card__stat"><span class="subtle">운영 기간</span><span>4개월</span></div>
               </div>
             </div>
+          </article>
+        </div>
+        <div style="grid-column: span 4;">
+          <article class="work-card">
             <div class="work-card__media"><div class="img"></div></div>
+            <div class="work-card__body">
+              <span class="badge">Case</span>
+              <h3 class="h3">뷰티 커머스 C</h3>
+              <div class="work-card__stats">
+                <div class="work-card__stat"><span class="subtle">체류 시간 증가</span><span>+65%</span></div>
+                <div class="work-card__stat"><span class="subtle">CPA 절감</span><span>-28%</span></div>
+                <div class="work-card__stat"><span class="subtle">운영 기간</span><span>3개월</span></div>
+              </div>
+            </div>
           </article>
         </div>
       </div>
