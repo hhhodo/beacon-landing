@@ -1,0 +1,83 @@
+/* =========================================================
+   BEACON — component styles. Tokens only, per styles.css.
+   ========================================================= */
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:0;left:0;right:0;z-index:50;
+  background:var(--color-canvas);border-bottom:var(--border-1);}
+.nav__row{display:flex;align-items:center;justify-content:space-between;
+  height:88px;}
+.nav__logo{font-size:var(--fs-body-1);font-weight:var(--fw-strong);letter-spacing:var(--display-tracking);}
+.nav__links{display:flex;align-items:center;gap:var(--space-6);}
+.nav__link{font-size:var(--fs-body-2);color:var(--text-subtle);}
+.nav__link:hover{color:var(--text-default);}
+@media (max-width:768px){
+  .nav__links{display:none;}
+}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;
+  height:56px;padding-inline:var(--space-6);border-radius:var(--radius-sm);
+  font-size:var(--fs-body-2);font-weight:var(--fw-strong);}
+.btn--solid{background:var(--color-primary-900);color:var(--text-default-inverse);}
+.btn--solid:hover{background:var(--color-primary-700);}
+.btn--outline{border:var(--border-2);color:var(--text-default);}
+.btn--outline:hover{background:var(--color-primary-050);}
+
+/* ---------- section tint ---------- */
+.section--tint{background:var(--color-primary-050);}
+
+/* ---------- hero ---------- */
+.hero{position:relative;width:100%;color:var(--text-default-inverse);}
+.hero .img{position:absolute;inset:0;border-radius:0;}
+.hero__scrim{position:absolute;inset:0;background:var(--color-primary-900);opacity:.55;}
+.hero__inner{position:relative;padding-block:var(--space-13) var(--space-12);
+  display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-6);}
+.hero__title{max-width:16ch;}
+.hero__body{max-width:var(--measure);color:var(--text-subtle-inverse);}
+
+/* ---------- intro (4-8) ---------- */
+.intro__media .img{aspect-ratio:4/5;border-radius:var(--radius-sm);}
+.intro__body{display:flex;flex-direction:column;gap:var(--space-5);justify-content:center;height:100%;}
+
+/* ---------- features (3-3-3-3) ---------- */
+.feature-card{display:flex;flex-direction:column;gap:var(--space-5);
+  padding:var(--space-6);border:var(--border-1);border-radius:var(--radius-sm);height:100%;}
+.feature-card .img{aspect-ratio:1/1;border-radius:var(--radius-sm);}
+.feature-card__body{display:flex;flex-direction:column;gap:var(--space-3);}
+
+/* ---------- work (6-6, inner 5-7) ---------- */
+.work-card{display:grid;grid-template-columns:5fr 7fr;gap:var(--space-6);
+  border:var(--border-1);border-radius:var(--radius-sm);overflow:hidden;height:100%;}
+.work-card__body{padding:var(--space-6);display:flex;flex-direction:column;gap:var(--space-5);}
+.work-card__media{align-self:stretch;}
+.work-card__media .img{width:100%;height:100%;min-height:280px;border-radius:0;}
+.work-card__stats{display:flex;flex-direction:column;gap:var(--space-3);}
+.work-card__stat{display:flex;justify-content:space-between;gap:var(--space-3);
+  padding-block:var(--space-3);border-top:var(--border-1);}
+.work-card__stat:first-child{border-top:none;}
+@media (max-width:768px){
+  .work-card{grid-template-columns:1fr;}
+  .work-card__media .img{aspect-ratio:4/3;min-height:0;}
+}
+
+/* ---------- cta (5-7) ---------- */
+.cta{background:var(--color-primary-050);}
+.cta__body{display:flex;flex-direction:column;gap:var(--space-5);justify-content:center;height:100%;}
+.cta__actions{display:flex;gap:var(--space-4);flex-wrap:wrap;}
+
+/* ---------- footer ---------- */
+.footer{background:var(--color-primary-900);color:var(--text-default-inverse);}
+.footer__top{display:flex;justify-content:space-between;gap:var(--space-8);
+  padding-block:var(--space-9);border-bottom:1px solid var(--color-primary-700);}
+.footer__brand{font-size:var(--fs-h3);font-weight:var(--fw-strong);}
+.footer__cols{display:flex;gap:var(--space-9);flex-wrap:wrap;}
+.footer__col{display:flex;flex-direction:column;gap:var(--space-3);}
+.footer__col-title{font-size:var(--fs-body-2);color:var(--text-subtle-inverse);}
+.footer__col a{font-size:var(--fs-body-2);color:var(--text-default-inverse);}
+.footer__bottom{display:flex;justify-content:space-between;gap:var(--space-4);
+  padding-block:var(--space-5);flex-wrap:wrap;}
+.footer__bottom,.footer__bottom a{font-size:var(--fs-badge);color:var(--text-subtle-inverse);}
+@media (max-width:768px){
+  .footer__top{flex-direction:column;gap:var(--space-6);}
+}
