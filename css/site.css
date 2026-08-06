@@ -65,7 +65,7 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;}
 
 /* ---------- features: peek row, center cards full / edges cropped ---------- */
 .peek-row{display:flex;gap:var(--space-5);overflow:hidden;
-  padding-inline:calc((100% - var(--container-wide))/2 + var(--gutter));}
+  padding-inline:calc((100% - var(--container-narrow))/2 + var(--gutter));}
 .feature-card{flex:0 0 260px;display:flex;flex-direction:column;border:var(--border-1);
   border-radius:var(--radius-lg);overflow:hidden;}
 .feature-card__header{aspect-ratio:4/3;display:flex;align-items:flex-start;padding:var(--space-4);}
@@ -80,7 +80,7 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;}
 
 /* ---------- work: one large card, next card cropped on the right ---------- */
 .work-peek{display:flex;gap:var(--space-5);overflow:hidden;
-  padding-inline:calc((100% - var(--container-wide))/2 + var(--gutter));}
+  padding-inline:calc((100% - var(--container-narrow))/2 + var(--gutter));}
 .work-card{flex:0 0 88%;max-width:1120px;display:grid;grid-template-columns:1fr 1fr;
   gap:var(--space-6);border-radius:var(--radius-lg);overflow:hidden;background:var(--color-primary-050);}
 .work-card--peek{flex:0 0 40%;}
