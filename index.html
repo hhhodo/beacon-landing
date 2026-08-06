@@ -19,21 +19,21 @@ color=mono
 
 image-radius=soft
 card-radius=round
-button-radius=soft
+button-radius=round
 
 border=hairline
-button-style=solid+outline
+button-style=solid
 fw=700/400
 spacing=space-section
 -->
 
 <!--
-Hero        — full-bleed
+Hero        — full-bleed (center card + cropped peek cards each side)
 Intro       — full-bleed collage + overlaid text (offset)
-Features    — 3-3-3-3
-Work        — 4-4-4
+Features    — full-bleed peek row (center 3 full, edges cropped)
+Work        — full-bleed peek (one large card, next card cropped right)
 CTA         — 5-7
-Footer      — full-bleed
+Footer      — full-bleed (2 link columns left / contact+social right)
 -->
 
 <header class="nav">
@@ -43,22 +43,21 @@ Footer      — full-bleed
       <a class="nav__link" href="#intro">회사소개</a>
       <a class="nav__link" href="#features">서비스</a>
       <a class="nav__link" href="#work">성과</a>
-      <a class="nav__link" href="#cta">문의</a>
     </nav>
-    <a class="btn btn--solid" href="#cta">시작하기</a>
+    <a class="nav__link" href="#cta">BEACON 문의하기</a>
   </div>
 </header>
 
 <main>
 
   <section class="hero">
-    <div class="img"></div>
-    <div class="hero__scrim"></div>
     <div class="container container--wide hero__inner">
-      <span class="badge">MARKETING PLATFORM</span>
-      <h1 class="display display--md hero__title">당신의 클릭보다<br>빠른 마케팅</h1>
-      <p class="body-1 hero__body">BEACON은 흩어진 데이터를 하나의 흐름으로 연결해, 가장 효율적인 순간에 가장 정확한 메시지를 전달합니다.</p>
-      <a class="btn btn--solid" href="#cta">데모 신청하기</a>
+      <h1 class="display display--sm hero__title">당신의 예산보다<br>빠른 마케팅</h1>
+    </div>
+    <div class="hero__row">
+      <div class="hero__peek"><div class="img"></div></div>
+      <div class="hero__main"><div class="img"></div></div>
+      <div class="hero__peek"><div class="img"></div></div>
     </div>
   </section>
 
@@ -81,110 +80,88 @@ Footer      — full-bleed
 
   <section class="section section--tint" id="features">
     <div class="container container--wide">
-      <h2>놓치면 아쉬운 기능</h2>
-      <p class="body-2 subtle" style="margin-top:var(--space-3);">캠페인 성과를 끌어올리는 BEACON의 핵심 기능</p>
-      <div class="grid" style="margin-top:var(--space-8);">
-        <div style="grid-column: span 3;">
-          <article class="feature-card">
-            <div class="feature-card__header feature-card__header--1"><span class="badge">01</span></div>
-            <div class="feature-card__body">
-              <h3 class="h3">데이터 분석</h3>
-              <p class="body-2 subtle">채널별 성과를 실시간으로 통합 분석합니다.</p>
-            </div>
-          </article>
+      <h2>신경 쓰지 않아도<br>BEACON이 지켜주니까</h2>
+      <p class="body-2 subtle" style="margin-top:var(--space-3);">데이터 기반 인사이트로 완성된 안심 캠페인</p>
+    </div>
+    <div class="peek-row" style="margin-top:var(--space-8);">
+      <article class="feature-card">
+        <div class="feature-card__header feature-card__header--1"><span class="badge">01</span></div>
+        <div class="feature-card__body">
+          <h3 class="h3">데이터 분석</h3>
+          <p class="body-2 subtle">채널별 성과를 실시간으로 통합 분석합니다.</p>
         </div>
-        <div style="grid-column: span 3;">
-          <article class="feature-card">
-            <div class="feature-card__header feature-card__header--2"><span class="badge">02</span></div>
-            <div class="feature-card__body">
-              <h3 class="h3">캠페인 자동화</h3>
-              <p class="body-2 subtle">타겟과 예산에 맞춰 캠페인을 자동으로 최적화합니다.</p>
-            </div>
-          </article>
+      </article>
+      <article class="feature-card">
+        <div class="feature-card__header feature-card__header--2"><span class="badge">02</span></div>
+        <div class="feature-card__body">
+          <h3 class="h3">캠페인 자동화</h3>
+          <p class="body-2 subtle">타겟과 예산에 맞춰 캠페인을 자동으로 최적화합니다.</p>
         </div>
-        <div style="grid-column: span 3;">
-          <article class="feature-card">
-            <div class="feature-card__header feature-card__header--3"><span class="badge">03</span></div>
-            <div class="feature-card__body">
-              <h3 class="h3">크리에이티브 제작</h3>
-              <p class="body-2 subtle">브랜드 톤에 맞는 소재를 빠르게 생성합니다.</p>
-            </div>
-          </article>
+      </article>
+      <article class="feature-card">
+        <div class="feature-card__header feature-card__header--3"><span class="badge">03</span></div>
+        <div class="feature-card__body">
+          <h3 class="h3">크리에이티브 제작</h3>
+          <p class="body-2 subtle">브랜드 톤에 맞는 소재를 빠르게 생성합니다.</p>
         </div>
-        <div style="grid-column: span 3;">
-          <article class="feature-card">
-            <div class="feature-card__header feature-card__header--4"><span class="badge">04</span></div>
-            <div class="feature-card__body">
-              <h3 class="h3">실시간 리포트</h3>
-              <p class="body-2 subtle">의사결정에 필요한 지표를 한눈에 확인합니다.</p>
-            </div>
-          </article>
+      </article>
+      <article class="feature-card">
+        <div class="feature-card__header feature-card__header--4"><span class="badge">04</span></div>
+        <div class="feature-card__body">
+          <h3 class="h3">실시간 리포트</h3>
+          <p class="body-2 subtle">의사결정에 필요한 지표를 한눈에 확인합니다.</p>
         </div>
-      </div>
+      </article>
+      <article class="feature-card">
+        <div class="feature-card__header feature-card__header--1"><span class="badge">05</span></div>
+        <div class="feature-card__body">
+          <h3 class="h3">채널 통합 관리</h3>
+          <p class="body-2 subtle">여러 광고 채널을 하나의 화면에서 관리합니다.</p>
+        </div>
+      </article>
     </div>
   </section>
 
   <section class="section" id="work">
     <div class="container container--wide">
-      <h2>숫자로 보는 성과</h2>
-      <div class="grid" style="margin-top:var(--space-8);">
-        <div style="grid-column: span 4;">
-          <article class="work-card">
-            <div class="work-card__media"><div class="img"></div></div>
-            <div class="work-card__body">
-              <span class="badge">Case</span>
-              <h3 class="h3">이커머스 브랜드 A</h3>
-              <div class="work-card__stats">
-                <div class="work-card__stat"><span class="subtle">전환율 개선</span><span>+128%</span></div>
-                <div class="work-card__stat"><span class="subtle">광고비 절감</span><span>-34%</span></div>
-                <div class="work-card__stat"><span class="subtle">운영 기간</span><span>6개월</span></div>
-              </div>
-            </div>
-          </article>
+      <h2>놓치면 아쉬운 성과</h2>
+    </div>
+    <div class="work-peek" style="margin-top:var(--space-8);">
+      <article class="work-card">
+        <div class="work-card__body">
+          <span class="badge">Case</span>
+          <h3 class="h2">이커머스 브랜드 A</h3>
+          <div class="work-card__stats">
+            <div class="work-card__stat"><span class="subtle">전환율 개선</span><span>+128%</span></div>
+            <div class="work-card__stat"><span class="subtle">광고비 절감</span><span>-34%</span></div>
+            <div class="work-card__stat"><span class="subtle">운영 기간</span><span>6개월</span></div>
+          </div>
         </div>
-        <div style="grid-column: span 4;">
-          <article class="work-card">
-            <div class="work-card__media"><div class="img"></div></div>
-            <div class="work-card__body">
-              <span class="badge">Case</span>
-              <h3 class="h3">F&amp;B 프랜차이즈 B</h3>
-              <div class="work-card__stats">
-                <div class="work-card__stat"><span class="subtle">신규 고객 유입</span><span>+92%</span></div>
-                <div class="work-card__stat"><span class="subtle">재구매율</span><span>+41%</span></div>
-                <div class="work-card__stat"><span class="subtle">운영 기간</span><span>4개월</span></div>
-              </div>
-            </div>
-          </article>
+        <div class="work-card__media"><div class="img"></div></div>
+      </article>
+      <article class="work-card work-card--peek">
+        <div class="work-card__body">
+          <span class="badge">Case</span>
+          <h3 class="h2">F&amp;B 프랜차이즈 B</h3>
+          <div class="work-card__stats">
+            <div class="work-card__stat"><span class="subtle">신규 고객 유입</span><span>+92%</span></div>
+            <div class="work-card__stat"><span class="subtle">재구매율</span><span>+41%</span></div>
+            <div class="work-card__stat"><span class="subtle">운영 기간</span><span>4개월</span></div>
+          </div>
         </div>
-        <div style="grid-column: span 4;">
-          <article class="work-card">
-            <div class="work-card__media"><div class="img"></div></div>
-            <div class="work-card__body">
-              <span class="badge">Case</span>
-              <h3 class="h3">뷰티 커머스 C</h3>
-              <div class="work-card__stats">
-                <div class="work-card__stat"><span class="subtle">체류 시간 증가</span><span>+65%</span></div>
-                <div class="work-card__stat"><span class="subtle">CPA 절감</span><span>-28%</span></div>
-                <div class="work-card__stat"><span class="subtle">운영 기간</span><span>3개월</span></div>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
+        <div class="work-card__media"><div class="img"></div></div>
+      </article>
     </div>
   </section>
 
   <section class="section cta" id="cta">
     <div class="container container--wide grid">
       <div class="cta__body" style="grid-column: span 5;">
-        <h2>지금, 마케팅을<br>가속하세요</h2>
+        <h2>We Accelerate<br><strong>Marketing Growth</strong></h2>
       </div>
       <div class="cta__body" style="grid-column: span 7;">
-        <p class="body-1 subtle measure">BEACON 데모를 통해 우리 브랜드에 맞는 데이터 기반 마케팅 전략을 직접 확인해보세요.</p>
-        <div class="cta__actions">
-          <a class="btn btn--solid" href="#">데모 신청하기</a>
-          <a class="btn btn--outline" href="#">담당자에게 문의</a>
-        </div>
+        <p class="body-1 subtle measure">데이터 마케팅의 시작, BEACON — 상상을 전략으로, 전략을 성과로 연결합니다.</p>
+        <a class="btn btn--solid" href="mailto:hello@beacon-marketing.com">문의하기</a>
       </div>
     </div>
   </section>
@@ -192,32 +169,34 @@ Footer      — full-bleed
 </main>
 
 <footer class="footer">
-  <div class="container container--wide">
-    <div class="footer__top">
-      <span class="footer__brand">BEACON</span>
-      <div class="footer__cols">
-        <div class="footer__col">
-          <span class="footer__col-title">서비스</span>
-          <a href="#features">데이터 분석</a>
-          <a href="#features">캠페인 자동화</a>
-          <a href="#features">크리에이티브 제작</a>
-        </div>
-        <div class="footer__col">
-          <span class="footer__col-title">회사</span>
-          <a href="#intro">회사소개</a>
-          <a href="#work">고객사례</a>
-          <a href="#cta">문의하기</a>
-        </div>
-        <div class="footer__col">
-          <span class="footer__col-title">정책</span>
-          <a href="#">개인정보처리방침</a>
-          <a href="#">이용약관</a>
-        </div>
+  <div class="container container--wide footer__row">
+    <div class="footer__links">
+      <div class="footer__col">
+        <a href="#intro">회사소개</a>
+        <a href="#features">서비스</a>
+        <a href="#work">고객사례</a>
+        <a href="#cta">문의하기</a>
+      </div>
+      <div class="footer__col">
+        <a href="#">개인정보처리방침</a>
+        <a href="#">이용약관</a>
+        <a href="#">구매시스템</a>
+        <a href="#">사이버 감사실</a>
+        <a href="#">사이트맵</a>
       </div>
     </div>
-    <div class="footer__bottom">
-      <span>© 2026 BEACON. All rights reserved.</span>
-      <span>Tel. 02-1234-5678 · hello@beacon-marketing.com</span>
+    <div class="footer__contact">
+      <div class="footer__contact-title">FAMILY SITE 바로가기 <span>+</span></div>
+      <div class="footer__divider"></div>
+      <p>Tel. 02-1234-5678<br>E-Mail. hello@beacon-marketing.com</p>
+      <p class="footer__copyright">© 2026 BEACON. All rights reserved.</p>
+      <div class="footer__social">
+        <span class="footer__social-icon">B</span>
+        <span class="footer__social-icon">f</span>
+        <span class="footer__social-icon">in</span>
+        <span class="footer__social-icon">Y</span>
+        <span class="footer__social-icon">IG</span>
+      </div>
     </div>
   </div>
 </footer>
