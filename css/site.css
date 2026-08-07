@@ -56,20 +56,26 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;}
 }
 
 /* ---------- intro: asymmetric collage + overlaid text (matches Figma) ---------- */
+.intro{position:relative;overflow:visible;padding-bottom:var(--space-4);}
+.intro__row{display:flex;align-items:center;gap:var(--space-8);}
+.intro__text{flex:0 0 42%;display:flex;flex-direction:column;gap:var(--space-4);}
+.intro__text h2{word-break:keep-all;}
 /* Positions/sizes normalized from the real Figma node coordinates (get_design_context
    metadata for 89:1377), not eyeballed — bounding box ~1302x1323 (near-square). */
-.intro__collage{position:relative;width:100%;max-width:480px;aspect-ratio:1302/1323;margin-bottom:var(--space-6);}
+.intro__collage{position:relative;flex:0 0 52%;aspect-ratio:1302/1323;}
 .intro__collage .img{position:absolute;border-radius:var(--radius-md);}
 .intro__collage .img--a{width:24%;aspect-ratio:307/270;top:0%;left:0%;}
 .intro__collage .img--b{width:48%;aspect-ratio:629/528;top:2%;left:36%;border-radius:var(--radius-lg);}
 .intro__collage .img--c{width:15%;aspect-ratio:1/1;top:54%;left:24%;border-radius:var(--radius-circle);}
 .intro__collage .img--d{width:25%;aspect-ratio:326/298;top:49%;left:75%;border-radius:var(--radius-circle);}
-.intro__collage .img--e{width:37%;aspect-ratio:1/1;top:64%;left:41%;border-radius:var(--radius-circle);}
-.intro__text{max-width:38rem;display:flex;flex-direction:column;gap:var(--space-3);}
-.intro__text h2{word-break:keep-all;}
+/* img--e is the one that bleeds ~half its height past the section boundary into the
+   next section, per instruction — pushed further down than its collage slot so it
+   clears the section's (reduced) bottom padding and overlaps the section below. */
+.intro__collage .img--e{width:37%;aspect-ratio:1/1;left:41%;top:64%;
+  z-index:2;transform:translateY(65%);}
 @media (max-width:768px){
-  .intro__collage{display:none;}
-  .intro__text{max-width:100%;}
+  .intro__row{flex-direction:column;}
+  .intro__collage{flex-basis:auto;width:100%;max-width:420px;}
 }
 
 /* ---------- features: peek row, center cards full / edges cropped ---------- */
