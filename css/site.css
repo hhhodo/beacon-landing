@@ -67,28 +67,30 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;}
    px size (all >=300px per instruction) and several sit at negative/>100% offsets so
    they visibly break out of the collage box instead of tiling neatly inside it. */
 .intro__collage{position:relative;flex:0 0 58%;min-height:760px;overflow:visible;}
-.intro__collage .img{position:absolute;border-radius:0;}
-.intro__collage .img--a{width:320px;aspect-ratio:307/270;top:-60px;left:-90px;}
-.intro__collage .img--b{width:560px;aspect-ratio:629/528;top:10px;left:180px;}
-.intro__collage .img--c{width:300px;aspect-ratio:1/1;top:440px;left:-40px;}
-.intro__collage .img--d{width:360px;aspect-ratio:326/298;top:360px;left:560px;}
-/* img--e is the one that bleeds ~half its height past the section boundary into the
+.intro-holder{position:absolute;border-radius:0;background:var(--color-placeholder);
+  display:flex;align-items:center;justify-content:center;padding:var(--space-4);}
+.intro-holder img{width:100%;height:100%;object-fit:contain;}
+.intro-holder--a{width:320px;aspect-ratio:307/270;top:-60px;left:-90px;}
+.intro-holder--b{width:560px;aspect-ratio:629/528;top:10px;left:180px;}
+.intro-holder--c{width:300px;aspect-ratio:1/1;top:440px;left:-40px;}
+.intro-holder--d{width:360px;aspect-ratio:326/298;top:360px;left:560px;}
+/* holder--e is the one that bleeds ~half its height past the section boundary into the
    next section, per instruction — pushed further down than its collage slot so it
    clears the section's (reduced) bottom padding and overlaps the section below. */
-.intro__collage .img--e{width:420px;aspect-ratio:1/1;left:120px;top:620px;
+.intro-holder--e{width:420px;aspect-ratio:1/1;left:120px;top:620px;
   z-index:2;transform:translateY(65%);}
 @media (max-width:1200px){
-  .intro__collage .img--b{left:80px;}
-  .intro__collage .img--d{left:400px;}
+  .intro-holder--b{left:80px;}
+  .intro-holder--d{left:400px;}
 }
 @media (max-width:768px){
   .intro__row{flex-direction:column;}
   .intro__collage{flex-basis:auto;width:100%;max-width:420px;min-height:640px;}
-  .intro__collage .img{width:min(100%,320px)!important;left:0!important;}
-  .intro__collage .img--b{top:2%;}
-  .intro__collage .img--c{top:46%;}
-  .intro__collage .img--d{top:40%;left:auto!important;right:0!important;}
-  .intro__collage .img--e{top:58%;}
+  .intro-holder{width:min(100%,320px)!important;left:0!important;}
+  .intro-holder--b{top:2%;}
+  .intro-holder--c{top:46%;}
+  .intro-holder--d{top:40%;left:auto!important;right:0!important;}
+  .intro-holder--e{top:58%;}
 }
 
 /* ---------- features: peek row — 3 full cards in the middle + 2 cropped cards each side (7 total) ---------- */
@@ -96,31 +98,28 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;}
    3 cards + 2 gaps centered on the viewport: 3(392) + 2(24) = 1224. The 4 remaining
    cards (2 each side) hang past that centered block and get clipped by overflow:hidden —
    "잘려도 좋아" per instruction, so no extra math is needed to hide them.
-   Color: one hero hue is the dominant fill per card, the other two only ghost in as
-   faint corner hints (low opacity, small radius) — not all three blended evenly
-   across every card, which read as noisy/busy. Cards cycle yellow-lead, blue-lead,
-   purple-lead. */
+   Color: white canvas base (same as the hero's own base), with one hero hue faintly
+   tinted in as a soft radial wash — same treatment as .hero itself, just one dominant
+   hue per card instead of all three at once, so it reads as a gentle tint, not a
+   saturated fill. Cards cycle yellow-lead, blue-lead, purple-lead. */
 .peek-row{display:flex;gap:var(--space-5);overflow:hidden;
   padding-inline:calc((100% - 1224px)/2);}
 .feature-card{flex:0 0 392px;width:392px;height:530px;display:flex;flex-direction:column;
-  border-radius:var(--radius-lg);overflow:hidden;}
+  border-radius:var(--radius-lg);overflow:hidden;background:var(--color-canvas);border:var(--border-1);}
 .feature-card__header{flex:1 1 58%;display:flex;flex-direction:column;align-items:center;
   justify-content:center;gap:var(--space-4);color:var(--color-primary-900);
   font-weight:var(--fw-strong);font-size:var(--fs-h3);text-align:center;padding-inline:var(--space-4);
   background:
-    radial-gradient(ellipse 35% 30% at 90% 8%, rgba(88,172,233,.18) 0%, transparent 70%),
-    radial-gradient(ellipse 35% 30% at 8% 95%, rgba(178,165,236,.16) 0%, transparent 70%),
-    radial-gradient(ellipse 120% 100% at 50% 40%, #eee648 0%, #fff4c2 100%);}
+    radial-gradient(ellipse 90% 75% at 50% 35%, rgba(238,230,72,.35) 0%, transparent 70%),
+    var(--color-canvas);}
 .feature-card:nth-child(3n+2) .feature-card__header{background:
-    radial-gradient(ellipse 35% 30% at 90% 8%, rgba(178,165,236,.18) 0%, transparent 70%),
-    radial-gradient(ellipse 35% 30% at 8% 95%, rgba(238,230,72,.16) 0%, transparent 70%),
-    radial-gradient(ellipse 120% 100% at 50% 40%, #58ace9 0%, #cfe7f9 100%);}
+    radial-gradient(ellipse 90% 75% at 50% 35%, rgba(88,172,233,.32) 0%, transparent 70%),
+    var(--color-canvas);}
 .feature-card:nth-child(3n+3) .feature-card__header{background:
-    radial-gradient(ellipse 35% 30% at 90% 8%, rgba(238,230,72,.18) 0%, transparent 70%),
-    radial-gradient(ellipse 35% 30% at 8% 95%, rgba(88,172,233,.16) 0%, transparent 70%),
-    radial-gradient(ellipse 120% 100% at 50% 40%, #b2a5ec 0%, #e6e1f9 100%);}
+    radial-gradient(ellipse 90% 75% at 50% 35%, rgba(178,165,236,.32) 0%, transparent 70%),
+    var(--color-canvas);}
 .feature-card__icon{width:170px;height:170px;border-radius:var(--radius-circle);
-  background:rgba(255,255,255,.55);}
+  background:rgba(255,255,255,.6);}
 .feature-card__body{flex:1 1 42%;background:var(--color-canvas);display:flex;
   flex-direction:column;justify-content:center;padding:var(--space-5);}
 .feature-card__body p{color:var(--text-subtle);}
