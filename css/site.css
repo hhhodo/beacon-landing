@@ -105,9 +105,8 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
   scroll-snap-align:center;}
 .work-card__media{flex:1 1 0;min-width:0;position:relative;overflow:hidden;
   background:
-    radial-gradient(ellipse 80% 70% at 18% 18%, rgba(238,230,72,.35) 0%, transparent 60%),
-    radial-gradient(ellipse 80% 70% at 85% 82%, rgba(88,172,233,.3) 0%, transparent 60%),
-    var(--color-primary-050);}
+    radial-gradient(ellipse 90% 80% at 22% 22%, rgba(238,230,72,.18) 0%, transparent 65%),
+    var(--color-canvas);}
 /* Corner-pinned instead of centrally overlapping — each photo sits in its own
    corner with only a small touch of overlap, not stacked on top of each other. */
 .work-card__photo{position:absolute;object-fit:cover;border-radius:0;}

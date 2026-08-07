@@ -11,46 +11,62 @@
 </head>
 <body>
 
-<!-- Simplified marketing-dashboard mockup: thick rounded strokes only, unimportant
-     text/labels shown as flat light-gray boxes rather than real copy. Reused via
-     <use> in all three hero image holders. -->
+<!-- Simplified marketing-dashboard mockups — three DIFFERENT variants, one per hero
+     holder. Almost everything (nav, sidebar, stat cards, chart) is drawn in a single
+     muted light-gray so it recedes; the only dark, readable thing in each is its one
+     marketing headline metric, with a single small accent color as a highlight. -->
 <svg aria-hidden="true" style="display:none">
   <defs>
-    <symbol id="dash-mock" viewBox="0 0 960 600">
-      <circle cx="60" cy="70" r="18" fill="none" stroke="#262628" stroke-width="10" stroke-linejoin="round"/>
-      <rect x="112" y="56" width="90" height="28" rx="14" fill="#f0f0f1"/>
-      <rect x="216" y="56" width="70" height="28" rx="14" fill="#f0f0f1"/>
-      <rect x="300" y="56" width="70" height="28" rx="14" fill="#f0f0f1"/>
-      <circle cx="900" cy="70" r="24" fill="#f0f0f1" stroke="#262628" stroke-width="10"/>
-      <line x1="40" y1="122" x2="920" y2="122" stroke="#262628" stroke-width="10" stroke-linecap="round"/>
+    <g id="dash-skeleton">
+      <circle cx="60" cy="70" r="18" fill="none" stroke="#dcdce0" stroke-width="10" stroke-linejoin="round"/>
+      <rect x="112" y="56" width="90" height="28" rx="14" fill="#f2f2f4"/>
+      <rect x="216" y="56" width="70" height="28" rx="14" fill="#f2f2f4"/>
+      <rect x="300" y="56" width="70" height="28" rx="14" fill="#f2f2f4"/>
+      <circle cx="900" cy="70" r="24" fill="#f2f2f4" stroke="#dcdce0" stroke-width="10"/>
+      <line x1="40" y1="122" x2="920" y2="122" stroke="#dcdce0" stroke-width="10" stroke-linecap="round"/>
+      <rect x="40" y="162" width="56" height="56" rx="18" fill="none" stroke="#dcdce0" stroke-width="10" stroke-linejoin="round"/>
+      <rect x="40" y="232" width="56" height="56" rx="18" fill="none" stroke="#dcdce0" stroke-width="10" stroke-linejoin="round"/>
+      <rect x="40" y="302" width="56" height="56" rx="18" fill="none" stroke="#dcdce0" stroke-width="10" stroke-linejoin="round"/>
+      <rect x="140" y="160" width="230" height="70" rx="24" fill="#f2f2f4"/>
+      <rect x="390" y="160" width="230" height="70" rx="24" fill="#f2f2f4"/>
+      <rect x="640" y="160" width="230" height="70" rx="24" fill="#f2f2f4"/>
+      <rect x="140" y="260" width="730" height="280" rx="28" fill="none" stroke="#dcdce0" stroke-width="10" stroke-linejoin="round"/>
+    </g>
 
-      <rect x="40" y="162" width="56" height="56" rx="18" fill="#262628"/>
-      <rect x="40" y="232" width="56" height="56" rx="18" fill="none" stroke="#262628" stroke-width="10" stroke-linejoin="round"/>
-      <rect x="40" y="302" width="56" height="56" rx="18" fill="none" stroke="#262628" stroke-width="10" stroke-linejoin="round"/>
-      <rect x="40" y="372" width="56" height="56" rx="18" fill="none" stroke="#262628" stroke-width="10" stroke-linejoin="round"/>
-
-      <rect x="140" y="160" width="230" height="130" rx="28" fill="none" stroke="#262628" stroke-width="10" stroke-linejoin="round"/>
-      <circle cx="182" cy="202" r="17" fill="none" stroke="#262628" stroke-width="8"/>
-      <rect x="162" y="242" width="120" height="24" rx="12" fill="#f0f0f1"/>
-
-      <rect x="390" y="160" width="230" height="130" rx="28" fill="none" stroke="#262628" stroke-width="10" stroke-linejoin="round"/>
-      <circle cx="432" cy="202" r="17" fill="none" stroke="#262628" stroke-width="8"/>
-      <rect x="412" y="242" width="120" height="24" rx="12" fill="#f0f0f1"/>
-
-      <rect x="640" y="160" width="230" height="130" rx="28" fill="none" stroke="#262628" stroke-width="10" stroke-linejoin="round"/>
-      <circle cx="682" cy="202" r="17" fill="none" stroke="#262628" stroke-width="8"/>
-      <rect x="662" y="242" width="120" height="24" rx="12" fill="#f0f0f1"/>
-
-      <rect x="140" y="320" width="730" height="220" rx="28" fill="none" stroke="#262628" stroke-width="10" stroke-linejoin="round"/>
-      <g stroke="#262628" stroke-width="14" stroke-linecap="round">
-        <line x1="200" y1="490" x2="200" y2="420"/>
-        <line x1="264" y1="490" x2="264" y2="378"/>
-        <line x1="328" y1="490" x2="328" y2="440"/>
-        <line x1="392" y1="490" x2="392" y2="360"/>
-        <line x1="456" y1="490" x2="456" y2="410"/>
+    <!-- A: ROAS 320% — muted bar chart, single yellow accent bar -->
+    <symbol id="dash-mock-a" viewBox="0 0 960 600">
+      <use href="#dash-skeleton"/>
+      <text x="180" y="330" font-family="'Noto Sans KR',sans-serif" font-weight="700" font-size="52" fill="#262628">ROAS 320%</text>
+      <g stroke="#e3e3e6" stroke-width="16" stroke-linecap="round">
+        <line x1="210" y1="520" x2="210" y2="460"/>
+        <line x1="280" y1="520" x2="280" y2="420"/>
+        <line x1="420" y1="520" x2="420" y2="480"/>
+        <line x1="490" y1="520" x2="490" y2="440"/>
       </g>
-      <polyline points="530,468 592,406 654,438 716,368 778,400 840,356"
-        fill="none" stroke="#262628" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="350" y1="520" x2="350" y2="380" stroke="#F2D14E" stroke-width="16" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- B: 전환율 +128% — muted line chart, single blue accent segment -->
+    <symbol id="dash-mock-b" viewBox="0 0 960 600">
+      <use href="#dash-skeleton"/>
+      <text x="180" y="330" font-family="'Noto Sans KR',sans-serif" font-weight="700" font-size="52" fill="#262628">전환율 +128%</text>
+      <polyline points="190,500 300,470 410,485 520,440 630,460"
+        fill="none" stroke="#e3e3e6" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+      <polyline points="630,460 740,410 850,385"
+        fill="none" stroke="#58ACE9" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+
+    <!-- C: CPA -34% — muted descending bars, single purple accent bar -->
+    <symbol id="dash-mock-c" viewBox="0 0 960 600">
+      <use href="#dash-skeleton"/>
+      <text x="180" y="330" font-family="'Noto Sans KR',sans-serif" font-weight="700" font-size="52" fill="#262628">CPA -34%</text>
+      <g stroke="#e3e3e6" stroke-width="16" stroke-linecap="round">
+        <line x1="210" y1="520" x2="210" y2="385"/>
+        <line x1="280" y1="520" x2="280" y2="430"/>
+        <line x1="350" y1="520" x2="350" y2="455"/>
+        <line x1="490" y1="520" x2="490" y2="490"/>
+      </g>
+      <line x1="420" y1="520" x2="420" y2="470" stroke="#B2A5EC" stroke-width="16" stroke-linecap="round"/>
     </symbol>
   </defs>
 </svg>
@@ -98,9 +114,9 @@ Footer      — full-bleed (2 link columns left / contact+social right)
       <h1 class="display display--sm hero__title">당신의 예산보다<br>빠른 마케팅</h1>
     </div>
     <div class="hero__row">
-      <div class="hero__peek"><svg class="img hero__mock"><use href="#dash-mock"/></svg></div>
-      <div class="hero__main"><svg class="img hero__mock"><use href="#dash-mock"/></svg></div>
-      <div class="hero__peek"><svg class="img hero__mock"><use href="#dash-mock"/></svg></div>
+      <div class="hero__peek"><svg class="img hero__mock"><use href="#dash-mock-a"/></svg></div>
+      <div class="hero__main"><svg class="img hero__mock"><use href="#dash-mock-b"/></svg></div>
+      <div class="hero__peek"><svg class="img hero__mock"><use href="#dash-mock-c"/></svg></div>
     </div>
   </section>
 
