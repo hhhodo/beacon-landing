@@ -27,9 +27,6 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;}
 .btn--solid{background:var(--color-primary-900);color:var(--text-default-inverse);}
 .btn--solid:hover{background:var(--color-primary-700);}
 
-/* ---------- section tint ---------- */
-.section--tint{background:var(--color-primary-050);}
-
 /* ---------- hero: white background (Figma is bg-white), heading, peek row of image cards ---------- */
 .hero{width:100%;background:var(--color-canvas);}
 .hero__inner{text-align:center;padding-block:var(--space-11) var(--space-8);
