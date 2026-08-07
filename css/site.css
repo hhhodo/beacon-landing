@@ -56,14 +56,17 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;}
 }
 
 /* ---------- intro: asymmetric collage + overlaid text (matches Figma) ---------- */
-.intro__collage{position:relative;width:100%;max-width:640px;height:360px;margin-bottom:var(--space-6);}
+/* Positions/sizes normalized from the real Figma node coordinates (get_design_context
+   metadata for 89:1377), not eyeballed — bounding box ~1302x1323 (near-square). */
+.intro__collage{position:relative;width:100%;max-width:480px;aspect-ratio:1302/1323;margin-bottom:var(--space-6);}
 .intro__collage .img{position:absolute;border-radius:var(--radius-md);}
-.intro__collage .img--a{width:15%;aspect-ratio:1/1;top:0;left:8%;}
-.intro__collage .img--b{width:46%;aspect-ratio:16/10;top:6%;left:32%;border-radius:var(--radius-lg);}
-.intro__collage .img--c{width:9%;aspect-ratio:1/1;top:62%;left:2%;border-radius:var(--radius-circle);}
-.intro__collage .img--d{width:13%;aspect-ratio:1/1;top:52%;right:12%;border-radius:var(--radius-circle);}
-.intro__collage .img--e{width:19%;aspect-ratio:1/1;top:66%;left:42%;border-radius:var(--radius-circle);}
-.intro__text{max-width:32rem;display:flex;flex-direction:column;gap:var(--space-3);}
+.intro__collage .img--a{width:24%;aspect-ratio:307/270;top:0%;left:0%;}
+.intro__collage .img--b{width:48%;aspect-ratio:629/528;top:2%;left:36%;border-radius:var(--radius-lg);}
+.intro__collage .img--c{width:15%;aspect-ratio:1/1;top:54%;left:24%;border-radius:var(--radius-circle);}
+.intro__collage .img--d{width:25%;aspect-ratio:326/298;top:49%;left:75%;border-radius:var(--radius-circle);}
+.intro__collage .img--e{width:37%;aspect-ratio:1/1;top:64%;left:41%;border-radius:var(--radius-circle);}
+.intro__text{max-width:38rem;display:flex;flex-direction:column;gap:var(--space-3);}
+.intro__text h2{word-break:keep-all;}
 @media (max-width:768px){
   .intro__collage{display:none;}
   .intro__text{max-width:100%;}
