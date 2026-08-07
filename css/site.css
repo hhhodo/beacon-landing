@@ -21,8 +21,8 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
 .section{padding-block:calc(var(--space-section) * 2);}
 
 /* ---------- nav: fixed so it stays visible on scroll; transparent while over the hero ---------- */
-.nav{position:fixed;top:0;left:0;right:0;z-index:50;background:transparent;transition:background .2s,border-color .2s;}
-.nav.is-scrolled{background:var(--color-canvas);border-bottom:var(--border-1);}
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;background:transparent;transition:background .2s;}
+.nav.is-scrolled{background:var(--color-canvas);}
 .nav__row{display:flex;align-items:center;justify-content:space-between;
   height:88px;}
 .nav__logo{font-size:var(--fs-body-1);font-weight:var(--fw-strong);letter-spacing:var(--display-tracking);}
@@ -128,8 +128,7 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
 .faq__tab.is-active{color:var(--text-default);}
 .faq__list{display:flex;flex-direction:column;padding-top:70px;}
 .faq__item{display:flex;align-items:center;justify-content:space-between;gap:var(--space-5);
-  width:100%;padding-block:30px;border-bottom:1px solid #ebebeb;text-align:left;}
-.faq__item:first-child{border-top:1px solid #ebebeb;}
+  width:100%;padding-block:30px;text-align:left;}
 .faq__item span:first-child{font-size:26px;font-weight:var(--fw-strong);color:var(--text-default);}
 .faq__toggle{position:relative;flex-shrink:0;width:48px;height:48px;border-radius:var(--radius-circle);
   background:#333;transition:transform .2s;}
@@ -171,7 +170,7 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
 .footer__copyright{color:var(--color-primary-500);}
 .footer__social{display:flex;gap:var(--space-3);}
 .footer__social-icon{display:flex;align-items:center;justify-content:center;
-  width:36px;height:36px;border-radius:var(--radius-circle);border:1px solid var(--color-primary-700);
+  width:36px;height:36px;border-radius:var(--radius-circle);background:var(--color-primary-800);
   font-size:var(--fs-badge);}
 @media (max-width:768px){
   .footer__row{flex-direction:column;}
