@@ -61,7 +61,7 @@ Footer      — full-bleed (2 link columns left / contact+social right)
   </section>
 
   <section class="section" id="features">
-    <div class="container container--narrow">
+    <div class="container container--narrow container--flush">
       <h2>신경 쓰지 않아도<br>BEACON이 지켜주니까</h2>
       <p class="body-2 subtle" style="margin-top:var(--space-3);">데이터 기반 인사이트로 완성된 안심 캠페인</p>
     </div>
@@ -121,7 +121,7 @@ Footer      — full-bleed (2 link columns left / contact+social right)
   </section>
 
   <section class="section" id="work">
-    <div class="container container--narrow">
+    <div class="container container--narrow container--flush">
       <h2>놓치면 아쉬운 성과</h2>
     </div>
     <div class="work-peek" style="margin-top:60px;">
@@ -161,39 +161,49 @@ Footer      — full-bleed (2 link columns left / contact+social right)
   <section class="faq" id="faq">
     <div class="faq__head">
       <h2 class="faq__title">자주 묻는 질문</h2>
-      <div class="faq__tabs" role="tablist">
-        <button type="button" class="faq__tab is-active" role="tab" aria-selected="true">서비스 안내</button>
-        <button type="button" class="faq__tab" role="tab" aria-selected="false">요금제</button>
-        <button type="button" class="faq__tab" role="tab" aria-selected="false">도입 문의</button>
-      </div>
     </div>
     <div class="faq__list">
-      <button type="button" class="faq__item">
-        <span>BEACON은 어떤 서비스인가요?</span>
-        <span class="faq__toggle" aria-hidden="true"></span>
-      </button>
-      <button type="button" class="faq__item">
-        <span>무료로 체험해볼 수 있나요?</span>
-        <span class="faq__toggle" aria-hidden="true"></span>
-      </button>
-      <button type="button" class="faq__item">
-        <span>기존에 사용하던 광고 채널과 연동되나요?</span>
-        <span class="faq__toggle" aria-hidden="true"></span>
-      </button>
-      <button type="button" class="faq__item">
-        <span>요금제는 어떻게 구성되어 있나요?</span>
-        <span class="faq__toggle" aria-hidden="true"></span>
-      </button>
-      <button type="button" class="faq__item">
-        <span>도입 후 온보딩 지원이 제공되나요?</span>
-        <span class="faq__toggle" aria-hidden="true"></span>
-      </button>
+      <div class="faq__row">
+        <button type="button" class="faq__item" aria-expanded="false">
+          <span>BEACON은 어떤 서비스인가요?</span>
+          <span class="faq__toggle" aria-hidden="true"></span>
+        </button>
+        <p class="faq__answer">캠페인 기획부터 소재 제작, 성과 분석까지 마케팅 전 과정을 하나의 대시보드에서 관리하는 데이터 기반 마케팅 플랫폼입니다.</p>
+      </div>
+      <div class="faq__row">
+        <button type="button" class="faq__item" aria-expanded="false">
+          <span>무료로 체험해볼 수 있나요?</span>
+          <span class="faq__toggle" aria-hidden="true"></span>
+        </button>
+        <p class="faq__answer">네, 14일간 모든 기능을 무료로 체험하실 수 있습니다. 신용카드 등록 없이 바로 시작할 수 있습니다.</p>
+      </div>
+      <div class="faq__row">
+        <button type="button" class="faq__item" aria-expanded="false">
+          <span>기존에 사용하던 광고 채널과 연동되나요?</span>
+          <span class="faq__toggle" aria-hidden="true"></span>
+        </button>
+        <p class="faq__answer">네, 주요 광고 채널과 API 연동을 지원하여 기존에 운영하시던 캠페인 데이터를 그대로 불러올 수 있습니다.</p>
+      </div>
+      <div class="faq__row">
+        <button type="button" class="faq__item" aria-expanded="false">
+          <span>요금제는 어떻게 구성되어 있나요?</span>
+          <span class="faq__toggle" aria-hidden="true"></span>
+        </button>
+        <p class="faq__answer">팀 규모와 운영 채널 수에 따라 스타터, 프로, 엔터프라이즈 요금제로 나뉘며, 담당자와 상담 후 맞춤 견적을 받아보실 수 있습니다.</p>
+      </div>
+      <div class="faq__row">
+        <button type="button" class="faq__item" aria-expanded="false">
+          <span>도입 후 온보딩 지원이 제공되나요?</span>
+          <span class="faq__toggle" aria-hidden="true"></span>
+        </button>
+        <p class="faq__answer">전담 매니저가 배정되어 초기 세팅부터 캠페인 운영 전략 수립까지 온보딩 과정을 함께 진행합니다.</p>
+      </div>
     </div>
   </section>
 
   <section class="section cta" id="cta">
     <div class="cta__wordmark" aria-hidden="true">BEACON</div>
-    <div class="container container--narrow cta__row">
+    <div class="cta__row">
       <div class="cta__content">
         <h2>We Accelerate<br><strong>Marketing Growth</strong></h2>
         <p class="body-1 subtle measure">데이터 마케팅의 시작, BEACON — 상상을 전략으로, 전략을 성과로 연결합니다.</p>

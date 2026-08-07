@@ -115,7 +115,7 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
    browser's default button chrome (background, appearance) so nothing but the
    rules below renders. Missing this reset is what caused the FAQ list's zebra-striped
    backgrounds — that was Safari/Chrome's default button fill peeking through. */
-.work-nav__btn,.faq__tab,.faq__item{appearance:none;-webkit-appearance:none;
+.work-nav__btn,.faq__item{appearance:none;-webkit-appearance:none;
   background:none;border:none;font:inherit;color:inherit;cursor:pointer;}
 .work-nav{display:flex;justify-content:center;gap:var(--space-3);margin-top:var(--space-6);}
 .work-nav__btn{display:flex;align-items:center;justify-content:center;
@@ -124,14 +124,11 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
 .work-nav__btn:hover{background:var(--color-primary-050);}
 .work-nav__btn:disabled{opacity:.35;pointer-events:none;}
 
-/* ---------- faq: mcp — heading+tabs row, accordion list below (positions/sizes are literal mcp px, no matching tokens) ---------- */
-.faq{padding-block-start:320px;padding-inline:40px;}
-.faq__head,.faq__list{max-width:1520px;width:1280px;margin-inline:auto;}
-.faq__head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--space-5);}
+/* ---------- faq: heading + accordion list, no tabs, flush with the other section
+   titles (no gutter), uniform 320 section rhythm ---------- */
+.faq{padding-block:320px;}
+.faq__head,.faq__list{max-width:1280px;margin-inline:auto;}
 .faq__title{font-size:var(--fs-h2);font-weight:var(--fw-strong);}
-.faq__tabs{display:flex;gap:var(--space-5);}
-.faq__tab{padding-block:10px;font-size:var(--fs-body-1);font-weight:var(--fw-strong);color:#c0c0c0;}
-.faq__tab.is-active{color:var(--text-default);}
 .faq__list{display:flex;flex-direction:column;padding-top:70px;}
 .faq__item{display:flex;align-items:center;justify-content:space-between;gap:var(--space-5);
   width:100%;padding-block:30px;text-align:left;}
@@ -142,24 +139,30 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
   width:22px;height:3px;border-radius:var(--radius-circle);background:#fff;}
 .faq__toggle::after{transform:rotate(90deg);}
 .faq__item[aria-expanded="true"] .faq__toggle{transform:rotate(45deg);}
+/* Answer panel: height-animated open/close, driven by JS toggling aria-expanded
+   on the button and a mirrored data attribute read here via the sibling selector. */
+.faq__answer{max-height:0;overflow:hidden;font-size:var(--fs-body-1);color:var(--text-subtle);
+  transition:max-height .25s ease,padding-top .25s ease;}
+.faq__item[aria-expanded="true"] + .faq__answer{max-height:200px;padding-block-end:var(--space-5);}
 @media (max-width:1024px){
-  .faq{padding-block-start:160px;}
-  .faq__head,.faq__list{width:100%;}
+  .faq{padding-block:160px;}
 }
 @media (max-width:768px){
   .faq__item span:first-child{font-size:20px;}
 }
 
 /* ---------- cta: no section-local background — the page's own gradient (on body)
-   just runs through here and has faded to white by this point naturally. An oversized
-   ghost wordmark sits behind the copy, same technique as the user's own reference. ---------- */
-.cta{position:relative;overflow:hidden;padding-block:var(--space-13);}
-.cta__wordmark{position:absolute;top:0;left:0;width:100%;text-align:center;
-  font-size:clamp(120px,16vw,320px);font-weight:900;line-height:1;
-  color:var(--color-primary-100);white-space:nowrap;letter-spacing:-.02em;
-  pointer-events:none;user-select:none;}
-.cta__row{position:relative;z-index:1;display:flex;align-items:center;
-  justify-content:space-between;gap:var(--space-8);flex-wrap:wrap;}
+   just runs through here. A full-bleed oversized wordmark sits in normal flow above
+   the copy (not absolutely positioned over it) so the two can never overlap; sized in
+   vw so it always spans/bleeds past the viewport regardless of screen width. No
+   container gutter — flush with the other section titles. */
+.cta{position:relative;overflow:hidden;padding-block:320px;
+  display:flex;flex-direction:column;align-items:center;gap:var(--space-9);}
+.cta__wordmark{width:100%;text-align:center;font-size:26vw;font-weight:900;line-height:1;
+  color:#fff;white-space:nowrap;letter-spacing:-.03em;pointer-events:none;user-select:none;}
+.cta__row{position:relative;z-index:1;width:100%;max-width:var(--container-narrow);
+  margin-inline:auto;display:flex;align-items:center;justify-content:space-between;
+  gap:var(--space-8);flex-wrap:wrap;}
 .cta__content{display:flex;flex-direction:column;gap:var(--space-5);}
 
 /* ---------- footer: 2 link columns left / contact+social right ---------- */
