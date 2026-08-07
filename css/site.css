@@ -111,6 +111,12 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
   .work-card{flex-direction:column;height:auto;}
   .work-card__media .img{aspect-ratio:16/10;}
 }
+/* Buttons used as layout/interaction elements (not literal buttons) — reset the
+   browser's default button chrome (background, appearance) so nothing but the
+   rules below renders. Missing this reset is what caused the FAQ list's zebra-striped
+   backgrounds — that was Safari/Chrome's default button fill peeking through. */
+.work-nav__btn,.faq__tab,.faq__item{appearance:none;-webkit-appearance:none;
+  background:none;border:none;font:inherit;color:inherit;cursor:pointer;}
 .work-nav{display:flex;justify-content:center;gap:var(--space-3);margin-top:var(--space-6);}
 .work-nav__btn{display:flex;align-items:center;justify-content:center;
   width:56px;height:56px;border-radius:var(--radius-circle);
