@@ -7,6 +7,9 @@
 
 body{font-family:'Noto Sans KR','Pretendard',sans-serif;}
 
+/* Sections were sitting too close together — double the standard rhythm. */
+.section{padding-block:calc(var(--space-section) * 2);}
+
 /* ---------- nav: fixed so it stays visible on scroll; transparent while over the hero ---------- */
 .nav{position:fixed;top:0;left:0;right:0;z-index:50;background:transparent;transition:background .2s,border-color .2s;}
 .nav.is-scrolled{background:var(--color-canvas);border-bottom:var(--border-1);}
@@ -60,45 +63,48 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;}
 .intro__row{display:flex;align-items:center;gap:var(--space-8);}
 .intro__text{flex:0 0 42%;display:flex;flex-direction:column;gap:var(--space-4);}
 .intro__text h2{word-break:keep-all;}
-/* Positions/sizes normalized from the real Figma node coordinates (get_design_context
-   metadata for 89:1377), not eyeballed — bounding box ~1302x1323 (near-square). */
+/* Positions from the real Figma node coordinates (get_design_context metadata for
+   89:1377), scaled ~2x and squared off (radius removed) per instruction — chunky
+   square placeholders instead of small rounded ones. */
 .intro__collage{position:relative;flex:0 0 52%;aspect-ratio:1302/1323;}
-.intro__collage .img{position:absolute;border-radius:var(--radius-md);}
-.intro__collage .img--a{width:24%;aspect-ratio:307/270;top:0%;left:0%;}
-.intro__collage .img--b{width:48%;aspect-ratio:629/528;top:2%;left:36%;border-radius:var(--radius-lg);}
-.intro__collage .img--c{width:15%;aspect-ratio:1/1;top:54%;left:24%;border-radius:var(--radius-circle);}
-.intro__collage .img--d{width:25%;aspect-ratio:326/298;top:49%;left:75%;border-radius:var(--radius-circle);}
+.intro__collage .img{position:absolute;border-radius:0;}
+.intro__collage .img--a{width:44%;aspect-ratio:307/270;top:0%;left:0%;}
+.intro__collage .img--b{width:80%;aspect-ratio:629/528;top:2%;left:20%;}
+.intro__collage .img--c{width:28%;aspect-ratio:1/1;top:54%;left:16%;}
+.intro__collage .img--d{width:46%;aspect-ratio:326/298;top:49%;left:62%;}
 /* img--e is the one that bleeds ~half its height past the section boundary into the
    next section, per instruction — pushed further down than its collage slot so it
    clears the section's (reduced) bottom padding and overlaps the section below. */
-.intro__collage .img--e{width:37%;aspect-ratio:1/1;left:41%;top:64%;
+.intro__collage .img--e{width:60%;aspect-ratio:1/1;left:30%;top:64%;
   z-index:2;transform:translateY(65%);}
 @media (max-width:768px){
   .intro__row{flex-direction:column;}
   .intro__collage{flex-basis:auto;width:100%;max-width:420px;}
 }
 
-/* ---------- features: peek row, center cards full / edges cropped ---------- */
+/* ---------- features: peek row — exactly 3 full cards + 1 half-peeking card each side ---------- */
+/* 3 cards + 2 gaps must equal the 1280 container width: 3(410) + 2(24) = 1280.
+   Row start is shifted left by half a card (205px) so the outer cards show only half,
+   deterministically, at any viewport width — not dependent on how much naturally overflows. */
 .peek-row{display:flex;gap:var(--space-5);overflow:hidden;
-  padding-inline:calc((100% - var(--container-narrow))/2 + var(--gutter));}
-.feature-card{flex:0 0 260px;display:flex;flex-direction:column;border:var(--border-1);
-  border-radius:var(--radius-lg);overflow:hidden;}
+  padding-inline:calc((100% - var(--container-narrow))/2 + var(--gutter) - 205px);}
+.feature-card{flex:0 0 410px;display:flex;flex-direction:column;border:var(--border-1);
+  border-radius:0;overflow:hidden;}
 .feature-card__header{aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:var(--fw-strong);font-size:var(--fs-h3);text-align:center;}
-/* Figma-detected gradients/panel tints per card — real values from get_design_context,
-   not tokens, per the Visual Fidelity rule (use the detected palette when it's available).
-   Reordered to match the reference's visible rhythm: yellow, blue, purple, green, yellow. */
-.feature-card__header--1{background:linear-gradient(180deg,#e9c300,#eee648);}
-.feature-card--1 .feature-card__body{background:#fff1cb;}
-.feature-card__header--2{background:linear-gradient(180deg,#409ae2,#58ace9);}
-.feature-card--2 .feature-card__body{background:#b4cfeb;}
-.feature-card__header--3{background:linear-gradient(180deg,#7b89eb,#b2a5ec);}
-.feature-card--3 .feature-card__body{background:#cad1fc;}
-.feature-card__header--4{background:linear-gradient(180deg,#10b97b,#7ad989);}
-.feature-card--4 .feature-card__body{background:#d2edda;}
+/* Whole card is one continuous gradient (header hue fading into its lighter tint) —
+   no flat solid fill anywhere, matching the hero's gradient-only treatment.
+   Colors are the real Figma-detected values, reordered to the reference's visible
+   rhythm: yellow, blue, purple, green, yellow. */
+.feature-card--1{background:linear-gradient(180deg,#e9c300,#eee648 42%,#fff1cb 100%);}
+.feature-card--2{background:linear-gradient(180deg,#409ae2,#58ace9 42%,#b4cfeb 100%);}
+.feature-card--3{background:linear-gradient(180deg,#7b89eb,#b2a5ec 42%,#cad1fc 100%);}
+.feature-card--4{background:linear-gradient(180deg,#10b97b,#7ad989 42%,#d2edda 100%);}
+.feature-card__header{background:transparent;}
 .feature-card__body{display:flex;flex-direction:column;gap:var(--space-3);padding:var(--space-5);}
 .feature-card__body p{color:rgba(0,0,0,.72);}
 @media (max-width:1024px){
   .peek-row{padding-inline:var(--gutter);}
+  .feature-card{flex-basis:300px;}
 }
 
 /* ---------- work: one large card, next card cropped on the right ---------- */
