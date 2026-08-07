@@ -40,12 +40,14 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;}
 .hero__inner{text-align:center;padding-block:var(--space-11) var(--space-8);
   display:flex;flex-direction:column;align-items:center;}
 .hero__title{max-width:16ch;}
-.hero__row{display:flex;align-items:stretch;justify-content:center;gap:var(--space-4);
+.hero__row{position:relative;display:flex;align-items:center;justify-content:center;gap:var(--space-4);
   overflow:hidden;padding-bottom:var(--space-11);}
+.hero__row::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg, transparent 55%, var(--color-canvas) 92%);}
 .hero__main{flex:0 0 52%;}
 .hero__main .img{aspect-ratio:16/10;border-radius:var(--radius-lg);}
-.hero__peek{flex:1 1 auto;opacity:.5;}
-.hero__peek .img{aspect-ratio:16/10;border-radius:var(--radius-lg);height:100%;}
+.hero__peek{flex:0 0 18%;opacity:.5;align-self:center;}
+.hero__peek .img{aspect-ratio:16/10;border-radius:var(--radius-lg);}
 @media (max-width:768px){
   .hero__peek{display:none;}
   .hero__main{flex-basis:100%;}
