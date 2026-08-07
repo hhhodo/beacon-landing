@@ -33,16 +33,15 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;}
    this reuses the page's own measured Figma palette (the feature-card gradients pulled
    via get_design_context) at low intensity, instead of inventing new unmeasured hex. */
 .hero{width:100%;position:relative;background:
-    radial-gradient(ellipse 70% 60% at 12% 10%, #eee648 0%, transparent 55%),
-    radial-gradient(ellipse 70% 60% at 85% 15%, #58ace9 0%, transparent 55%),
-    radial-gradient(ellipse 80% 70% at 50% 55%, #b2a5ec 0%, transparent 60%),
-    var(--color-canvas);
-  background-blend-mode:soft-light, soft-light, soft-light, normal;}
+    radial-gradient(ellipse 70% 60% at 12% 10%, rgba(238,230,72,.55) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 60% at 85% 15%, rgba(88,172,233,.5) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 70% at 50% 60%, rgba(178,165,236,.4) 0%, transparent 65%),
+    var(--color-canvas);}
 .hero__inner{text-align:center;padding-block:var(--space-11) var(--space-8);
   display:flex;flex-direction:column;align-items:center;}
 .hero__title{max-width:16ch;}
 .hero__row{position:relative;display:flex;align-items:flex-end;justify-content:center;gap:var(--space-4);
-  overflow:hidden;padding-bottom:var(--space-11);}
+  overflow:hidden;padding-bottom:var(--space-6);}
 .hero__row::after{content:"";position:absolute;inset:0;pointer-events:none;
   background:linear-gradient(180deg, transparent 55%, var(--color-canvas) 92%);}
 .hero__main{flex:0 0 1000px;max-width:1000px;}
@@ -57,17 +56,14 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;}
 }
 
 /* ---------- intro: asymmetric collage + overlaid text (matches Figma) ---------- */
-.intro__collage{position:relative;width:100%;height:560px;margin-bottom:var(--space-9);}
+.intro__collage{position:relative;width:100%;max-width:640px;height:360px;margin-bottom:var(--space-6);}
 .intro__collage .img{position:absolute;border-radius:var(--radius-md);}
 .intro__collage .img--a{width:15%;aspect-ratio:1/1;top:0;left:8%;}
 .intro__collage .img--b{width:46%;aspect-ratio:16/10;top:6%;left:32%;border-radius:var(--radius-lg);}
 .intro__collage .img--c{width:9%;aspect-ratio:1/1;top:62%;left:2%;border-radius:var(--radius-circle);}
 .intro__collage .img--d{width:13%;aspect-ratio:1/1;top:52%;right:12%;border-radius:var(--radius-circle);}
 .intro__collage .img--e{width:19%;aspect-ratio:1/1;top:66%;left:42%;border-radius:var(--radius-circle);}
-.intro__text{max-width:44%;display:flex;flex-direction:column;gap:var(--space-3);}
-@media (max-width:1024px){
-  .intro__collage{height:400px;}
-}
+.intro__text{max-width:32rem;display:flex;flex-direction:column;gap:var(--space-3);}
 @media (max-width:768px){
   .intro__collage{display:none;}
   .intro__text{max-width:100%;}
@@ -80,18 +76,18 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;}
   border-radius:var(--radius-lg);overflow:hidden;}
 .feature-card__header{aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:var(--fw-strong);font-size:var(--fs-h3);text-align:center;}
 /* Figma-detected gradients/panel tints per card — real values from get_design_context,
-   not tokens, per the Visual Fidelity rule (use the detected palette when it's available). */
-.feature-card__header--1{background:linear-gradient(180deg,#409ae2,#58ace9);}
-.feature-card--1 .feature-card__body{background:#b4cfeb;}
-.feature-card__header--2{background:linear-gradient(180deg,#7b89eb,#b2a5ec);}
-.feature-card--2 .feature-card__body{background:#cad1fc;}
-.feature-card__header--3{background:linear-gradient(180deg,#10b97b,#7ad989);}
-.feature-card--3 .feature-card__body{background:#d2edda;}
-.feature-card__header--4{background:linear-gradient(180deg,#e9c300,#eee648);}
-.feature-card--4 .feature-card__body{background:#fff1cb;}
-.feature-card__body{display:flex;flex-direction:column;gap:var(--space-4);padding:var(--space-5);}
+   not tokens, per the Visual Fidelity rule (use the detected palette when it's available).
+   Reordered to match the reference's visible rhythm: yellow, blue, purple, green, yellow. */
+.feature-card__header--1{background:linear-gradient(180deg,#e9c300,#eee648);}
+.feature-card--1 .feature-card__body{background:#fff1cb;}
+.feature-card__header--2{background:linear-gradient(180deg,#409ae2,#58ace9);}
+.feature-card--2 .feature-card__body{background:#b4cfeb;}
+.feature-card__header--3{background:linear-gradient(180deg,#7b89eb,#b2a5ec);}
+.feature-card--3 .feature-card__body{background:#cad1fc;}
+.feature-card__header--4{background:linear-gradient(180deg,#10b97b,#7ad989);}
+.feature-card--4 .feature-card__body{background:#d2edda;}
+.feature-card__body{display:flex;flex-direction:column;gap:var(--space-3);padding:var(--space-5);}
 .feature-card__body p{color:rgba(0,0,0,.72);}
-.feature-card__thumb{aspect-ratio:16/10;border-radius:var(--radius-sm);}
 @media (max-width:1024px){
   .peek-row{padding-inline:var(--gutter);}
 }
@@ -99,9 +95,10 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;}
 /* ---------- work: one large card, next card cropped on the right ---------- */
 .work-peek{display:flex;gap:var(--space-5);overflow:hidden;
   padding-inline:calc((100% - var(--container-narrow))/2 + var(--gutter));}
-.work-card{flex:0 0 88%;max-width:1120px;display:grid;grid-template-columns:1fr 1fr;
+/* Both cards are the same size — the second one is only "peek" because the row's
+   overflow:hidden clips it at the viewport edge, not because it's a smaller element. */
+.work-card{flex:0 0 1120px;max-width:1120px;display:grid;grid-template-columns:1fr 1fr;
   gap:var(--space-6);border-radius:var(--radius-lg);overflow:hidden;background:var(--color-primary-050);}
-.work-card--peek{flex:0 0 40%;}
 .work-card__body{padding:var(--space-7);display:flex;flex-direction:column;gap:var(--space-6);justify-content:center;}
 .work-card__media .img{width:100%;height:100%;min-height:360px;border-radius:0;}
 .work-card__stats{display:flex;flex-direction:column;gap:var(--space-3);max-width:24rem;}
