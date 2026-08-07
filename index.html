@@ -11,29 +11,39 @@
 </head>
 <body>
 
-<!-- Pastel-circle motif sprite (referenced via <use>) — every instance sets three
-     CSS custom properties (--c-hi/--c-mid/--c-lo, light→dark) on the wrapping <svg>,
-     which the shared radial gradient below reads to render a glossy sphere instead of
-     a flat fill. Patterns on top are always near-black. -->
+<!-- Pastel-circle motif sprite (referenced via <use>) — base fill is currentColor,
+     set per-instance via style="color:...". Depth comes from two FIXED (color-
+     independent) overlay gradients — a white top-left highlight and a black
+     bottom-right shade — layered on top of every symbol, so no per-instance
+     custom property has to reach into a gradient def it can't actually inherit
+     into (that was the earlier bug: <stop> elements live outside the icon's own
+     subtree, so var() set on the icon never reached them). -->
 <svg aria-hidden="true" style="display:none">
   <defs>
-    <radialGradient id="sphere-grad" cx="34%" cy="28%" r="78%">
-      <stop offset="0%" stop-color="var(--c-hi, #fff)"/>
-      <stop offset="45%" stop-color="var(--c-mid, currentColor)"/>
-      <stop offset="100%" stop-color="var(--c-lo, currentColor)"/>
+    <radialGradient id="sphere-highlight" cx="32%" cy="26%" r="60%">
+      <stop offset="0%" stop-color="#fff" stop-opacity=".85"/>
+      <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="sphere-shade" cx="74%" cy="80%" r="70%">
+      <stop offset="0%" stop-color="#000" stop-opacity=".38"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0"/>
     </radialGradient>
     <symbol id="circ-solid" viewBox="0 0 200 200">
-      <circle cx="100" cy="100" r="100" fill="url(#sphere-grad)"/>
+      <circle cx="100" cy="100" r="100" fill="currentColor"/>
+      <circle cx="100" cy="100" r="100" fill="url(#sphere-shade)"/>
+      <circle cx="100" cy="100" r="100" fill="url(#sphere-highlight)"/>
     </symbol>
     <symbol id="circ-ring" viewBox="0 0 200 200">
-      <circle cx="100" cy="100" r="100" fill="url(#sphere-grad)"/>
+      <circle cx="100" cy="100" r="100" fill="currentColor"/>
       <circle cx="100" cy="100" r="62" fill="none" stroke="#1a1a1a" stroke-width="14"/>
       <circle cx="100" cy="100" r="22" fill="#1a1a1a"/>
+      <circle cx="100" cy="100" r="100" fill="url(#sphere-shade)"/>
+      <circle cx="100" cy="100" r="100" fill="url(#sphere-highlight)"/>
     </symbol>
     <symbol id="circ-checker" viewBox="0 0 200 200">
       <clipPath id="clip-checker"><circle cx="100" cy="100" r="100"/></clipPath>
       <g clip-path="url(#clip-checker)">
-        <circle cx="100" cy="100" r="100" fill="url(#sphere-grad)"/>
+        <circle cx="100" cy="100" r="100" fill="currentColor"/>
         <g fill="#1a1a1a" opacity=".82">
           <rect x="0" y="0" width="50" height="50"/>
           <rect x="100" y="0" width="50" height="50"/>
@@ -44,38 +54,48 @@
           <rect x="50" y="150" width="50" height="50"/>
           <rect x="150" y="150" width="50" height="50"/>
         </g>
+        <circle cx="100" cy="100" r="100" fill="url(#sphere-shade)"/>
+        <circle cx="100" cy="100" r="100" fill="url(#sphere-highlight)"/>
       </g>
     </symbol>
     <symbol id="circ-face" viewBox="0 0 200 200">
-      <circle cx="100" cy="100" r="100" fill="url(#sphere-grad)"/>
+      <circle cx="100" cy="100" r="100" fill="currentColor"/>
       <rect x="62" y="85" width="14" height="30" rx="7" fill="#1a1a1a"/>
       <rect x="124" y="85" width="14" height="30" rx="7" fill="#1a1a1a"/>
       <path d="M60 132 Q100 164 140 132" stroke="#1a1a1a" stroke-width="10" fill="none" stroke-linecap="round"/>
+      <circle cx="100" cy="100" r="100" fill="url(#sphere-shade)"/>
+      <circle cx="100" cy="100" r="100" fill="url(#sphere-highlight)"/>
     </symbol>
     <symbol id="circ-stripe" viewBox="0 0 200 200">
       <clipPath id="clip-stripe"><circle cx="100" cy="100" r="100"/></clipPath>
       <g clip-path="url(#clip-stripe)">
-        <circle cx="100" cy="100" r="100" fill="url(#sphere-grad)"/>
+        <circle cx="100" cy="100" r="100" fill="currentColor"/>
         <g stroke="#1a1a1a" stroke-width="16" opacity=".82">
           <line x1="-20" y1="220" x2="220" y2="-20"/>
           <line x1="20" y1="260" x2="260" y2="20"/>
           <line x1="-60" y1="180" x2="180" y2="-60"/>
           <line x1="-100" y1="140" x2="140" y2="-100"/>
         </g>
+        <circle cx="100" cy="100" r="100" fill="url(#sphere-shade)"/>
+        <circle cx="100" cy="100" r="100" fill="url(#sphere-highlight)"/>
       </g>
     </symbol>
     <symbol id="circ-dots" viewBox="0 0 200 200">
-      <circle cx="100" cy="100" r="100" fill="url(#sphere-grad)"/>
+      <circle cx="100" cy="100" r="100" fill="currentColor"/>
       <g fill="#1a1a1a" opacity=".82">
         <circle cx="60" cy="60" r="10"/><circle cx="100" cy="60" r="10"/><circle cx="140" cy="60" r="10"/>
         <circle cx="60" cy="100" r="10"/><circle cx="100" cy="100" r="10"/><circle cx="140" cy="100" r="10"/>
         <circle cx="60" cy="140" r="10"/><circle cx="100" cy="140" r="10"/><circle cx="140" cy="140" r="10"/>
       </g>
+      <circle cx="100" cy="100" r="100" fill="url(#sphere-shade)"/>
+      <circle cx="100" cy="100" r="100" fill="url(#sphere-highlight)"/>
     </symbol>
     <symbol id="circ-crescent" viewBox="0 0 200 200">
-      <circle cx="100" cy="100" r="100" fill="url(#sphere-grad)"/>
+      <circle cx="100" cy="100" r="100" fill="currentColor"/>
       <circle cx="100" cy="100" r="86" fill="none" stroke="#1a1a1a" stroke-width="6" opacity=".7"/>
       <circle cx="128" cy="78" r="34" fill="#fff" opacity=".6"/>
+      <circle cx="100" cy="100" r="100" fill="url(#sphere-shade)"/>
+      <circle cx="100" cy="100" r="100" fill="url(#sphere-highlight)"/>
     </symbol>
   </defs>
 </svg>
@@ -137,49 +157,49 @@ Footer      — full-bleed (2 link columns left / contact+social right)
     <div class="peek-row" style="margin-top:60px;">
      <div class="peek-track">
       <article class="feature-card">
-        <svg class="feature-card__icon" style="--c-hi:#FFE6F2;--c-mid:#FF8FC0;--c-lo:#E8447F"><use href="#circ-solid"/></svg>
+        <svg class="feature-card__icon" style="color:#FF8FC0"><use href="#circ-solid"/></svg>
         <div class="feature-card__text">
           <p class="feature-card__title">채널 통합 관리</p>
           <p class="feature-card__desc">여러 광고 채널을 하나의 화면에서 관리합니다.</p>
         </div>
       </article>
       <article class="feature-card">
-        <svg class="feature-card__icon" style="--c-hi:#EAFBF3;--c-mid:#6FE3B4;--c-lo:#1FAE79"><use href="#circ-ring"/></svg>
+        <svg class="feature-card__icon" style="color:#6FE3B4"><use href="#circ-ring"/></svg>
         <div class="feature-card__text">
           <p class="feature-card__title">실시간 리포트</p>
           <p class="feature-card__desc">의사결정에 필요한 지표를 한눈에 확인합니다.</p>
         </div>
       </article>
       <article class="feature-card">
-        <svg class="feature-card__icon" style="--c-hi:#FFFAE0;--c-mid:#FFDD66;--c-lo:#E8A800"><use href="#circ-checker"/></svg>
+        <svg class="feature-card__icon" style="color:#FFDD66"><use href="#circ-checker"/></svg>
         <div class="feature-card__text">
           <p class="feature-card__title">데이터 분석</p>
           <p class="feature-card__desc">채널별 성과를 실시간으로 통합 분석합니다.</p>
         </div>
       </article>
       <article class="feature-card">
-        <svg class="feature-card__icon" style="--c-hi:#F3EEFF;--c-mid:#B79CF7;--c-lo:#7C4FE0"><use href="#circ-face"/></svg>
+        <svg class="feature-card__icon" style="color:#B79CF7"><use href="#circ-face"/></svg>
         <div class="feature-card__text">
           <p class="feature-card__title">캠페인 자동화</p>
           <p class="feature-card__desc">타겟과 예산에 맞춰 캠페인을 자동으로 최적화합니다.</p>
         </div>
       </article>
       <article class="feature-card">
-        <svg class="feature-card__icon" style="--c-hi:#EAF7FF;--c-mid:#7CC8F5;--c-lo:#2A8FD1"><use href="#circ-stripe"/></svg>
+        <svg class="feature-card__icon" style="color:#7CC8F5"><use href="#circ-stripe"/></svg>
         <div class="feature-card__text">
           <p class="feature-card__title">크리에이티브 제작</p>
           <p class="feature-card__desc">브랜드 톤에 맞는 소재를 빠르게 생성합니다.</p>
         </div>
       </article>
       <article class="feature-card">
-        <svg class="feature-card__icon" style="--c-hi:#FFF0E0;--c-mid:#FFB877;--c-lo:#E87A2E"><use href="#circ-dots"/></svg>
+        <svg class="feature-card__icon" style="color:#FFB877"><use href="#circ-dots"/></svg>
         <div class="feature-card__text">
           <p class="feature-card__title">오디언스 타겟팅</p>
           <p class="feature-card__desc">구매 가능성이 높은 고객군을 자동으로 선별합니다.</p>
         </div>
       </article>
       <article class="feature-card">
-        <svg class="feature-card__icon" style="--c-hi:#FFE9EC;--c-mid:#FF8FA0;--c-lo:#E23F5C"><use href="#circ-crescent"/></svg>
+        <svg class="feature-card__icon" style="color:#FF8FA0"><use href="#circ-crescent"/></svg>
         <div class="feature-card__text">
           <p class="feature-card__title">예산 최적화</p>
           <p class="feature-card__desc">남은 예산을 성과가 높은 채널로 실시간 재배분합니다.</p>
@@ -197,9 +217,9 @@ Footer      — full-bleed (2 link columns left / contact+social right)
       <article class="work-card">
         <div class="work-card__media">
           <div class="img"></div>
-          <svg class="decor-circle decor-circle--1" style="--c-hi:#FFF0E0;--c-mid:#FFB877;--c-lo:#E87A2E"><use href="#circ-checker"/></svg>
-          <svg class="decor-circle decor-circle--2" style="--c-hi:#EAF7FF;--c-mid:#7CC8F5;--c-lo:#2A8FD1"><use href="#circ-ring"/></svg>
-          <svg class="decor-circle decor-circle--3" style="--c-hi:#FFE6F2;--c-mid:#FF8FC0;--c-lo:#E8447F"><use href="#circ-solid"/></svg>
+          <svg class="decor-circle decor-circle--1" style="color:#FFB877"><use href="#circ-checker"/></svg>
+          <svg class="decor-circle decor-circle--2" style="color:#7CC8F5"><use href="#circ-ring"/></svg>
+          <svg class="decor-circle decor-circle--3" style="color:#FF8FC0"><use href="#circ-solid"/></svg>
         </div>
         <div class="work-card__body">
           <h3 class="work-card__title">이커머스 브랜드 A</h3>
@@ -213,9 +233,9 @@ Footer      — full-bleed (2 link columns left / contact+social right)
       <article class="work-card">
         <div class="work-card__media">
           <div class="img"></div>
-          <svg class="decor-circle decor-circle--1" style="--c-hi:#F3EEFF;--c-mid:#B79CF7;--c-lo:#7C4FE0"><use href="#circ-face"/></svg>
-          <svg class="decor-circle decor-circle--2" style="--c-hi:#FFFAE0;--c-mid:#FFDD66;--c-lo:#E8A800"><use href="#circ-dots"/></svg>
-          <svg class="decor-circle decor-circle--3" style="--c-hi:#EAFBF3;--c-mid:#6FE3B4;--c-lo:#1FAE79"><use href="#circ-crescent"/></svg>
+          <svg class="decor-circle decor-circle--1" style="color:#B79CF7"><use href="#circ-face"/></svg>
+          <svg class="decor-circle decor-circle--2" style="color:#FFDD66"><use href="#circ-dots"/></svg>
+          <svg class="decor-circle decor-circle--3" style="color:#6FE3B4"><use href="#circ-crescent"/></svg>
         </div>
         <div class="work-card__body">
           <h3 class="work-card__title">F&amp;B 프랜차이즈 B</h3>
