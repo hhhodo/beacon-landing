@@ -30,8 +30,8 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;}
 /* ---------- section tint ---------- */
 .section--tint{background:var(--color-primary-050);}
 
-/* ---------- hero: gradient wash + heading, then a peek row of image cards ---------- */
-.hero{width:100%;background:linear-gradient(180deg, var(--color-primary-050) 0%, var(--color-canvas) 70%);}
+/* ---------- hero: white background (Figma is bg-white), heading, peek row of image cards ---------- */
+.hero{width:100%;background:var(--color-canvas);}
 .hero__inner{text-align:center;padding-block:var(--space-11) var(--space-8);
   display:flex;flex-direction:column;align-items:center;}
 .hero__title{max-width:16ch;}
@@ -68,12 +68,20 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;}
   padding-inline:calc((100% - var(--container-narrow))/2 + var(--gutter));}
 .feature-card{flex:0 0 260px;display:flex;flex-direction:column;border:var(--border-1);
   border-radius:var(--radius-lg);overflow:hidden;}
-.feature-card__header{aspect-ratio:4/3;display:flex;align-items:flex-start;padding:var(--space-4);}
-.feature-card__header--1{background:var(--color-primary-100);}
-.feature-card__header--2{background:var(--color-primary-200);}
-.feature-card__header--3{background:var(--color-primary-100);}
-.feature-card__header--4{background:var(--color-primary-200);}
-.feature-card__body{display:flex;flex-direction:column;gap:var(--space-2);padding:var(--space-5);}
+.feature-card__header{aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:var(--fw-strong);font-size:var(--fs-h3);text-align:center;}
+/* Figma-detected gradients/panel tints per card — real values from get_design_context,
+   not tokens, per the Visual Fidelity rule (use the detected palette when it's available). */
+.feature-card__header--1{background:linear-gradient(180deg,#409ae2,#58ace9);}
+.feature-card--1 .feature-card__body{background:#b4cfeb;}
+.feature-card__header--2{background:linear-gradient(180deg,#7b89eb,#b2a5ec);}
+.feature-card--2 .feature-card__body{background:#cad1fc;}
+.feature-card__header--3{background:linear-gradient(180deg,#10b97b,#7ad989);}
+.feature-card--3 .feature-card__body{background:#d2edda;}
+.feature-card__header--4{background:linear-gradient(180deg,#e9c300,#eee648);}
+.feature-card--4 .feature-card__body{background:#fff1cb;}
+.feature-card__body{display:flex;flex-direction:column;gap:var(--space-4);padding:var(--space-5);}
+.feature-card__body p{color:rgba(0,0,0,.72);}
+.feature-card__thumb{aspect-ratio:16/10;border-radius:var(--radius-sm);}
 @media (max-width:1024px){
   .peek-row{padding-inline:var(--gutter);}
 }
