@@ -58,7 +58,7 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
   overflow:hidden;border-radius:var(--radius-lg);opacity:.7;}
 /* Dashboard mockup fills the same holders — white card face instead of the flat
    gray placeholder, since this is real (if simplified) content now. */
-.hero__mock{background:var(--color-canvas);}
+.hero__mock{background:var(--color-canvas);overflow:hidden;}
 .hero__peek .img{width:100%;height:100%;border-radius:var(--radius-lg);}
 @media (max-width:768px){
   .hero__peek{display:none;}
