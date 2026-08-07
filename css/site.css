@@ -92,31 +92,36 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;}
 }
 
 /* ---------- features: peek row — 3 full cards in the middle + 2 cropped cards each side (7 total) ---------- */
-/* Card shape follows the mcp reference article (392x530, ~0.74 ratio): a colored
-   icon panel on top, a white text panel below — not a flat single-tone card.
-   3 cards + 2 gaps centered on the viewport: 3(340) + 2(24) = 1068. The 4 remaining
+/* Card size is the mcp reference article's own px size, undistorted: 392x530.
+   3 cards + 2 gaps centered on the viewport: 3(392) + 2(24) = 1224. The 4 remaining
    cards (2 each side) hang past that centered block and get clipped by overflow:hidden —
-   "잘려도 좋아" per instruction, so no extra math is needed to hide them. */
-.peek-row{display:flex;gap:var(--space-5);overflow:hidden;
-  padding-inline:calc((100% - 1068px)/2);}
-.feature-card{flex:0 0 340px;aspect-ratio:392/530;display:flex;flex-direction:column;
+   "잘려도 좋아" per instruction, so no extra math is needed to hide them.
+   Color: the row itself carries the EXACT hero gradient (same stops, just repositioned
+   to the row's own box) and every card is transparent, so the gradient bleeds and blends
+   continuously behind all 7 headers — one shared gradient sampled at different points,
+   not seven flat single-hue cards. */
+.peek-row{display:flex;gap:var(--space-5);overflow:hidden;position:relative;
+  padding-inline:calc((100% - 1224px)/2);
+  background:
+    radial-gradient(ellipse 55% 90% at 8% 30%, rgba(238,230,72,.6) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 90% at 50% 65%, rgba(88,172,233,.55) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 90% at 92% 25%, rgba(178,165,236,.5) 0%, transparent 65%),
+    var(--color-canvas);}
+.feature-card{flex:0 0 392px;width:392px;height:530px;display:flex;flex-direction:column;
   border-radius:var(--radius-lg);overflow:hidden;}
 .feature-card__header{flex:1 1 58%;display:flex;flex-direction:column;align-items:center;
   justify-content:center;gap:var(--space-4);color:var(--color-primary-900);
-  font-weight:var(--fw-strong);font-size:var(--fs-h3);text-align:center;padding-inline:var(--space-4);}
-.feature-card__icon{width:88px;height:88px;border-radius:var(--radius-circle);
+  font-weight:var(--fw-strong);font-size:var(--fs-h3);text-align:center;padding-inline:var(--space-4);
+  background:transparent;}
+.feature-card__icon{width:170px;height:170px;border-radius:var(--radius-circle);
   background:rgba(255,255,255,.55);}
-/* Only the three hues measured off the hero's own gradient (rgba(238,230,72) / rgba(88,172,233)
-   / rgba(178,165,236)) are used anywhere on these cards — no invented colors. */
-.feature-card--1{background:linear-gradient(160deg,#eee648,#f7f2ba 100%);}
-.feature-card--2{background:linear-gradient(160deg,#58ace9,#c3e0f6 100%);}
-.feature-card--3{background:linear-gradient(160deg,#b2a5ec,#ddd7f7 100%);}
 .feature-card__body{flex:1 1 42%;background:var(--color-canvas);display:flex;
   flex-direction:column;justify-content:center;padding:var(--space-5);}
 .feature-card__body p{color:var(--text-subtle);}
 @media (max-width:1024px){
   .peek-row{padding-inline:var(--gutter);}
-  .feature-card{flex-basis:280px;}
+  .feature-card{flex-basis:280px;width:280px;height:380px;}
+  .feature-card__icon{width:120px;height:120px;}
 }
 
 /* ---------- work: tall vertical cards, next card cropped on the right ---------- */
