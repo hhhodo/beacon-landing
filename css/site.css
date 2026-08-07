@@ -7,11 +7,10 @@
 
 body{font-family:'Noto Sans KR','Pretendard',sans-serif;
   background:
-    radial-gradient(ellipse 70% 60% at 12% 10%, rgba(238,230,72,.55) 0%, transparent 60%),
-    radial-gradient(ellipse 70% 60% at 85% 15%, rgba(88,172,233,.5) 0%, transparent 60%),
-    radial-gradient(ellipse 80% 70% at 50% 60%, rgba(178,165,236,.4) 0%, transparent 65%),
-    var(--color-canvas);
-  background-attachment:fixed;}
+    radial-gradient(ellipse 90% 70% at 10% 8%, rgba(238,230,72,.7) 0%, transparent 65%),
+    radial-gradient(ellipse 90% 70% at 88% 18%, rgba(88,172,233,.65) 0%, transparent 65%),
+    radial-gradient(ellipse 75% 65% at 50% 55%, rgba(178,165,236,.35) 0%, transparent 65%),
+    var(--color-canvas);}
 
 /* Sections were sitting too close together — double the standard rhythm. */
 .section{padding-block:calc(var(--space-section) * 2);}
@@ -46,14 +45,17 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
 .hero__title{max-width:16ch;}
 .hero__row{position:relative;display:flex;align-items:flex-end;justify-content:center;gap:var(--space-4);
   overflow:hidden;padding-bottom:var(--space-6);}
-.hero__row::after{content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(180deg, transparent 55%, var(--color-canvas) 92%);}
+/* The cards themselves (not an opaque overlay) fade out via mask, so the page's own
+   gradient shows straight through the dissolving bottom edge instead of hitting a
+   flat white band on top of it. */
 .hero__main{flex:0 0 1000px;max-width:1000px;}
-.hero__main .img{aspect-ratio:16/10;border-radius:var(--radius-lg);}
+.hero__main .img{aspect-ratio:16/10;border-radius:var(--radius-lg);
+  -webkit-mask-image:linear-gradient(180deg,#000 55%,transparent 95%);
+  mask-image:linear-gradient(180deg,#000 55%,transparent 95%);}
 .hero__peek{position:relative;flex:0 0 700px;max-width:700px;overflow:hidden;border-radius:var(--radius-lg);}
-.hero__peek .img{aspect-ratio:16/10;border-radius:var(--radius-lg);}
-.hero__peek::after{content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(180deg, transparent 40%, var(--color-canvas) 95%);}
+.hero__peek .img{aspect-ratio:16/10;border-radius:var(--radius-lg);
+  -webkit-mask-image:linear-gradient(180deg,#000 35%,transparent 90%);
+  mask-image:linear-gradient(180deg,#000 35%,transparent 90%);}
 @media (max-width:768px){
   .hero__peek{display:none;}
   .hero__main{flex-basis:100%;}
