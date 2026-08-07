@@ -80,7 +80,7 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
 .feature-card{flex:0 0 392px;width:392px;height:530px;display:flex;flex-direction:column;
   align-items:center;justify-content:center;gap:40px;padding:var(--space-6);
   border-radius:var(--radius-lg);overflow:hidden;background:var(--color-canvas);}
-.feature-card__icon{width:200px;height:200px;flex-shrink:0;}
+.feature-card__icon{width:200px;height:200px;flex-shrink:0;background:#e4e4e4;}
 .feature-card__text{display:flex;flex-direction:column;align-items:center;gap:var(--space-3);
   text-align:center;}
 .feature-card__title{font-size:var(--fs-h3);font-weight:var(--fw-strong);color:var(--text-default);}
@@ -100,15 +100,8 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
 .work-card{flex:0 0 1280px;max-width:1280px;height:560px;display:flex;
   border-radius:var(--radius-lg);overflow:hidden;background:var(--color-canvas);
   scroll-snap-align:center;}
-.work-card__media{flex:1 1 0;min-width:0;position:relative;overflow:hidden;}
+.work-card__media{flex:1 1 0;min-width:0;}
 .work-card__media .img{width:100%;height:100%;background:var(--color-placeholder);border-radius:0;}
-/* Pastel circles peeking in from the media panel's corners, cropped by the panel's
-   own edge (and again by .work-card's overflow:hidden) — same "scattered, slightly
-   cropped" treatment as the user's reference banner. */
-.decor-circle{position:absolute;border-radius:var(--radius-circle);}
-.decor-circle--1{width:180px;height:180px;top:-50px;left:-50px;}
-.decor-circle--2{width:130px;height:130px;bottom:-30px;right:-30px;}
-.decor-circle--3{width:90px;height:90px;bottom:20%;left:20%;}
 .work-card__body{flex:1 1 0;min-width:0;padding:var(--space-7);display:flex;flex-direction:column;
   justify-content:space-between;}
 .work-card__title{font-size:var(--fs-h2);font-weight:var(--fw-strong);}
