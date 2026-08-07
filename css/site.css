@@ -27,8 +27,16 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;}
 .btn--solid{background:var(--color-primary-900);color:var(--text-default-inverse);}
 .btn--solid:hover{background:var(--color-primary-700);}
 
-/* ---------- hero: white background (Figma is bg-white), heading, peek row of image cards ---------- */
-.hero{width:100%;background:var(--color-canvas);}
+/* ---------- hero: full-bleed pastel gradient image behind everything, then heading + peek row ---------- */
+/* Figma has a large colorful background image under the section (bg-white is just the
+   section wrapper, not the visible background) — approximated as a soft pastel gradient
+   since we don't have the source photo, matching the reference's actual color mood
+   instead of flattening it to gray/white. */
+.hero{width:100%;position:relative;background:
+    radial-gradient(ellipse 70% 60% at 12% 10%, #f5efc0 0%, transparent 55%),
+    radial-gradient(ellipse 70% 60% at 85% 15%, #bcd8f5 0%, transparent 55%),
+    radial-gradient(ellipse 80% 70% at 50% 55%, #e7e0f5 0%, transparent 60%),
+    var(--color-canvas);}
 .hero__inner{text-align:center;padding-block:var(--space-11) var(--space-8);
   display:flex;flex-direction:column;align-items:center;}
 .hero__title{max-width:16ch;}
