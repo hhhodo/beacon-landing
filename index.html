@@ -11,6 +11,50 @@
 </head>
 <body>
 
+<!-- Simplified marketing-dashboard mockup: thick rounded strokes only, unimportant
+     text/labels shown as flat light-gray boxes rather than real copy. Reused via
+     <use> in all three hero image holders. -->
+<svg aria-hidden="true" style="display:none">
+  <defs>
+    <symbol id="dash-mock" viewBox="0 0 960 600">
+      <circle cx="60" cy="70" r="18" fill="none" stroke="#262628" stroke-width="10" stroke-linejoin="round"/>
+      <rect x="112" y="56" width="90" height="28" rx="14" fill="#f0f0f1"/>
+      <rect x="216" y="56" width="70" height="28" rx="14" fill="#f0f0f1"/>
+      <rect x="300" y="56" width="70" height="28" rx="14" fill="#f0f0f1"/>
+      <circle cx="900" cy="70" r="24" fill="#f0f0f1" stroke="#262628" stroke-width="10"/>
+      <line x1="40" y1="122" x2="920" y2="122" stroke="#262628" stroke-width="10" stroke-linecap="round"/>
+
+      <rect x="40" y="162" width="56" height="56" rx="18" fill="#262628"/>
+      <rect x="40" y="232" width="56" height="56" rx="18" fill="none" stroke="#262628" stroke-width="10" stroke-linejoin="round"/>
+      <rect x="40" y="302" width="56" height="56" rx="18" fill="none" stroke="#262628" stroke-width="10" stroke-linejoin="round"/>
+      <rect x="40" y="372" width="56" height="56" rx="18" fill="none" stroke="#262628" stroke-width="10" stroke-linejoin="round"/>
+
+      <rect x="140" y="160" width="230" height="130" rx="28" fill="none" stroke="#262628" stroke-width="10" stroke-linejoin="round"/>
+      <circle cx="182" cy="202" r="17" fill="none" stroke="#262628" stroke-width="8"/>
+      <rect x="162" y="242" width="120" height="24" rx="12" fill="#f0f0f1"/>
+
+      <rect x="390" y="160" width="230" height="130" rx="28" fill="none" stroke="#262628" stroke-width="10" stroke-linejoin="round"/>
+      <circle cx="432" cy="202" r="17" fill="none" stroke="#262628" stroke-width="8"/>
+      <rect x="412" y="242" width="120" height="24" rx="12" fill="#f0f0f1"/>
+
+      <rect x="640" y="160" width="230" height="130" rx="28" fill="none" stroke="#262628" stroke-width="10" stroke-linejoin="round"/>
+      <circle cx="682" cy="202" r="17" fill="none" stroke="#262628" stroke-width="8"/>
+      <rect x="662" y="242" width="120" height="24" rx="12" fill="#f0f0f1"/>
+
+      <rect x="140" y="320" width="730" height="220" rx="28" fill="none" stroke="#262628" stroke-width="10" stroke-linejoin="round"/>
+      <g stroke="#262628" stroke-width="14" stroke-linecap="round">
+        <line x1="200" y1="490" x2="200" y2="420"/>
+        <line x1="264" y1="490" x2="264" y2="378"/>
+        <line x1="328" y1="490" x2="328" y2="440"/>
+        <line x1="392" y1="490" x2="392" y2="360"/>
+        <line x1="456" y1="490" x2="456" y2="410"/>
+      </g>
+      <polyline points="530,468 592,406 654,438 716,368 778,400 840,356"
+        fill="none" stroke="#262628" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+  </defs>
+</svg>
+
 <!--
 variant:
 typo=loud
@@ -54,9 +98,9 @@ Footer      — full-bleed (2 link columns left / contact+social right)
       <h1 class="display display--sm hero__title">당신의 예산보다<br>빠른 마케팅</h1>
     </div>
     <div class="hero__row">
-      <div class="hero__peek"><div class="img"></div></div>
-      <div class="hero__main"><div class="img"></div></div>
-      <div class="hero__peek"><div class="img"></div></div>
+      <div class="hero__peek"><svg class="img hero__mock"><use href="#dash-mock"/></svg></div>
+      <div class="hero__main"><svg class="img hero__mock"><use href="#dash-mock"/></svg></div>
+      <div class="hero__peek"><svg class="img hero__mock"><use href="#dash-mock"/></svg></div>
     </div>
   </section>
 

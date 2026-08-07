@@ -56,6 +56,9 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
 .hero__main .img{width:100%;height:100%;border-radius:var(--radius-lg);}
 .hero__peek{position:relative;flex:0 0 800px;max-width:800px;height:500px;
   overflow:hidden;border-radius:var(--radius-lg);opacity:.7;}
+/* Dashboard mockup fills the same holders — white card face instead of the flat
+   gray placeholder, since this is real (if simplified) content now. */
+.hero__mock{background:var(--color-canvas);}
 .hero__peek .img{width:100%;height:100%;border-radius:var(--radius-lg);}
 @media (max-width:768px){
   .hero__peek{display:none;}
@@ -100,13 +103,16 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
 .work-card{flex:0 0 1280px;max-width:1280px;height:560px;display:flex;
   border-radius:var(--radius-lg);overflow:hidden;background:var(--color-canvas);
   scroll-snap-align:center;}
-.work-card__media{flex:1 1 0;min-width:0;position:relative;overflow:hidden;background:var(--color-placeholder);}
-/* Scattered collage of the user's real photos — same technique as the earlier intro
-   collage (oversized, overlapping, cropped by the panel's own edge) but at 2x the
-   size that collage used (640/460 here vs. the earlier 320/280-ish). */
+.work-card__media{flex:1 1 0;min-width:0;position:relative;overflow:hidden;
+  background:
+    radial-gradient(ellipse 80% 70% at 18% 18%, rgba(238,230,72,.35) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 70% at 85% 82%, rgba(88,172,233,.3) 0%, transparent 60%),
+    var(--color-primary-050);}
+/* Corner-pinned instead of centrally overlapping — each photo sits in its own
+   corner with only a small touch of overlap, not stacked on top of each other. */
 .work-card__photo{position:absolute;object-fit:cover;border-radius:0;}
-.work-card__photo--a{width:640px;height:640px;top:-90px;left:-70px;}
-.work-card__photo--b{width:460px;height:460px;bottom:-70px;right:-50px;z-index:1;}
+.work-card__photo--a{width:400px;height:400px;top:-50px;left:-50px;}
+.work-card__photo--b{width:400px;height:400px;bottom:-50px;right:-50px;z-index:1;}
 .work-card__body{flex:1 1 0;min-width:0;padding:var(--space-7);display:flex;flex-direction:column;
   justify-content:space-between;}
 .work-card__title{font-size:var(--fs-h2);font-weight:var(--fw-strong);}
