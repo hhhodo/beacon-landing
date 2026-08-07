@@ -96,10 +96,10 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;}
    3 cards + 2 gaps centered on the viewport: 3(392) + 2(24) = 1224. The 4 remaining
    cards (2 each side) hang past that centered block and get clipped by overflow:hidden —
    "잘려도 좋아" per instruction, so no extra math is needed to hide them.
-   Color: each card header carries its own copy of the hero's exact multi-stop radial
-   gradient (same three rgba hues/opacities), just re-centered per card — so every card
-   is its own little soft-blended "hero", not a flat single-hue swatch and not one
-   gradient smeared across the whole row. */
+   Color: one hero hue is the dominant fill per card, the other two only ghost in as
+   faint corner hints (low opacity, small radius) — not all three blended evenly
+   across every card, which read as noisy/busy. Cards cycle yellow-lead, blue-lead,
+   purple-lead. */
 .peek-row{display:flex;gap:var(--space-5);overflow:hidden;
   padding-inline:calc((100% - 1224px)/2);}
 .feature-card{flex:0 0 392px;width:392px;height:530px;display:flex;flex-direction:column;
@@ -108,20 +108,17 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;}
   justify-content:center;gap:var(--space-4);color:var(--color-primary-900);
   font-weight:var(--fw-strong);font-size:var(--fs-h3);text-align:center;padding-inline:var(--space-4);
   background:
-    radial-gradient(ellipse 70% 60% at 20% 15%, rgba(238,230,72,.65) 0%, transparent 60%),
-    radial-gradient(ellipse 70% 60% at 85% 20%, rgba(88,172,233,.6) 0%, transparent 60%),
-    radial-gradient(ellipse 90% 75% at 50% 75%, rgba(178,165,236,.5) 0%, transparent 65%),
-    var(--color-canvas);}
+    radial-gradient(ellipse 35% 30% at 90% 8%, rgba(88,172,233,.18) 0%, transparent 70%),
+    radial-gradient(ellipse 35% 30% at 8% 95%, rgba(178,165,236,.16) 0%, transparent 70%),
+    radial-gradient(ellipse 120% 100% at 50% 40%, #eee648 0%, #fff4c2 100%);}
 .feature-card:nth-child(3n+2) .feature-card__header{background:
-    radial-gradient(ellipse 70% 60% at 80% 15%, rgba(88,172,233,.65) 0%, transparent 60%),
-    radial-gradient(ellipse 70% 60% at 15% 25%, rgba(178,165,236,.55) 0%, transparent 60%),
-    radial-gradient(ellipse 90% 75% at 50% 80%, rgba(238,230,72,.5) 0%, transparent 65%),
-    var(--color-canvas);}
+    radial-gradient(ellipse 35% 30% at 90% 8%, rgba(178,165,236,.18) 0%, transparent 70%),
+    radial-gradient(ellipse 35% 30% at 8% 95%, rgba(238,230,72,.16) 0%, transparent 70%),
+    radial-gradient(ellipse 120% 100% at 50% 40%, #58ace9 0%, #cfe7f9 100%);}
 .feature-card:nth-child(3n+3) .feature-card__header{background:
-    radial-gradient(ellipse 70% 60% at 50% 12%, rgba(178,165,236,.65) 0%, transparent 60%),
-    radial-gradient(ellipse 70% 60% at 88% 55%, rgba(238,230,72,.55) 0%, transparent 60%),
-    radial-gradient(ellipse 90% 75% at 12% 75%, rgba(88,172,233,.5) 0%, transparent 65%),
-    var(--color-canvas);}
+    radial-gradient(ellipse 35% 30% at 90% 8%, rgba(238,230,72,.18) 0%, transparent 70%),
+    radial-gradient(ellipse 35% 30% at 8% 95%, rgba(88,172,233,.16) 0%, transparent 70%),
+    radial-gradient(ellipse 120% 100% at 50% 40%, #b2a5ec 0%, #e6e1f9 100%);}
 .feature-card__icon{width:170px;height:170px;border-radius:var(--radius-circle);
   background:rgba(255,255,255,.55);}
 .feature-card__body{flex:1 1 42%;background:var(--color-canvas);display:flex;
