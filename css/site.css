@@ -95,9 +95,9 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
    scrollBy() one card+gap at a time — no transform/index bookkeeping needed. */
 .work-peek{display:flex;gap:var(--space-5);overflow-x:auto;scroll-snap-type:x mandatory;
   -webkit-overflow-scrolling:touch;scrollbar-width:none;
-  padding-inline:calc((100% - 1120px)/2);}
+  padding-inline:calc((100% - 1280px)/2);}
 .work-peek::-webkit-scrollbar{display:none;}
-.work-card{flex:0 0 1120px;max-width:1120px;height:560px;display:flex;
+.work-card{flex:0 0 1280px;max-width:1280px;height:560px;display:flex;
   border-radius:var(--radius-lg);overflow:hidden;background:var(--color-canvas);
   scroll-snap-align:center;}
 .work-card__media{flex:1 1 0;min-width:0;}
@@ -113,10 +113,37 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
 }
 .work-nav{display:flex;justify-content:center;gap:var(--space-3);margin-top:var(--space-6);}
 .work-nav__btn{display:flex;align-items:center;justify-content:center;
-  width:56px;height:56px;border-radius:var(--radius-circle);border:var(--border-1);
+  width:56px;height:56px;border-radius:var(--radius-circle);
   background:var(--color-canvas);color:var(--text-default);}
 .work-nav__btn:hover{background:var(--color-primary-050);}
 .work-nav__btn:disabled{opacity:.35;pointer-events:none;}
+
+/* ---------- faq: mcp — heading+tabs row, accordion list below (positions/sizes are literal mcp px, no matching tokens) ---------- */
+.faq{padding-block-start:320px;padding-inline:40px;}
+.faq__head,.faq__list{max-width:1520px;width:1280px;margin-inline:auto;}
+.faq__head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--space-5);}
+.faq__title{font-size:var(--fs-h2);font-weight:var(--fw-strong);}
+.faq__tabs{display:flex;gap:var(--space-5);}
+.faq__tab{padding-block:10px;font-size:var(--fs-body-1);font-weight:var(--fw-strong);color:#c0c0c0;}
+.faq__tab.is-active{color:var(--text-default);}
+.faq__list{display:flex;flex-direction:column;padding-top:70px;}
+.faq__item{display:flex;align-items:center;justify-content:space-between;gap:var(--space-5);
+  width:100%;padding-block:30px;border-bottom:1px solid #ebebeb;text-align:left;}
+.faq__item:first-child{border-top:1px solid #ebebeb;}
+.faq__item span:first-child{font-size:26px;font-weight:var(--fw-strong);color:var(--text-default);}
+.faq__toggle{position:relative;flex-shrink:0;width:48px;height:48px;border-radius:var(--radius-circle);
+  background:#333;transition:transform .2s;}
+.faq__toggle::before,.faq__toggle::after{content:"";position:absolute;inset:0;margin:auto;
+  width:22px;height:3px;border-radius:var(--radius-circle);background:#fff;}
+.faq__toggle::after{transform:rotate(90deg);}
+.faq__item[aria-expanded="true"] .faq__toggle{transform:rotate(45deg);}
+@media (max-width:1024px){
+  .faq{padding-block-start:160px;}
+  .faq__head,.faq__list{width:100%;}
+}
+@media (max-width:768px){
+  .faq__item span:first-child{font-size:20px;}
+}
 
 /* ---------- cta: no section-local background — the page's own gradient (on body)
    just runs through here and has faded to white by this point naturally. An oversized

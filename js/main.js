@@ -42,3 +42,18 @@
   prevBtn.addEventListener('click', () => row.scrollBy({ left: -step(), behavior: 'smooth' }));
   nextBtn.addEventListener('click', () => row.scrollBy({ left: step(), behavior: 'smooth' }));
 })();
+
+// FAQ: tab switching (visual only, same list under every tab) + item toggle icon.
+(function () {
+  const tabs = document.querySelectorAll('.faq__tab');
+  const items = document.querySelectorAll('.faq__item');
+  tabs.forEach((tab) => tab.addEventListener('click', () => {
+    tabs.forEach((t) => { t.classList.remove('is-active'); t.setAttribute('aria-selected', 'false'); });
+    tab.classList.add('is-active');
+    tab.setAttribute('aria-selected', 'true');
+  }));
+  items.forEach((item) => item.addEventListener('click', () => {
+    const open = item.getAttribute('aria-expanded') === 'true';
+    item.setAttribute('aria-expanded', String(!open));
+  }));
+})();
