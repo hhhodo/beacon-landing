@@ -44,11 +44,10 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;}
   overflow:hidden;padding-bottom:var(--space-11);}
 .hero__row::after{content:"";position:absolute;inset:0;pointer-events:none;
   background:linear-gradient(180deg, transparent 55%, var(--color-canvas) 92%);}
-/* Figma: all three cards are the same 1000px width — the side ones aren't smaller,
-   they're just pushed past the viewport edge so only ~41% of each shows. */
-.hero__main,.hero__peek{flex:0 0 52%;}
-.hero__main .img,.hero__peek .img{aspect-ratio:16/10;border-radius:var(--radius-lg);}
-.hero__peek{opacity:.5;}
+.hero__main{flex:0 0 var(--container-narrow);max-width:var(--container-narrow);}
+.hero__main .img{aspect-ratio:16/10;border-radius:var(--radius-lg);}
+.hero__peek{flex:0 0 calc(var(--container-narrow)/2);max-width:calc(var(--container-narrow)/2);opacity:.5;}
+.hero__peek .img{aspect-ratio:16/10;border-radius:var(--radius-lg);}
 @media (max-width:768px){
   .hero__peek{display:none;}
   .hero__main{flex-basis:100%;}
@@ -73,7 +72,7 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;}
 
 /* ---------- features: peek row, center cards full / edges cropped ---------- */
 .peek-row{display:flex;gap:var(--space-5);overflow:hidden;
-  padding-inline:calc((100% - var(--container-wide))/2 + var(--gutter));}
+  padding-inline:calc((100% - var(--container-narrow))/2 + var(--gutter));}
 .feature-card{flex:0 0 260px;display:flex;flex-direction:column;border:var(--border-1);
   border-radius:var(--radius-lg);overflow:hidden;}
 .feature-card__header{aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:var(--fw-strong);font-size:var(--fs-h3);text-align:center;}
@@ -96,7 +95,7 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;}
 
 /* ---------- work: one large card, next card cropped on the right ---------- */
 .work-peek{display:flex;gap:var(--space-5);overflow:hidden;
-  padding-inline:calc((100% - var(--container-wide))/2 + var(--gutter));}
+  padding-inline:calc((100% - var(--container-narrow))/2 + var(--gutter));}
 .work-card{flex:0 0 88%;max-width:1120px;display:grid;grid-template-columns:1fr 1fr;
   gap:var(--space-6);border-radius:var(--radius-lg);overflow:hidden;background:var(--color-primary-050);}
 .work-card--peek{flex:0 0 40%;}
