@@ -44,10 +44,12 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;}
   overflow:hidden;padding-bottom:var(--space-11);}
 .hero__row::after{content:"";position:absolute;inset:0;pointer-events:none;
   background:linear-gradient(180deg, transparent 55%, var(--color-canvas) 92%);}
-.hero__main{flex:0 0 var(--container-narrow);max-width:var(--container-narrow);}
+.hero__main{flex:0 0 1000px;max-width:1000px;}
 .hero__main .img{aspect-ratio:16/10;border-radius:var(--radius-lg);}
-.hero__peek{flex:0 0 calc(var(--container-narrow)/2);max-width:calc(var(--container-narrow)/2);opacity:.5;}
+.hero__peek{position:relative;flex:0 0 500px;max-width:500px;overflow:hidden;border-radius:var(--radius-lg);}
 .hero__peek .img{aspect-ratio:16/10;border-radius:var(--radius-lg);}
+.hero__peek::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg, transparent 40%, var(--color-canvas) 95%);}
 @media (max-width:768px){
   .hero__peek{display:none;}
   .hero__main{flex-basis:100%;}
