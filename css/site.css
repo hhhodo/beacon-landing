@@ -7,8 +7,9 @@
 
 body{font-family:'Noto Sans KR','Pretendard',sans-serif;}
 
-/* ---------- nav: transparent over the hero's pastel background ---------- */
-.nav{position:relative;z-index:50;background:transparent;}
+/* ---------- nav: fixed so it stays visible on scroll; transparent while over the hero ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;background:transparent;transition:background .2s,border-color .2s;}
+.nav.is-scrolled{background:var(--color-canvas);border-bottom:var(--border-1);}
 .nav__row{display:flex;align-items:center;justify-content:space-between;
   height:88px;}
 .nav__logo{font-size:var(--fs-body-1);font-weight:var(--fw-strong);letter-spacing:var(--display-tracking);}
