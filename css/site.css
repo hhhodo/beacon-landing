@@ -59,69 +59,83 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;}
 }
 
 /* ---------- intro: asymmetric collage + overlaid text (matches Figma) ---------- */
-.intro{position:relative;overflow:visible;padding-bottom:var(--space-4);}
+.intro{position:relative;overflow:visible;padding-bottom:var(--space-9);}
 .intro__row{display:flex;align-items:center;gap:var(--space-8);}
 .intro__text{flex:0 0 42%;display:flex;flex-direction:column;gap:var(--space-4);}
 .intro__text h2{word-break:keep-all;}
-/* Positions from the real Figma node coordinates (get_design_context metadata for
-   89:1377), scaled ~2x and squared off (radius removed) per instruction — chunky
-   square placeholders instead of small rounded ones. */
-.intro__collage{position:relative;flex:0 0 52%;aspect-ratio:1302/1323;}
+/* Scattered off the 2-column grid on purpose: every holder is pinned with a fixed
+   px size (all >=300px per instruction) and several sit at negative/>100% offsets so
+   they visibly break out of the collage box instead of tiling neatly inside it. */
+.intro__collage{position:relative;flex:0 0 58%;min-height:760px;overflow:visible;}
 .intro__collage .img{position:absolute;border-radius:0;}
-.intro__collage .img--a{width:44%;aspect-ratio:307/270;top:0%;left:0%;}
-.intro__collage .img--b{width:80%;aspect-ratio:629/528;top:2%;left:20%;}
-.intro__collage .img--c{width:28%;aspect-ratio:1/1;top:54%;left:16%;}
-.intro__collage .img--d{width:46%;aspect-ratio:326/298;top:49%;left:62%;}
+.intro__collage .img--a{width:320px;aspect-ratio:307/270;top:-60px;left:-90px;}
+.intro__collage .img--b{width:560px;aspect-ratio:629/528;top:10px;left:180px;}
+.intro__collage .img--c{width:300px;aspect-ratio:1/1;top:440px;left:-40px;}
+.intro__collage .img--d{width:360px;aspect-ratio:326/298;top:360px;left:560px;}
 /* img--e is the one that bleeds ~half its height past the section boundary into the
    next section, per instruction — pushed further down than its collage slot so it
    clears the section's (reduced) bottom padding and overlaps the section below. */
-.intro__collage .img--e{width:60%;aspect-ratio:1/1;left:30%;top:64%;
+.intro__collage .img--e{width:420px;aspect-ratio:1/1;left:120px;top:620px;
   z-index:2;transform:translateY(65%);}
+@media (max-width:1200px){
+  .intro__collage .img--b{left:80px;}
+  .intro__collage .img--d{left:400px;}
+}
 @media (max-width:768px){
   .intro__row{flex-direction:column;}
-  .intro__collage{flex-basis:auto;width:100%;max-width:420px;}
+  .intro__collage{flex-basis:auto;width:100%;max-width:420px;min-height:640px;}
+  .intro__collage .img{width:min(100%,320px)!important;left:0!important;}
+  .intro__collage .img--b{top:2%;}
+  .intro__collage .img--c{top:46%;}
+  .intro__collage .img--d{top:40%;left:auto!important;right:0!important;}
+  .intro__collage .img--e{top:58%;}
 }
 
-/* ---------- features: peek row — exactly 3 full cards + 1 half-peeking card each side ---------- */
-/* 3 cards + 2 gaps must equal the 1280 container width: 3(410) + 2(24) = 1280.
-   Row start is shifted left by half a card (205px) so the outer cards show only half,
-   deterministically, at any viewport width — not dependent on how much naturally overflows. */
+/* ---------- features: peek row — 3 full cards in the middle + 2 cropped cards each side (7 total) ---------- */
+/* Card shape follows the mcp reference article (392x530, ~0.74 ratio): a colored
+   icon panel on top, a white text panel below — not a flat single-tone card.
+   3 cards + 2 gaps centered on the viewport: 3(340) + 2(24) = 1068. The 4 remaining
+   cards (2 each side) hang past that centered block and get clipped by overflow:hidden —
+   "잘려도 좋아" per instruction, so no extra math is needed to hide them. */
 .peek-row{display:flex;gap:var(--space-5);overflow:hidden;
-  padding-inline:calc((100% - var(--container-narrow))/2 + var(--gutter) - 205px);}
-.feature-card{flex:0 0 410px;display:flex;flex-direction:column;border:var(--border-1);
-  border-radius:0;overflow:hidden;}
-.feature-card__header{aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:var(--fw-strong);font-size:var(--fs-h3);text-align:center;}
-/* Whole card is one continuous gradient (header hue fading into its lighter tint) —
-   no flat solid fill anywhere, matching the hero's gradient-only treatment.
-   Colors are the real Figma-detected values, reordered to the reference's visible
-   rhythm: yellow, blue, purple, green, yellow. */
-.feature-card--1{background:linear-gradient(180deg,#e9c300,#eee648 42%,#fff1cb 100%);}
-.feature-card--2{background:linear-gradient(180deg,#409ae2,#58ace9 42%,#b4cfeb 100%);}
-.feature-card--3{background:linear-gradient(180deg,#7b89eb,#b2a5ec 42%,#cad1fc 100%);}
-.feature-card--4{background:linear-gradient(180deg,#10b97b,#7ad989 42%,#d2edda 100%);}
-.feature-card__header{background:transparent;}
-.feature-card__body{display:flex;flex-direction:column;gap:var(--space-3);padding:var(--space-5);}
-.feature-card__body p{color:rgba(0,0,0,.72);}
+  padding-inline:calc((100% - 1068px)/2);}
+.feature-card{flex:0 0 340px;aspect-ratio:392/530;display:flex;flex-direction:column;
+  border-radius:var(--radius-lg);overflow:hidden;}
+.feature-card__header{flex:1 1 58%;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:var(--space-4);color:var(--color-primary-900);
+  font-weight:var(--fw-strong);font-size:var(--fs-h3);text-align:center;padding-inline:var(--space-4);}
+.feature-card__icon{width:88px;height:88px;border-radius:var(--radius-circle);
+  background:rgba(255,255,255,.55);}
+/* Only the three hues measured off the hero's own gradient (rgba(238,230,72) / rgba(88,172,233)
+   / rgba(178,165,236)) are used anywhere on these cards — no invented colors. */
+.feature-card--1{background:linear-gradient(160deg,#eee648,#f7f2ba 100%);}
+.feature-card--2{background:linear-gradient(160deg,#58ace9,#c3e0f6 100%);}
+.feature-card--3{background:linear-gradient(160deg,#b2a5ec,#ddd7f7 100%);}
+.feature-card__body{flex:1 1 42%;background:var(--color-canvas);display:flex;
+  flex-direction:column;justify-content:center;padding:var(--space-5);}
+.feature-card__body p{color:var(--text-subtle);}
 @media (max-width:1024px){
   .peek-row{padding-inline:var(--gutter);}
-  .feature-card{flex-basis:300px;}
+  .feature-card{flex-basis:280px;}
 }
 
-/* ---------- work: one large card, next card cropped on the right ---------- */
+/* ---------- work: tall vertical cards, next card cropped on the right ---------- */
 .work-peek{display:flex;gap:var(--space-5);overflow:hidden;
   padding-inline:calc((100% - var(--container-narrow))/2 + var(--gutter));}
 /* Both cards are the same size — the second one is only "peek" because the row's
-   overflow:hidden clips it at the viewport edge, not because it's a smaller element. */
-.work-card{flex:0 0 1120px;max-width:1120px;display:grid;grid-template-columns:1fr 1fr;
-  gap:var(--space-6);border-radius:var(--radius-lg);overflow:hidden;background:var(--color-primary-050);}
-.work-card__body{padding:var(--space-7);display:flex;flex-direction:column;gap:var(--space-6);justify-content:center;}
-.work-card__media .img{width:100%;height:100%;min-height:360px;border-radius:0;}
-.work-card__stats{display:flex;flex-direction:column;gap:var(--space-3);max-width:24rem;}
+   overflow:hidden clips it at the viewport edge, not because it's a smaller element.
+   Stacked (media on top, tall) instead of the previous cramped side-by-side split;
+   no dark/dimmed tone anywhere — just the canvas white and a hairline border. */
+.work-card{flex:0 0 640px;max-width:640px;display:flex;flex-direction:column;
+  border-radius:var(--radius-lg);overflow:hidden;background:var(--color-canvas);border:var(--border-1);}
+.work-card__media .img{width:100%;aspect-ratio:4/5;background:var(--color-primary-050);border-radius:0;}
+.work-card__body{padding:var(--space-7);display:flex;flex-direction:column;gap:var(--space-6);}
+.work-card__stats{display:flex;flex-direction:column;gap:var(--space-3);}
 .work-card__stat{display:flex;justify-content:space-between;gap:var(--space-3);
   padding-block:var(--space-3);border-top:var(--border-1);}
 .work-card__stat:first-child{border-top:none;}
 @media (max-width:768px){
-  .work-card{grid-template-columns:1fr;}
+  .work-card{flex-basis:88vw;}
 }
 
 /* ---------- cta (5-7): plain background, single button ---------- */
