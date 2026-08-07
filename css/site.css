@@ -112,24 +112,28 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
    saturated fill. Cards cycle yellow-lead, blue-lead, purple-lead. */
 .peek-row{display:flex;gap:var(--space-5);overflow:hidden;
   padding-inline:calc((100% - 1224px)/2);}
+/* Glassmorphism: a single frosted glass surface per card — the page's own gradient
+   blurs through from behind, a colored radial wash sits on top of the glass (not
+   under it) for the per-card hue, and a light inset-ish border + soft shadow sell
+   the "pane of glass" edge instead of a flat opaque card. */
 .feature-card{flex:0 0 392px;width:392px;height:530px;display:flex;flex-direction:column;
-  border-radius:var(--radius-lg);overflow:hidden;background:var(--color-canvas);border:var(--border-1);}
+  border-radius:var(--radius-lg);overflow:hidden;
+  background:rgba(255,255,255,.22);
+  backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);
+  border:1px solid rgba(255,255,255,.55);
+  box-shadow:0 8px 32px rgba(31,38,135,.14),inset 0 1px 0 rgba(255,255,255,.5);}
 .feature-card__header{flex:1 1 58%;display:flex;flex-direction:column;align-items:center;
   justify-content:center;gap:var(--space-4);color:var(--color-primary-900);
   font-weight:var(--fw-strong);font-size:var(--fs-h3);text-align:center;padding-inline:var(--space-4);
-  background:
-    radial-gradient(ellipse 90% 75% at 50% 35%, rgba(238,230,72,.35) 0%, transparent 70%),
-    var(--color-canvas);}
+  background:radial-gradient(ellipse 90% 75% at 50% 35%, rgba(238,230,72,.4) 0%, transparent 70%);}
 .feature-card:nth-child(3n+2) .feature-card__header{background:
-    radial-gradient(ellipse 90% 75% at 50% 35%, rgba(88,172,233,.32) 0%, transparent 70%),
-    var(--color-canvas);}
+    radial-gradient(ellipse 90% 75% at 50% 35%, rgba(88,172,233,.38) 0%, transparent 70%);}
 .feature-card:nth-child(3n+3) .feature-card__header{background:
-    radial-gradient(ellipse 90% 75% at 50% 35%, rgba(178,165,236,.32) 0%, transparent 70%),
-    var(--color-canvas);}
+    radial-gradient(ellipse 90% 75% at 50% 35%, rgba(178,165,236,.38) 0%, transparent 70%);}
 .feature-card__icon{width:170px;height:170px;border-radius:var(--radius-circle);
-  background:rgba(255,255,255,.6);}
-.feature-card__body{flex:1 1 42%;background:var(--color-canvas);display:flex;
-  flex-direction:column;justify-content:center;padding:var(--space-5);}
+  background:rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.6);}
+.feature-card__body{flex:1 1 42%;border-top:1px solid rgba(255,255,255,.45);
+  display:flex;flex-direction:column;justify-content:center;padding:var(--space-5);}
 .feature-card__body p{color:var(--text-subtle);}
 @media (max-width:1024px){
   .peek-row{padding-inline:var(--gutter);}
@@ -142,15 +146,21 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
   padding-inline:calc((100% - var(--container-narrow))/2 + var(--gutter));}
 /* Both cards are the same size — the second one is only "peek" because the row's
    overflow:hidden clips it at the viewport edge, not because it's a smaller element.
-   Stacked (media on top, tall) instead of the previous cramped side-by-side split;
-   no dark/dimmed tone anywhere — just the canvas white and a hairline border. */
+   Stacked (media on top, tall) instead of the previous cramped side-by-side split.
+   Same frosted-glass treatment as the feature cards: translucent + blurred, no
+   dark/dimmed tone anywhere. */
 .work-card{flex:0 0 640px;max-width:640px;display:flex;flex-direction:column;
-  border-radius:var(--radius-lg);overflow:hidden;background:var(--color-canvas);border:var(--border-1);}
-.work-card__media .img{width:100%;aspect-ratio:4/5;background:var(--color-primary-050);border-radius:0;}
-.work-card__body{padding:var(--space-7);display:flex;flex-direction:column;gap:var(--space-6);}
+  border-radius:var(--radius-lg);overflow:hidden;
+  background:rgba(255,255,255,.22);
+  backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);
+  border:1px solid rgba(255,255,255,.55);
+  box-shadow:0 8px 32px rgba(31,38,135,.14),inset 0 1px 0 rgba(255,255,255,.5);}
+.work-card__media .img{width:100%;aspect-ratio:4/5;background:rgba(255,255,255,.18);border-radius:0;}
+.work-card__body{padding:var(--space-7);display:flex;flex-direction:column;gap:var(--space-6);
+  border-top:1px solid rgba(255,255,255,.45);}
 .work-card__stats{display:flex;flex-direction:column;gap:var(--space-3);}
 .work-card__stat{display:flex;justify-content:space-between;gap:var(--space-3);
-  padding-block:var(--space-3);border-top:var(--border-1);}
+  padding-block:var(--space-3);border-top:1px solid rgba(255,255,255,.35);}
 .work-card__stat:first-child{border-top:none;}
 @media (max-width:768px){
   .work-card{flex-basis:88vw;}
