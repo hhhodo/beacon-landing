@@ -80,8 +80,13 @@
     const t = seg - i;
     const x = lerp(anchors[i].x, anchors[i + 1].x, t);
     const y = lerp(anchors[i].y, anchors[i + 1].y, t);
-    const rotateY = progress * 720;
-    icon.style.transform = `translate(${x}px, ${y}px) perspective(800px) rotateY(${rotateY}deg)`;
+    // Mixes a 3D flip (rotateY) with a flat in-plane spin (rotateZ) at a different
+    // speed/direction, so the motion reads as tumbling rather than a single-axis
+    // coin-flip the whole way down.
+    const rotateY = progress * 540;
+    const rotateZ = progress * -300;
+    icon.style.transform =
+      `translate(${x}px, ${y}px) perspective(800px) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`;
   };
 
   measure();
