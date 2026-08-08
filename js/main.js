@@ -56,7 +56,7 @@
 
   const FRAME_COUNT = 121;
   const SHEET_COLS = 11;
-  const CELL = 300;
+  const CELL = 700;
   const sprite = new Image();
   sprite.src = 'assets/images/story-sprite.webp';
 
