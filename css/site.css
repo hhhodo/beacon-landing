@@ -78,14 +78,14 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
 .story-row__line{font-size:var(--fs-h1);font-weight:var(--fw-strong);line-height:var(--lh-h1);
   word-break:keep-all;}
 /* Empty slot — just reserves the layout space the moving image lands in for this row. */
-.story-row__slot{width:220px;height:220px;flex-shrink:0;}
+.story-row__slot{width:550px;height:550px;flex-shrink:0;}
 /* The one real image: absolutely positioned within .story, moved by JS (main.js)
    reading scroll position — position/rotation are set inline via transform, not
    a CSS keyframe loop, so it only moves as the user actually scrolls. */
 /* canvas, not <img>/<video> — each WebP frame (assets/images/story-frames/) is drawn onto
    it directly, so alpha transparency survives (no video codec to strip it) and the frame
    updates synchronously with scroll (no async seek). */
-.story__icon{position:absolute;top:0;left:0;width:220px;height:220px;
+.story__icon{position:absolute;top:0;left:0;width:550px;height:550px;
   background:transparent;will-change:transform;}
 @media (max-width:768px){
   .story-row{flex-direction:column;text-align:center;gap:var(--space-5);}
