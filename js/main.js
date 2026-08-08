@@ -43,6 +43,53 @@
   nextBtn.addEventListener('click', () => row.scrollBy({ left: step(), behavior: 'smooth' }));
 })();
 
+// Story section: one image, moved by scroll position instead of an autoplaying
+// loop. It travels between each row's empty slot (linear interpolation) as the
+// section scrolls through the viewport, with a scroll-tied rotateY for depth.
+(function () {
+  const story = document.getElementById('story');
+  const icon = document.getElementById('story-icon');
+  if (!story || !icon) return;
+
+  const slots = Array.from(story.querySelectorAll('[data-story-slot]'));
+  if (!slots.length) return;
+
+  let anchors = [];
+  const measure = () => {
+    const storyRect = story.getBoundingClientRect();
+    const storyTop = storyRect.top + window.scrollY;
+    anchors = slots.map((slot) => {
+      const r = slot.getBoundingClientRect();
+      return {
+        x: r.left + window.scrollX - (storyRect.left + window.scrollX) + r.width / 2 - icon.offsetWidth / 2,
+        y: r.top + window.scrollY - storyTop + r.height / 2 - icon.offsetHeight / 2,
+      };
+    });
+  };
+
+  const lerp = (a, b, t) => a + (b - a) * t;
+
+  const update = () => {
+    if (!anchors.length) return;
+    const rect = story.getBoundingClientRect();
+    const progress = Math.min(1, Math.max(0,
+      (window.innerHeight / 2 - rect.top) / rect.height
+    ));
+    const seg = progress * (anchors.length - 1);
+    const i = Math.min(anchors.length - 2, Math.floor(seg));
+    const t = seg - i;
+    const x = lerp(anchors[i].x, anchors[i + 1].x, t);
+    const y = lerp(anchors[i].y, anchors[i + 1].y, t);
+    const rotateY = progress * 720;
+    icon.style.transform = `translate(${x}px, ${y}px) perspective(800px) rotateY(${rotateY}deg)`;
+  };
+
+  measure();
+  update();
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', () => { measure(); update(); });
+})();
+
 // FAQ: click a question to expand its answer (closes the others).
 (function () {
   const items = document.querySelectorAll('.faq__item');
