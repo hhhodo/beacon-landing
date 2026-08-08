@@ -43,9 +43,28 @@
   nextBtn.addEventListener('click', () => row.scrollBy({ left: step(), behavior: 'smooth' }));
 })();
 
+// Three distinct rotation behaviors across the scroll (not one formula scaled
+// uniformly the whole way) — each third of the section reads differently:
+// 1) a flat in-plane spin only, 2) a 3D flip while still spinning the same way,
+// 3) rolling back the opposite direction. Values line up at each boundary so
+// there's no jump between phases.
+function rotationForProgress(progress) {
+  if (progress < 1 / 3) {
+    const t = progress / (1 / 3);
+    return { rotateY: 0, rotateZ: t * 360 };
+  }
+  if (progress < 2 / 3) {
+    const t = (progress - 1 / 3) / (1 / 3);
+    return { rotateY: t * 360, rotateZ: 360 + t * 360 };
+  }
+  const t = (progress - 2 / 3) / (1 / 3);
+  return { rotateY: 360 - t * 360, rotateZ: 720 - t * 540 };
+}
+
 // Story section: one image, moved by scroll position instead of an autoplaying
 // loop. It travels between each row's empty slot (linear interpolation) as the
-// section scrolls through the viewport, with a scroll-tied rotateY for depth.
+// section scrolls through the viewport, with a scroll-tied rotation that changes
+// character (see rotationForProgress) rather than a single repeated motion.
 (function () {
   const story = document.getElementById('story');
   const icon = document.getElementById('story-icon');
@@ -80,11 +99,7 @@
     const t = seg - i;
     const x = lerp(anchors[i].x, anchors[i + 1].x, t);
     const y = lerp(anchors[i].y, anchors[i + 1].y, t);
-    // Mixes a 3D flip (rotateY) with a flat in-plane spin (rotateZ) at a different
-    // speed/direction, so the motion reads as tumbling rather than a single-axis
-    // coin-flip the whole way down.
-    const rotateY = progress * 540;
-    const rotateZ = progress * -300;
+    const { rotateY, rotateZ } = rotationForProgress(progress);
     icon.style.transform =
       `translate(${x}px, ${y}px) perspective(800px) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`;
   };
