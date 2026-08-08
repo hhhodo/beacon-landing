@@ -106,7 +106,13 @@
     ));
     const seg = progress * (anchors.length - 1);
     const i = Math.min(anchors.length - 2, Math.floor(seg));
-    const t = seg - i;
+    const tRaw = seg - i;
+    // Dwell zone: the icon sits still (parked exactly on the row) for the first/last
+    // 25% of each inter-row scroll span and only actually travels through the middle
+    // 50% — plain linear interpolation the whole span meant it started drifting the
+    // instant a row passed center, which read as "it's already moving" instead of
+    // "it waited here, centered, before moving on."
+    const t = Math.min(1, Math.max(0, (tRaw - 0.25) / 0.5));
     const x = lerp(anchors[i].x, anchors[i + 1].x, t);
     const y = lerp(anchors[i].y, anchors[i + 1].y, t);
     icon.style.transform = `translate(${x}px, ${y}px)`;
