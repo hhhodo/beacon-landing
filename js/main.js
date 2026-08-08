@@ -48,17 +48,19 @@
 // 1) a flat in-plane spin only, 2) a 3D flip while still spinning the same way,
 // 3) rolling back the opposite direction. Values line up at each boundary so
 // there's no jump between phases.
+// Degrees per phase cut roughly in half (plus the row gap is now 640, so there's
+// twice the scroll distance to cover the same rotation) — much calmer/slower.
 function rotationForProgress(progress) {
   if (progress < 1 / 3) {
     const t = progress / (1 / 3);
-    return { rotateY: 0, rotateZ: t * 360 };
+    return { rotateY: 0, rotateZ: t * 150 };
   }
   if (progress < 2 / 3) {
     const t = (progress - 1 / 3) / (1 / 3);
-    return { rotateY: t * 360, rotateZ: 360 + t * 360 };
+    return { rotateY: t * 150, rotateZ: 150 + t * 150 };
   }
   const t = (progress - 2 / 3) / (1 / 3);
-  return { rotateY: 360 - t * 360, rotateZ: 720 - t * 540 };
+  return { rotateY: 150 - t * 150, rotateZ: 300 - t * 220 };
 }
 
 // Story section: one image, moved by scroll position instead of an autoplaying
