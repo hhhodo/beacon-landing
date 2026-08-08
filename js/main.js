@@ -43,10 +43,11 @@
   nextBtn.addEventListener('click', () => row.scrollBy({ left: step(), behavior: 'smooth' }));
 })();
 
-// Story section: a transparent WebP frame sequence, scrubbed by scroll position —
-// each scroll step just draws the matching frame straight onto the canvas (no video
-// codec to strip alpha, no async seek to miss), and it also travels between each
-// row's empty slot as it scrubs.
+// Story section: a transparent WebP sprite sheet, scrubbed by scroll position — one
+// image/one request/one decode (a single sheet instead of 121 separate <img> loads,
+// which risked hitting the browser's concurrent request/decode ceiling: frames past
+// wherever loading stalled would just never arrive, freezing the visual partway
+// through the section — exactly a "disappears from the middle onward" symptom).
 (function () {
   const story = document.getElementById('story');
   const icon = document.getElementById('story-icon');
@@ -54,12 +55,10 @@
   const ctx = icon.getContext('2d');
 
   const FRAME_COUNT = 121;
-  const frames = new Array(FRAME_COUNT);
-  for (let i = 0; i < FRAME_COUNT; i++) {
-    const img = new Image();
-    img.src = `assets/images/story-frames/frame-${String(i + 1).padStart(3, '0')}.webp`;
-    frames[i] = img;
-  }
+  const SHEET_COLS = 11;
+  const CELL = 300;
+  const sprite = new Image();
+  sprite.src = 'assets/images/story-sprite.webp';
 
   const slots = Array.from(story.querySelectorAll('[data-story-slot]'));
   if (!slots.length) return;
@@ -81,15 +80,18 @@
 
   const lerp = (a, b, t) => a + (b - a) * t;
   let currentFrame = -1;
+  let pendingIndex = null;
 
   const drawFrame = (index) => {
     if (index === currentFrame) return;
-    const img = frames[index];
-    if (!img.complete) { img.onload = () => drawFrame(index); return; }
+    if (!sprite.complete || sprite.naturalWidth === 0) { pendingIndex = index; return; }
     currentFrame = index;
+    const sx = (index % SHEET_COLS) * CELL;
+    const sy = Math.floor(index / SHEET_COLS) * CELL;
     ctx.clearRect(0, 0, icon.width, icon.height);
-    ctx.drawImage(img, 0, 0, icon.width, icon.height);
+    ctx.drawImage(sprite, sx, sy, CELL, CELL, 0, 0, icon.width, icon.height);
   };
+  sprite.onload = () => { if (pendingIndex !== null) drawFrame(pendingIndex); };
 
   const render = () => {
     const anchors = getAnchors();
