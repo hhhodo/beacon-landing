@@ -93,9 +93,16 @@
 
   const render = () => {
     const anchors = getAnchors();
-    const rect = story.getBoundingClientRect();
+    // Progress is tied to the first/last slot's own position reaching the viewport
+    // center — not the section's outer padded box — so the animation starts exactly
+    // when row 1 comes into view (matching where the icon should first appear) and
+    // ends when the last row does, instead of starting late/early relative to the
+    // section's top/bottom padding.
+    const firstCenter = slots[0].getBoundingClientRect().top + slots[0].offsetHeight / 2;
+    const lastCenter = slots[slots.length - 1].getBoundingClientRect().top + slots[slots.length - 1].offsetHeight / 2;
+    const viewportCenter = window.innerHeight / 2;
     const progress = Math.min(1, Math.max(0,
-      (window.innerHeight / 2 - rect.top) / rect.height
+      (viewportCenter - firstCenter) / (lastCenter - firstCenter)
     ));
     const seg = progress * (anchors.length - 1);
     const i = Math.min(anchors.length - 2, Math.floor(seg));
