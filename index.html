@@ -135,12 +135,14 @@ Footer      — full-bleed (2 link columns left / contact+social right)
   </section>
 
   <section class="story" id="story">
-    <!-- One video, scrubbed frame-by-frame by scroll position (currentTime set from
-         scroll progress, not autoplaying) — it also travels down through the section
-         to whichever side is empty for the current row. Each row's icon-side slot is
-         just empty space that reserves where it should land. -->
-    <video class="story__icon" id="story-icon" src="assets/images/story-scrub.webm"
-      muted playsinline preload="auto"></video>
+    <!-- One transparent WebP frame sequence (assets/images/story-frames/), drawn on a
+         canvas and scrubbed frame-by-frame by scroll position — a <video> can't keep
+         real alpha transparency after H.264/VP9 encoding reliably across browsers, and
+         currentTime-seeking doesn't repaint on every scroll step, so the canvas swaps
+         the frame image directly instead. It also travels down through the section to
+         whichever side is empty for the current row. Each row's icon-side slot is just
+         empty space that reserves where it should land. -->
+    <canvas class="story__icon" id="story-icon" width="440" height="440"></canvas>
     <div class="story-row">
       <div class="story-row__text">
         <p class="story-row__line">혼자서도 되는</p>

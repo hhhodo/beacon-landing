@@ -43,16 +43,23 @@
   nextBtn.addEventListener('click', () => row.scrollBy({ left: step(), behavior: 'smooth' }));
 })();
 
-// Story section: one video, scrubbed by scroll position instead of autoplaying —
-// currentTime is set directly from scroll progress (frame N follows scroll, not
-// time), and it also travels between each row's empty slot as it scrubs.
+// Story section: a transparent WebP frame sequence, scrubbed by scroll position —
+// each scroll step just draws the matching frame straight onto the canvas (no video
+// codec to strip alpha, no async seek to miss), and it also travels between each
+// row's empty slot as it scrubs.
 (function () {
   const story = document.getElementById('story');
   const icon = document.getElementById('story-icon');
   if (!story || !icon) return;
+  const ctx = icon.getContext('2d');
 
-  let duration = 0;
-  icon.addEventListener('loadedmetadata', () => { duration = icon.duration || 0; update(); });
+  const FRAME_COUNT = 121;
+  const frames = new Array(FRAME_COUNT);
+  for (let i = 0; i < FRAME_COUNT; i++) {
+    const img = new Image();
+    img.src = `assets/images/story-frames/frame-${String(i + 1).padStart(3, '0')}.webp`;
+    frames[i] = img;
+  }
 
   const slots = Array.from(story.querySelectorAll('[data-story-slot]'));
   if (!slots.length) return;
@@ -71,6 +78,16 @@
   };
 
   const lerp = (a, b, t) => a + (b - a) * t;
+  let currentFrame = -1;
+
+  const drawFrame = (index) => {
+    if (index === currentFrame) return;
+    const img = frames[index];
+    if (!img.complete) { img.onload = () => drawFrame(index); return; }
+    currentFrame = index;
+    ctx.clearRect(0, 0, icon.width, icon.height);
+    ctx.drawImage(img, 0, 0, icon.width, icon.height);
+  };
 
   const update = () => {
     if (!anchors.length) return;
@@ -84,7 +101,7 @@
     const x = lerp(anchors[i].x, anchors[i + 1].x, t);
     const y = lerp(anchors[i].y, anchors[i + 1].y, t);
     icon.style.transform = `translate(${x}px, ${y}px)`;
-    if (duration) icon.currentTime = progress * duration;
+    drawFrame(Math.round(progress * (FRAME_COUNT - 1)));
   };
 
   measure();

@@ -82,10 +82,10 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
 /* The one real image: absolutely positioned within .story, moved by JS (main.js)
    reading scroll position — position/rotation are set inline via transform, not
    a CSS keyframe loop, so it only moves as the user actually scrolls. */
-/* object-fit:contain + no bg/radius — the webm has a real alpha channel, so it
-   should read as a transparent icon floating over the page, not an opaque photo
-   card cropped to a box. */
-.story__icon{position:absolute;top:0;left:0;width:220px;height:220px;object-fit:contain;
+/* canvas, not <img>/<video> — each WebP frame (assets/images/story-frames/) is drawn onto
+   it directly, so alpha transparency survives (no video codec to strip it) and the frame
+   updates synchronously with scroll (no async seek). */
+.story__icon{position:absolute;top:0;left:0;width:220px;height:220px;
   background:transparent;will-change:transform;}
 @media (max-width:768px){
   .story-row{flex-direction:column;text-align:center;gap:var(--space-5);}
