@@ -17,8 +17,10 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
     radial-gradient(ellipse 70% 40% at 88% 94%, rgba(88,172,233,.3) 0%, transparent 65%),
     var(--color-canvas);}
 
-/* Sections were sitting too close together — double the standard rhythm. */
-.section{padding-block:calc(var(--space-section) * 2);}
+/* Top-padding only, not padding-block: with both sides padded, two adjacent sections
+   each contributing 320 top+bottom stacked into a 640 gap between them. Owning the
+   gap from one side only keeps every section-to-section rhythm at a uniform 320. */
+.section{padding-top:calc(var(--space-section) * 2);}
 
 /* ---------- nav: fixed so it stays visible on scroll; transparent while over the hero ---------- */
 .nav{position:fixed;top:0;left:0;right:0;z-index:50;background:transparent;transition:background .2s;}
@@ -136,7 +138,7 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
 
 /* ---------- faq: heading + accordion list, no tabs, flush with the other section
    titles (no gutter), uniform 320 section rhythm ---------- */
-.faq{padding-block:320px;}
+.faq{padding-top:320px;}
 .faq__head,.faq__list{max-width:1280px;margin-inline:auto;}
 .faq__title{font-size:var(--fs-h2);font-weight:var(--fw-strong);}
 .faq__list{display:flex;flex-direction:column;padding-top:70px;}
@@ -155,7 +157,7 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
   transition:max-height .25s ease,padding-top .25s ease;}
 .faq__item[aria-expanded="true"] + .faq__answer{max-height:200px;padding-block-end:var(--space-5);}
 @media (max-width:1024px){
-  .faq{padding-block:160px;}
+  .faq{padding-top:160px;}
 }
 @media (max-width:768px){
   .faq__item span:first-child{font-size:20px;}
