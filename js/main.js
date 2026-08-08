@@ -43,34 +43,16 @@
   nextBtn.addEventListener('click', () => row.scrollBy({ left: step(), behavior: 'smooth' }));
 })();
 
-// Three distinct rotation behaviors across the scroll (not one formula scaled
-// uniformly the whole way) — each third of the section reads differently:
-// 1) a flat in-plane spin only, 2) a 3D flip while still spinning the same way,
-// 3) rolling back the opposite direction. Values line up at each boundary so
-// there's no jump between phases.
-// Degrees per phase cut roughly in half (plus the row gap is now 640, so there's
-// twice the scroll distance to cover the same rotation) — much calmer/slower.
-function rotationForProgress(progress) {
-  if (progress < 1 / 3) {
-    const t = progress / (1 / 3);
-    return { rotateY: 0, rotateZ: t * 150 };
-  }
-  if (progress < 2 / 3) {
-    const t = (progress - 1 / 3) / (1 / 3);
-    return { rotateY: t * 150, rotateZ: 150 + t * 150 };
-  }
-  const t = (progress - 2 / 3) / (1 / 3);
-  return { rotateY: 150 - t * 150, rotateZ: 300 - t * 220 };
-}
-
-// Story section: one image, moved by scroll position instead of an autoplaying
-// loop. It travels between each row's empty slot (linear interpolation) as the
-// section scrolls through the viewport, with a scroll-tied rotation that changes
-// character (see rotationForProgress) rather than a single repeated motion.
+// Story section: one video, scrubbed by scroll position instead of autoplaying —
+// currentTime is set directly from scroll progress (frame N follows scroll, not
+// time), and it also travels between each row's empty slot as it scrubs.
 (function () {
   const story = document.getElementById('story');
   const icon = document.getElementById('story-icon');
   if (!story || !icon) return;
+
+  let duration = 0;
+  icon.addEventListener('loadedmetadata', () => { duration = icon.duration || 0; update(); });
 
   const slots = Array.from(story.querySelectorAll('[data-story-slot]'));
   if (!slots.length) return;
@@ -101,9 +83,8 @@ function rotationForProgress(progress) {
     const t = seg - i;
     const x = lerp(anchors[i].x, anchors[i + 1].x, t);
     const y = lerp(anchors[i].y, anchors[i + 1].y, t);
-    const { rotateY, rotateZ } = rotationForProgress(progress);
-    icon.style.transform =
-      `translate(${x}px, ${y}px) perspective(800px) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`;
+    icon.style.transform = `translate(${x}px, ${y}px)`;
+    if (duration) icon.currentTime = progress * duration;
   };
 
   measure();

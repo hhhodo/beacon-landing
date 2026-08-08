@@ -135,11 +135,12 @@ Footer      — full-bleed (2 link columns left / contact+social right)
   </section>
 
   <section class="story" id="story">
-    <!-- One image, moved by JS as the user scrolls (not a looping animation) — it
-         travels down through the section and slides to whichever side is empty
-         for the current row. Each row's icon-side slot is just empty space that
-         reserves where the image should land. -->
-    <img class="story__icon" id="story-icon" src="assets/images/자산 9@2x.png" alt="">
+    <!-- One video, scrubbed frame-by-frame by scroll position (currentTime set from
+         scroll progress, not autoplaying) — it also travels down through the section
+         to whichever side is empty for the current row. Each row's icon-side slot is
+         just empty space that reserves where it should land. -->
+    <video class="story__icon" id="story-icon" src="assets/images/taem00140000087.mov"
+      muted playsinline preload="auto"></video>
     <div class="story-row">
       <div class="story-row__text">
         <p class="story-row__line">혼자서도 되는</p>
