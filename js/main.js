@@ -64,15 +64,17 @@
   const slots = Array.from(story.querySelectorAll('[data-story-slot]'));
   if (!slots.length) return;
 
-  let anchors = [];
-  const measure = () => {
+  // Anchors are recomputed on every frame instead of once at load — a late web-font
+  // swap (Noto Sans KR loads async) reflows the text rows and shifts the slots, and a
+  // one-time measurement taken before that swap would silently go stale, leaving the
+  // icon parked at the wrong (pre-reflow) coordinates for the rest of the page's life.
+  const getAnchors = () => {
     const storyRect = story.getBoundingClientRect();
-    const storyTop = storyRect.top + window.scrollY;
-    anchors = slots.map((slot) => {
+    return slots.map((slot) => {
       const r = slot.getBoundingClientRect();
       return {
-        x: r.left + window.scrollX - (storyRect.left + window.scrollX) + r.width / 2 - icon.offsetWidth / 2,
-        y: r.top + window.scrollY - storyTop + r.height / 2 - icon.offsetHeight / 2,
+        x: r.left - storyRect.left + r.width / 2 - icon.offsetWidth / 2,
+        y: r.top - storyRect.top + r.height / 2 - icon.offsetHeight / 2,
       };
     });
   };
@@ -89,8 +91,8 @@
     ctx.drawImage(img, 0, 0, icon.width, icon.height);
   };
 
-  const update = () => {
-    if (!anchors.length) return;
+  const render = () => {
+    const anchors = getAnchors();
     const rect = story.getBoundingClientRect();
     const progress = Math.min(1, Math.max(0,
       (window.innerHeight / 2 - rect.top) / rect.height
@@ -104,10 +106,19 @@
     drawFrame(Math.round(progress * (FRAME_COUNT - 1)));
   };
 
-  measure();
+  // rAF-throttled: scroll can fire many times per frame, getBoundingClientRect
+  // doesn't need to run more often than the screen can actually repaint.
+  let ticking = false;
+  const update = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => { render(); ticking = false; });
+  };
+
   update();
   window.addEventListener('scroll', update, { passive: true });
-  window.addEventListener('resize', () => { measure(); update(); });
+  window.addEventListener('resize', update);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(update);
 })();
 
 // FAQ: click a question to expand its answer (closes the others).
