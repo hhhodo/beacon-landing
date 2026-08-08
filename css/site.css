@@ -82,8 +82,11 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
 /* The one real image: absolutely positioned within .story, moved by JS (main.js)
    reading scroll position — position/rotation are set inline via transform, not
    a CSS keyframe loop, so it only moves as the user actually scrolls. */
-.story__icon{position:absolute;top:0;left:0;width:220px;height:220px;object-fit:cover;
-  border-radius:var(--radius-md);will-change:transform;}
+/* object-fit:contain + no bg/radius — the webm has a real alpha channel, so it
+   should read as a transparent icon floating over the page, not an opaque photo
+   card cropped to a box. */
+.story__icon{position:absolute;top:0;left:0;width:220px;height:220px;object-fit:contain;
+  background:transparent;will-change:transform;}
 @media (max-width:768px){
   .story-row{flex-direction:column;text-align:center;gap:var(--space-5);}
   .story-row + .story-row{margin-top:var(--space-11);}
