@@ -175,23 +175,16 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
   gap:var(--space-8);flex-wrap:wrap;}
 .cta__content{display:flex;flex-direction:column;gap:var(--space-5);}
 
-/* ---------- footer: 2 link columns left / contact+social right ---------- */
+/* ---------- footer: links + contact, positioned on the same 12-col grid/spans
+   the rest of the site uses (cta uses the identical 1/span5 + 9/span3 pattern) ---------- */
 .footer{background:var(--color-primary-900);color:var(--text-default-inverse);}
-.footer__row{display:flex;justify-content:space-between;gap:var(--space-9);
-  padding-block:var(--space-10);flex-wrap:wrap;}
-.footer__links{display:flex;gap:var(--space-9);}
+.footer__row{padding-block:var(--space-10);align-items:start;}
 .footer__col{display:flex;flex-direction:column;gap:var(--space-4);}
 .footer__col a{font-size:var(--fs-body-2);color:var(--text-default-inverse);}
-.footer__contact{display:flex;flex-direction:column;gap:var(--space-4);min-width:260px;}
-.footer__contact-title{display:flex;justify-content:space-between;font-size:var(--fs-body-2);font-weight:var(--fw-strong);}
-.footer__divider{height:1px;background:var(--color-primary-700);}
+.footer__contact{display:flex;flex-direction:column;gap:var(--space-4);}
 .footer__contact p{font-size:var(--fs-badge);color:var(--text-subtle-inverse);}
 .footer__copyright{color:var(--color-primary-500);}
-.footer__social{display:flex;gap:var(--space-3);}
-.footer__social-icon{display:flex;align-items:center;justify-content:center;
-  width:36px;height:36px;border-radius:var(--radius-circle);background:var(--color-primary-800);
-  font-size:var(--fs-badge);}
 @media (max-width:768px){
-  .footer__row{flex-direction:column;}
-  .footer__links{gap:var(--space-6);}
+  .footer__row{grid-template-columns:1fr;gap:var(--space-6);}
+  .footer__col,.footer__contact{grid-column:1/-1!important;}
 }
