@@ -129,15 +129,10 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
 .work-card{flex:0 0 1280px;max-width:1280px;height:560px;display:flex;
   border-radius:var(--radius-lg);overflow:hidden;background:var(--color-canvas);
   scroll-snap-align:center;}
-.work-card__media{flex:1 1 0;min-width:0;position:relative;overflow:hidden;
-  background:
-    radial-gradient(ellipse 90% 80% at 22% 22%, rgba(238,230,72,.18) 0%, transparent 65%),
-    var(--color-canvas);}
-/* Corner-pinned instead of centrally overlapping — each photo sits in its own
-   corner with only a small touch of overlap, not stacked on top of each other. */
-.work-card__photo{position:absolute;object-fit:cover;border-radius:0;}
-.work-card__photo--a{width:400px;height:400px;top:-50px;left:-50px;}
-.work-card__photo--b{width:400px;height:400px;bottom:-50px;right:-50px;z-index:1;}
+.work-card__media{flex:1 1 0;min-width:0;position:relative;overflow:hidden;background:var(--color-placeholder);}
+/* One real photo filling the whole media panel — the earlier scattered-corner
+   treatment was for abstract glow icons, not actual case-study photography. */
+.work-card__photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
 .work-card__body{flex:1 1 0;min-width:0;padding:var(--space-7);display:flex;flex-direction:column;
   justify-content:space-between;}
 .work-card__title{font-size:var(--fs-h2);font-weight:var(--fw-strong);}
@@ -145,7 +140,7 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
 .work-card__stat{display:flex;justify-content:space-between;gap:var(--space-3);padding-block:var(--space-3);}
 @media (max-width:768px){
   .work-card{flex-direction:column;height:auto;}
-  .work-card__media .img{aspect-ratio:16/10;}
+  .work-card__media{aspect-ratio:16/10;}
 }
 /* Buttons used as layout/interaction elements (not literal buttons) — reset the
    browser's default button chrome (background, appearance) so nothing but the
