@@ -11,80 +11,6 @@
 </head>
 <body>
 
-<!-- Browser-window + search-dropdown mockup, matching the reference screenshot's
-     UI language. Window chrome/tabs/dropdown rows are muted light gray (unimportant);
-     the one dark, readable thing per variant is the search query typed in the address
-     bar, and one dropdown row is picked out with a soft highlight + accent icon. -->
-<svg aria-hidden="true" style="display:none">
-  <defs>
-    <clipPath id="win-clip"><rect x="20" y="20" width="920" height="560" rx="32"/></clipPath>
-    <linearGradient id="topbar-grad" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#CFE8FB"/>
-      <stop offset="100%" stop-color="#6FB3EA"/>
-    </linearGradient>
-    <g id="browser-skeleton">
-      <rect x="20" y="20" width="920" height="560" rx="32" fill="#fff" stroke="#e3e3e6" stroke-width="6"/>
-      <rect x="20" y="20" width="920" height="92" fill="url(#topbar-grad)" clip-path="url(#win-clip)"/>
-      <circle cx="56" cy="52" r="8" fill="#F2D14E"/>
-      <circle cx="82" cy="52" r="8" fill="#6FD199"/>
-      <!-- tabs -->
-      <rect x="56" y="130" width="184" height="46" rx="16" fill="#f2f2f4"/>
-      <rect x="76" y="145" width="16" height="16" rx="4" fill="#9ec8ee"/>
-      <rect x="104" y="147" width="110" height="12" rx="6" fill="#dcdce0"/>
-      <rect x="256" y="145" width="16" height="16" rx="4" fill="#e3e3e6"/>
-      <rect x="284" y="147" width="80" height="12" rx="6" fill="#ececed"/>
-      <!-- search / address bar -->
-      <rect x="56" y="196" width="848" height="66" rx="33" fill="#fff" stroke="#dcdce0" stroke-width="6"/>
-      <circle cx="98" cy="229" r="13" fill="none" stroke="#9a9aa0" stroke-width="6"/>
-      <line x1="108" y1="239" x2="118" y2="249" stroke="#9a9aa0" stroke-width="6" stroke-linecap="round"/>
-      <!-- dropdown container -->
-      <rect x="56" y="278" width="848" height="272" rx="24" fill="#fff" stroke="#f0f0f2" stroke-width="4"/>
-    </g>
-
-    <!-- A: "재구매율 높이는 방법" — yellow-highlighted top row -->
-    <symbol id="dash-mock-a" viewBox="0 0 960 600">
-      <use href="#browser-skeleton"/>
-      <text x="140" y="240" font-family="'Noto Sans KR',sans-serif" font-weight="700" font-size="30" fill="#262628">재구매율 높이는 방법</text>
-      <rect x="72" y="294" width="816" height="64" rx="18" fill="#FCF3D2"/>
-      <circle cx="106" cy="326" r="14" fill="#F2D14E"/>
-      <rect x="136" y="316" width="300" height="20" rx="10" fill="#fff"/>
-      <rect x="740" y="316" width="120" height="20" rx="10" fill="#F6E4A3"/>
-      <circle cx="106" cy="398" r="14" fill="none" stroke="#e3e3e6" stroke-width="8"/>
-      <rect x="136" y="388" width="260" height="20" rx="10" fill="#eeeef0"/>
-      <circle cx="106" cy="464" r="14" fill="none" stroke="#e3e3e6" stroke-width="8"/>
-      <rect x="136" y="454" width="300" height="20" rx="10" fill="#eeeef0"/>
-    </symbol>
-
-    <!-- B: "광고비 30% 절감하기" — mint-highlighted top row -->
-    <symbol id="dash-mock-b" viewBox="0 0 960 600">
-      <use href="#browser-skeleton"/>
-      <text x="140" y="240" font-family="'Noto Sans KR',sans-serif" font-weight="700" font-size="30" fill="#262628">광고비 30% 절감하기</text>
-      <rect x="72" y="294" width="816" height="64" rx="18" fill="#DFF6EA"/>
-      <circle cx="106" cy="326" r="14" fill="#6FD199"/>
-      <rect x="136" y="316" width="260" height="20" rx="10" fill="#fff"/>
-      <rect x="740" y="316" width="120" height="20" rx="10" fill="#B7EBCB"/>
-      <circle cx="106" cy="398" r="14" fill="none" stroke="#e3e3e6" stroke-width="8"/>
-      <rect x="136" y="388" width="300" height="20" rx="10" fill="#eeeef0"/>
-      <circle cx="106" cy="464" r="14" fill="none" stroke="#e3e3e6" stroke-width="8"/>
-      <rect x="136" y="454" width="220" height="20" rx="10" fill="#eeeef0"/>
-    </symbol>
-
-    <!-- C: "메타 광고 자동 최적화" — lavender-highlighted top row -->
-    <symbol id="dash-mock-c" viewBox="0 0 960 600">
-      <use href="#browser-skeleton"/>
-      <text x="140" y="240" font-family="'Noto Sans KR',sans-serif" font-weight="700" font-size="30" fill="#262628">메타 광고 자동 최적화</text>
-      <rect x="72" y="294" width="816" height="64" rx="18" fill="#EAE3FB"/>
-      <circle cx="106" cy="326" r="14" fill="#B2A5EC"/>
-      <rect x="136" y="316" width="280" height="20" rx="10" fill="#fff"/>
-      <rect x="740" y="316" width="120" height="20" rx="10" fill="#D4C8F6"/>
-      <circle cx="106" cy="398" r="14" fill="none" stroke="#e3e3e6" stroke-width="8"/>
-      <rect x="136" y="388" width="240" height="20" rx="10" fill="#eeeef0"/>
-      <circle cx="106" cy="464" r="14" fill="none" stroke="#e3e3e6" stroke-width="8"/>
-      <rect x="136" y="454" width="320" height="20" rx="10" fill="#eeeef0"/>
-    </symbol>
-  </defs>
-</svg>
-
 <!--
 variant:
 typo=loud
@@ -128,9 +54,9 @@ Footer      — full-bleed (2 link columns left / contact+social right)
       <h1 class="display display--sm hero__title">마케터 없이도,<br>매출은 오릅니다</h1>
     </div>
     <div class="hero__row">
-      <div class="hero__peek"><svg class="img hero__mock"><use href="#dash-mock-a"/></svg></div>
-      <div class="hero__main"><svg class="img hero__mock"><use href="#dash-mock-b"/></svg></div>
-      <div class="hero__peek"><svg class="img hero__mock"><use href="#dash-mock-c"/></svg></div>
+      <div class="hero__peek"><img class="img" src="assets/images/carlos-muza-hpjSkU2UYSU-unsplash.jpg" alt="캠페인 성과 대시보드"></div>
+      <div class="hero__main"><img class="img" src="assets/images/growtika-70L6WwrvSC0-unsplash.jpg" alt="데이터 기반 마케팅 그로스"></div>
+      <div class="hero__peek"><img class="img" src="assets/images/1981-digital-yqaskj8lQBE-unsplash.jpg" alt="고객 리텐션 분석"></div>
     </div>
   </section>
 
