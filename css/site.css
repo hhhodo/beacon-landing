@@ -60,6 +60,11 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
   overflow:hidden;border-radius:var(--radius-lg);opacity:.7;}
 .hero__peek .img{width:100%;height:100%;object-fit:cover;border-radius:var(--radius-lg);}
 @media (max-width:768px){
+  /* .hero__row's 657px height was fixed regardless of breakpoint — on mobile the
+     peek cards disappear and .hero__main collapses to an aspect-ratio box far
+     shorter than 657px, leaving a large dead gap below it unless the row itself
+     is allowed to shrink to fit its content. */
+  .hero__row{height:auto;}
   .hero__peek{display:none;}
   .hero__main{flex-basis:100%;height:auto;aspect-ratio:16/10;}
 }
@@ -84,6 +89,15 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
    updates synchronously with scroll (no async seek). */
 .story__icon{position:absolute;top:0;left:0;width:550px;height:550px;
   background:transparent;will-change:transform;}
+/* Between 768 and 1024 there was no fallback at all — a 550px icon slot plus a
+   two-line heading easily exceeds a tablet-width row (no wrap set), forcing an
+   overflow. JS re-reads both the slot and icon's live CSS size every frame, so
+   shrinking them here doesn't need any JS changes to stay centered. */
+@media (max-width:1024px){
+  .story-row{gap:var(--space-6);}
+  .story-row__slot{width:380px;height:380px;}
+  .story__icon{width:380px;height:380px;}
+}
 @media (max-width:768px){
   .story-row{flex-direction:column;text-align:center;gap:var(--space-5);}
   .story-row + .story-row{margin-top:var(--space-11);}
@@ -115,6 +129,10 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
 .feature-card__title{font-size:var(--fs-h3);font-weight:var(--fw-strong);color:var(--text-default);}
 .feature-card__desc{font-size:var(--fs-body-1);color:var(--text-subtle);}
 @media (max-width:1024px){
+  /* .peek-row's height was fixed at the desktop card height (530) — once the card
+     itself shrinks here, the row no longer matches it, leaving dead space above/
+     below the (still centered) smaller card. */
+  .peek-row{height:380px;}
   .feature-card{flex-basis:280px;width:280px;height:380px;gap:var(--space-6);}
   .feature-card__icon{width:140px;height:140px;}
 }
@@ -138,9 +156,22 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
 .work-card__title{font-size:var(--fs-h2);font-weight:var(--fw-strong);}
 .work-card__stats{display:flex;flex-direction:column;gap:var(--space-3);}
 .work-card__stat{display:flex;justify-content:space-between;gap:var(--space-3);padding-block:var(--space-3);}
+/* Between 768 and the desktop breakpoint the card was still a fixed 1280px — wider
+   than the tablet viewport itself. .work-peek's own overflow-x:auto keeps this from
+   breaking the page layout, but it read as broken/uncentered rather than deliberately
+   scrollable, so it's scaled down here too. */
+@media (max-width:1024px){
+  .work-peek{padding-inline:var(--gutter);}
+  .work-card{flex:0 0 90vw;max-width:90vw;}
+}
 @media (max-width:768px){
-  .work-card{flex-direction:column;height:auto;}
+  /* .work-card's 1280px flex-basis/max-width was never overridden here — on a
+     phone viewport that's a card several times wider than the screen, forcing
+     horizontal overflow. Scaled down to a viewport-relative width instead. */
+  .work-peek{padding-inline:var(--gutter);}
+  .work-card{flex:0 0 88vw;max-width:88vw;flex-direction:column;height:auto;}
   .work-card__media{aspect-ratio:16/10;}
+  .work-card__body{padding:var(--space-5);}
 }
 /* Buttons used as layout/interaction elements (not literal buttons) — reset the
    browser's default button chrome (background, appearance) so nothing but the
