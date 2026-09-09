@@ -111,8 +111,13 @@ html,body{overflow-x:hidden;}
   .story__icon{width:380px;height:380px;}
 }
 @media (max-width:768px){
+  /* .story kept its desktop-scale 200px top padding and 160px inter-row margin here —
+     against a ~70-90px-tall two-line text row on a phone that's ~90% dead space, which
+     is exactly what read as "the story section is just blank" on mobile: the actual
+     text was real but buried in far more padding than its own content. */
+  .story{padding-top:var(--space-9);}
   .story-row{flex-direction:column;text-align:center;gap:var(--space-5);}
-  .story-row + .story-row{margin-top:var(--space-11);}
+  .story-row + .story-row{margin-top:var(--space-7);}
   .story-row__slot{display:none;}
   .story__icon{display:none;}
 }
