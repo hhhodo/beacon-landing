@@ -189,7 +189,10 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
 
 /* ---------- faq: heading + accordion list, no tabs, flush with the other section
    titles (no gutter), uniform 200 section rhythm ---------- */
-.faq{padding-top:var(--space-12);}
+/* padding-bottom here is the actual FAQ->footer gap (light background before the
+   dark footer block begins) — the footer's own top padding is just its internal
+   text spacing (40px), not a section gap, so this is the only place that gap lives. */
+.faq{padding-top:var(--space-12);padding-bottom:var(--space-10);}
 .faq__head,.faq__list{max-width:1280px;margin-inline:auto;}
 .faq__title{font-size:var(--fs-h2);font-weight:var(--fw-strong);}
 .faq__list{display:flex;flex-direction:column;padding-top:70px;}
@@ -229,10 +232,10 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
 .footer__wordmark{width:100%;text-align:center;font-size:22vw;font-weight:900;line-height:1;
   color:var(--color-primary-500);white-space:nowrap;letter-spacing:-.03em;
   padding-block:var(--space-6) var(--space-5);pointer-events:none;user-select:none;}
-/* padding-top alone carries the 200 section gap (--space-12) — a separate
-   padding-top on .footer stacked on top of this and doubled it to 320. */
+/* Just the footer's own internal text spacing now — the FAQ->footer section gap
+   lives on .faq's own padding-bottom instead, so this doesn't double up with it. */
 .footer__row{display:flex;justify-content:space-between;align-items:flex-start;
-  flex-wrap:wrap;gap:var(--space-6);padding-top:var(--space-12);padding-bottom:var(--space-10);}
+  flex-wrap:wrap;gap:var(--space-6);padding-top:40px;padding-bottom:80px;}
 .footer__col{display:flex;flex-direction:row;flex-wrap:wrap;gap:var(--space-6);}
 .footer__col a{font-size:var(--fs-body-2);color:var(--text-default-inverse);}
 .footer__contact{display:flex;flex-direction:column;align-items:flex-end;gap:var(--space-4);text-align:right;}
