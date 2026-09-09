@@ -15,11 +15,11 @@
   --text-disabled:var(--color-primary-400);
   --text-default-inverse:#fff; --text-subtle-inverse:var(--color-primary-200);
 
-  /* type — DESIGN_18: 등지 14, 일반 텍스트 최소 18 */
+  /* type — DESIGN_18: 등지 16(상향), 일반 텍스트 최소 18 */
   --fs-display-lg:102px; --fs-display-md:96px; --fs-display-sm:80px;
   --fs-h0:64px; --fs-h1:56px; --fs-h2:40px; --fs-h3:32px;
   --fs-body-1:20px; --fs-body-2:18px;
-  --fs-badge:14px;
+  --fs-badge:16px;
   --fw-strong:700; --fw-base:400;
   --tracking-kr:-0.025em; --display-tracking:-0.02em;
   --lh-display:1.25; --lh-h0:1.25; --lh-h1:1.3; --lh-h2:1.35; --lh-h3:1.4; --lh-body:1.5;
