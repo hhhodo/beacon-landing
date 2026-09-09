@@ -18,9 +18,10 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
     var(--color-canvas);}
 
 /* Top-padding only, not padding-block: with both sides padded, two adjacent sections
-   each contributing 320 top+bottom stacked into a 640 gap between them. Owning the
-   gap from one side only keeps every section-to-section rhythm at a uniform 320. */
-.section{padding-top:calc(var(--space-section) * 2);}
+   would each contribute their own top+bottom, stacking into double the gap between
+   them. Owning the gap from one side only keeps every section-to-section rhythm at
+   a uniform 200 (--space-12). */
+.section{padding-top:var(--space-12);}
 
 /* ---------- nav: fixed so it stays visible on scroll; transparent while over the hero ---------- */
 .nav{position:fixed;top:0;left:0;right:0;z-index:50;background:transparent;transition:background .2s;}
@@ -69,10 +70,10 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
   .hero__main{flex-basis:100%;height:auto;aspect-ratio:16/10;}
 }
 
-/* ---------- story: alternating text rows, 320 rhythm, one scroll-driven image ---------- */
+/* ---------- story: alternating text rows, 200 rhythm, one scroll-driven image ---------- */
 /* Top padding only (same "one owner per gap" rule as .section) — features' own
-   padding-top:320 owns the gap after this section, so no bottom padding here. */
-.story{position:relative;padding-top:320px;}
+   padding-top:200 owns the gap after this section, so no bottom padding here. */
+.story{position:relative;padding-top:var(--space-12);}
 .story-row{max-width:var(--container-narrow);margin-inline:auto;padding-inline:var(--gutter);
   display:flex;align-items:center;justify-content:space-between;gap:var(--space-8);}
 .story-row + .story-row{margin-top:640px;}
@@ -187,8 +188,8 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
 .work-nav__btn:disabled{opacity:.35;pointer-events:none;}
 
 /* ---------- faq: heading + accordion list, no tabs, flush with the other section
-   titles (no gutter), uniform 320 section rhythm ---------- */
-.faq{padding-top:320px;}
+   titles (no gutter), uniform 200 section rhythm ---------- */
+.faq{padding-top:var(--space-12);}
 .faq__head,.faq__list{max-width:1280px;margin-inline:auto;}
 .faq__title{font-size:var(--fs-h2);font-weight:var(--fw-strong);}
 .faq__list{display:flex;flex-direction:column;padding-top:70px;}
@@ -207,7 +208,7 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
   transition:max-height .25s ease,padding-top .25s ease;}
 .faq__item[aria-expanded="true"] + .faq__answer{max-height:200px;padding-block-end:var(--space-5);}
 @media (max-width:1024px){
-  .faq{padding-top:160px;}
+  .faq{padding-top:var(--space-10);}
 }
 @media (max-width:768px){
   .faq__item span:first-child{font-size:20px;}
@@ -218,7 +219,7 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
    the copy (not absolutely positioned over it) so the two can never overlap; sized in
    vw so it always spans/bleeds past the viewport regardless of screen width. No
    container gutter — flush with the other section titles. */
-.cta{position:relative;overflow:hidden;padding-block:320px;
+.cta{position:relative;overflow:hidden;padding-block:var(--space-12);
   display:flex;flex-direction:column;align-items:center;gap:var(--space-9);}
 .cta__wordmark{width:100%;text-align:center;font-size:26vw;font-weight:900;line-height:1;
   color:#fff;white-space:nowrap;letter-spacing:-.03em;pointer-events:none;user-select:none;}
