@@ -223,8 +223,12 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
 /* Oversized brand wordmark under the footer links — same full-bleed, letters-can-
    clip-at-the-edge treatment the CTA section used to have, just repositioned here
    since that's the "footer feel" being kept, not the heading/button that were dropped. */
+/* color-primary-700 (#4c4c4e) against the footer's own color-primary-900 (#262628)
+   bg turned out too low-contrast to actually read at this size/screenshot
+   compression — bumped to primary-500 for a watermark that's still muted but
+   unambiguously visible as letters, not just a slightly-different-shade block. */
 .footer__wordmark{width:100%;text-align:center;font-size:22vw;font-weight:900;line-height:1;
-  color:var(--color-primary-700);white-space:nowrap;letter-spacing:-.03em;
+  color:var(--color-primary-500);white-space:nowrap;letter-spacing:-.03em;
   padding-block:var(--space-6) var(--space-5);pointer-events:none;user-select:none;}
 .footer__row{display:flex;justify-content:space-between;align-items:flex-start;
   flex-wrap:wrap;gap:var(--space-6);padding-block:var(--space-10);}
