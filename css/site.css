@@ -77,15 +77,15 @@ html,body{overflow-x:hidden;}
 .hero__inner{text-align:center;padding-block:var(--space-11) var(--space-8);
   display:flex;flex-direction:column;align-items:center;}
 .hero__title{max-width:16ch;}
-/* mcp: row height 657, gap 24, items-end, overflow-clip, padding-bottom 32 —
-   side cards are flat opacity-70 (not a fade/mask), center card is taller and opaque. */
-.hero__row{position:relative;display:flex;align-items:flex-end;justify-content:center;gap:var(--space-5);
-  height:657px;overflow:hidden;padding-bottom:var(--space-6);}
-.hero__main{flex:0 0 1000px;max-width:1000px;height:625px;}
-.hero__main .img{width:100%;height:100%;object-fit:cover;border-radius:var(--radius-lg);}
-.hero__peek{position:relative;flex:0 0 800px;max-width:800px;height:500px;
-  overflow:hidden;border-radius:var(--radius-lg);opacity:.7;}
-.hero__peek .img{width:100%;height:100%;object-fit:cover;border-radius:var(--radius-lg);}
+/* All 3 images shown fully, uncropped — equal-width columns inside the narrow
+   container instead of a full-bleed row where the two side images were cropped
+   at the row's own edge (overflow:hidden) and faded to opacity:.7. No padding-
+   bottom here either: the next section's own top padding (200) is the single
+   owner of that gap now, instead of the two stacking into 232+. */
+.hero__row{max-width:var(--container-narrow);margin-inline:auto;padding-inline:var(--gutter);
+  display:flex;align-items:stretch;justify-content:center;gap:var(--space-5);height:auto;}
+.hero__main,.hero__peek{flex:1 1 0;min-width:0;height:auto;aspect-ratio:16/10;opacity:1;}
+.hero__main .img,.hero__peek .img{width:100%;height:100%;object-fit:cover;border-radius:var(--radius-lg);}
 @media (max-width:768px){
   /* Was display:none on the peeks — only 1 of 3 hero images ever showed on mobile.
      Turned into a swipeable peek carousel instead: all 3 slides same size, side ones
@@ -239,9 +239,9 @@ html,body{overflow-x:hidden;}
   width:100%;padding-block:30px;text-align:left;}
 .faq__item span:first-child{font-size:26px;font-weight:var(--fw-strong);color:var(--text-default);}
 .faq__toggle{position:relative;flex-shrink:0;width:48px;height:48px;border-radius:var(--radius-circle);
-  background:#333;transition:transform .2s;}
+  background:#fff;box-shadow:0 1px 6px rgba(0,0,0,.15);transition:transform .2s;}
 .faq__toggle::before,.faq__toggle::after{content:"";position:absolute;inset:0;margin:auto;
-  width:22px;height:3px;border-radius:var(--radius-circle);background:#fff;}
+  width:22px;height:3px;border-radius:var(--radius-circle);background:#1a1a1a;}
 .faq__toggle::after{transform:rotate(90deg);}
 .faq__item[aria-expanded="true"] .faq__toggle{transform:rotate(45deg);}
 /* Answer panel: height-animated open/close, driven by JS toggling aria-expanded
