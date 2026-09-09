@@ -42,6 +42,11 @@ html,body{overflow-x:hidden;}
    alignment to preserve on a single-column mobile layout, so just restore the gutter. */
 @media (max-width:768px){
   .container--flush{padding-inline:var(--gutter);}
+  /* .section had no mobile override at all (stayed at the desktop 200px), while
+     .story/.faq/etc each picked their own different mobile value — inconsistent,
+     unplanned gaps between sections on phones. Unified every section-to-section
+     gap on mobile to 96 (--space-9). */
+  .section{padding-top:var(--space-9);}
 }
 
 /* ---------- nav: fixed so it stays visible on scroll; transparent while over the hero ---------- */
@@ -248,6 +253,10 @@ html,body{overflow-x:hidden;}
   .faq{padding-top:var(--space-10);}
 }
 @media (max-width:768px){
+  /* Unified to the same 96 (--space-9) every other section uses on mobile — was
+     120 here (--space-10) via the 1024px rule above, one of several different
+     mobile section-gap values scattered around the file. */
+  .faq{padding-top:var(--space-9);padding-bottom:var(--space-9);}
   .faq__item span:first-child{font-size:20px;}
 }
 
