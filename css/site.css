@@ -32,7 +32,7 @@ html,body{overflow-x:hidden;}
    .section{padding-block:var(--space-section)} rule — that rule sets both top AND
    bottom, and only the top half was meant to be superseded here; the bottom half was
    leaking through as an unwanted extra ~96–160px gap under every .section. */
-.section{padding-top:var(--space-10);padding-bottom:0;}
+.section{padding-top:var(--space-12);padding-bottom:0;}
 
 /* .container--flush zeroes the gutter unconditionally — on desktop that's fine, since
    the viewport is far wider than the 1280px container anyway (flush just aligns this
@@ -101,47 +101,6 @@ html,body{overflow-x:hidden;}
   .hero__row::-webkit-scrollbar{display:none;}
   .hero__peek,.hero__main{flex:0 0 94vw;max-width:94vw;height:auto;aspect-ratio:16/10;
     opacity:1;scroll-snap-align:center;}
-}
-
-/* ---------- story: alternating text rows, 200 rhythm, one scroll-driven image ---------- */
-/* Top padding only (same "one owner per gap" rule as .section) — features' own
-   padding-top:200 owns the gap after this section, so no bottom padding here. */
-.story{position:relative;padding-top:var(--space-12);}
-.story-row{max-width:var(--container-narrow);margin-inline:auto;padding-inline:var(--gutter);
-  display:flex;align-items:center;justify-content:space-between;gap:var(--space-8);}
-.story-row + .story-row{margin-top:640px;}
-.story-row__text{display:flex;flex-direction:column;gap:var(--space-2);}
-.story-row__line{font-size:var(--fs-h1);font-weight:var(--fw-strong);line-height:var(--lh-h1);
-  word-break:keep-all;}
-/* Empty slot — just reserves the layout space the moving image lands in for this row. */
-.story-row__slot{width:550px;height:550px;flex-shrink:0;}
-/* The one real image: absolutely positioned within .story, moved by JS (main.js)
-   reading scroll position — position/rotation are set inline via transform, not
-   a CSS keyframe loop, so it only moves as the user actually scrolls. */
-/* canvas, not <img>/<video> — each WebP frame (assets/images/story-frames/) is drawn onto
-   it directly, so alpha transparency survives (no video codec to strip it) and the frame
-   updates synchronously with scroll (no async seek). */
-.story__icon{position:absolute;top:0;left:0;width:550px;height:550px;
-  background:transparent;will-change:transform;}
-/* Between 768 and 1024 there was no fallback at all — a 550px icon slot plus a
-   two-line heading easily exceeds a tablet-width row (no wrap set), forcing an
-   overflow. JS re-reads both the slot and icon's live CSS size every frame, so
-   shrinking them here doesn't need any JS changes to stay centered. */
-@media (max-width:1024px){
-  .story-row{gap:var(--space-6);}
-  .story-row__slot{width:380px;height:380px;}
-  .story__icon{width:380px;height:380px;}
-}
-@media (max-width:768px){
-  /* .story kept its desktop-scale 200px top padding and 160px inter-row margin here —
-     against a ~70-90px-tall two-line text row on a phone that's ~90% dead space, which
-     is exactly what read as "the story section is just blank" on mobile: the actual
-     text was real but buried in far more padding than its own content. */
-  .story{padding-top:var(--space-9);}
-  .story-row{flex-direction:column;text-align:center;gap:var(--space-5);}
-  .story-row + .story-row{margin-top:var(--space-7);}
-  .story-row__slot{display:none;}
-  .story__icon{display:none;}
 }
 
 /* ---------- features: mcp node 99:2 — plain white cards, centered stack, gray square icon ---------- */
