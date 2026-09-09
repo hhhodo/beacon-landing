@@ -34,6 +34,16 @@ html,body{overflow-x:hidden;}
    leaking through as an unwanted extra ~96–160px gap under every .section. */
 .section{padding-top:var(--space-12);padding-bottom:0;}
 
+/* .container--flush zeroes the gutter unconditionally — on desktop that's fine, since
+   the viewport is far wider than the 1280px container anyway (flush just aligns this
+   content with other full-bleed elements). On mobile the container IS the viewport,
+   so flush meant literally zero left/right margin — nav, the features/work titles,
+   and the footer were all touching the raw screen edges. There's no cross-section grid
+   alignment to preserve on a single-column mobile layout, so just restore the gutter. */
+@media (max-width:768px){
+  .container--flush{padding-inline:var(--gutter);}
+}
+
 /* ---------- nav: fixed so it stays visible on scroll; transparent while over the hero ---------- */
 .nav{position:fixed;top:0;left:0;right:0;z-index:50;background:transparent;transition:background .2s;}
 .nav.is-scrolled{background:var(--color-canvas);}
@@ -209,7 +219,12 @@ html,body{overflow-x:hidden;}
    dark footer block begins) — the footer's own top padding is just its internal
    text spacing (40px), not a section gap, so this is the only place that gap lives. */
 .faq{padding-top:var(--space-12);padding-bottom:var(--space-10);}
-.faq__head,.faq__list{max-width:1280px;margin-inline:auto;}
+/* padding-inline here (not container--flush) matches .story-row's approach: these
+   never had ANY gutter at all, at any breakpoint — fine-ish on desktop since a wide
+   viewport still leaves outer margin from centering, but on mobile the container IS
+   the viewport, so the FAQ heading and every question sat flush against the raw
+   screen edges. */
+.faq__head,.faq__list{max-width:1280px;margin-inline:auto;padding-inline:var(--gutter);}
 .faq__title{font-size:var(--fs-h2);font-weight:var(--fw-strong);}
 .faq__list{display:flex;flex-direction:column;padding-top:70px;}
 .faq__item{display:flex;align-items:center;justify-content:space-between;gap:var(--space-5);
