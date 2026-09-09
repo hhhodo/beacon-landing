@@ -82,13 +82,16 @@ html,body{overflow-x:hidden;}
   overflow:hidden;border-radius:var(--radius-lg);opacity:.7;}
 .hero__peek .img{width:100%;height:100%;object-fit:cover;border-radius:var(--radius-lg);}
 @media (max-width:768px){
-  /* .hero__row's 657px height was fixed regardless of breakpoint — on mobile the
-     peek cards disappear and .hero__main collapses to an aspect-ratio box far
-     shorter than 657px, leaving a large dead gap below it unless the row itself
-     is allowed to shrink to fit its content. */
-  .hero__row{height:auto;}
-  .hero__peek{display:none;}
-  .hero__main{flex-basis:100%;height:auto;aspect-ratio:16/10;}
+  /* Was display:none on the peeks — only 1 of 3 hero images ever showed on mobile.
+     Turned into a swipeable peek carousel instead: all 3 slides same size, side ones
+     visibly cropped at the viewport edge (same "peek" idea as everywhere else on this
+     page, just touch-scrollable here since there's no room to show all 3 at once). */
+  .hero__row{height:auto;justify-content:flex-start;overflow-x:auto;overflow-y:hidden;
+    scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;
+    padding-inline:10vw;}
+  .hero__row::-webkit-scrollbar{display:none;}
+  .hero__peek,.hero__main{flex:0 0 80vw;max-width:80vw;height:auto;aspect-ratio:16/10;
+    opacity:1;scroll-snap-align:center;}
 }
 
 /* ---------- story: alternating text rows, 200 rhythm, one scroll-driven image ---------- */
