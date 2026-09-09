@@ -218,8 +218,7 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
    leftover from when this mirrored the (now-deleted) CTA's 1/span5+9/span3 split.
    Keeping that grid on just 2 items left a big unmotivated dead gap in the middle
    columns; flex space-between just splits the row naturally instead. */
-.footer{background:var(--color-primary-900);color:var(--text-default-inverse);overflow:hidden;
-  padding-top:var(--space-12);}
+.footer{background:var(--color-primary-900);color:var(--text-default-inverse);overflow:hidden;}
 /* Oversized brand wordmark under the footer links — same full-bleed, letters-can-
    clip-at-the-edge treatment the CTA section used to have, just repositioned here
    since that's the "footer feel" being kept, not the heading/button that were dropped. */
@@ -230,8 +229,10 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
 .footer__wordmark{width:100%;text-align:center;font-size:22vw;font-weight:900;line-height:1;
   color:var(--color-primary-500);white-space:nowrap;letter-spacing:-.03em;
   padding-block:var(--space-6) var(--space-5);pointer-events:none;user-select:none;}
+/* padding-top alone carries the 200 section gap (--space-12) — a separate
+   padding-top on .footer stacked on top of this and doubled it to 320. */
 .footer__row{display:flex;justify-content:space-between;align-items:flex-start;
-  flex-wrap:wrap;gap:var(--space-6);padding-block:var(--space-10);}
+  flex-wrap:wrap;gap:var(--space-6);padding-top:var(--space-12);padding-bottom:var(--space-10);}
 .footer__col{display:flex;flex-direction:row;flex-wrap:wrap;gap:var(--space-6);}
 .footer__col a{font-size:var(--fs-body-2);color:var(--text-default-inverse);}
 .footer__contact{display:flex;flex-direction:column;align-items:flex-end;gap:var(--space-4);text-align:right;}
