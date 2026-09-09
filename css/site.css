@@ -32,7 +32,7 @@ html,body{overflow-x:hidden;}
    .section{padding-block:var(--space-section)} rule — that rule sets both top AND
    bottom, and only the top half was meant to be superseded here; the bottom half was
    leaking through as an unwanted extra ~96–160px gap under every .section. */
-.section{padding-top:var(--space-12);padding-bottom:0;}
+.section{padding-top:var(--space-10);padding-bottom:0;}
 
 /* .container--flush zeroes the gutter unconditionally — on desktop that's fine, since
    the viewport is far wider than the 1280px container anyway (flush just aligns this
