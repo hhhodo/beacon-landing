@@ -17,11 +17,22 @@ body{font-family:'Noto Sans KR','Pretendard',sans-serif;
     radial-gradient(ellipse 70% 40% at 88% 94%, rgba(88,172,233,.3) 0%, transparent 65%),
     var(--color-canvas);}
 
+/* Global overflow-x:hidden safety net: on a phone viewport, any single element that's
+   even a few px wider than the screen (a marquee track, a peek-row card, etc. — all
+   deliberately oversized on purpose elsewhere) turns the WHOLE page horizontally
+   scrollable/shiftable, not just that element. Everything that's meant to overflow
+   already clips itself locally (overflow:hidden on its own row); this just stops any
+   remaining stray overflow from dragging the entire page sideways. */
+html,body{overflow-x:hidden;}
+
 /* Top-padding only, not padding-block: with both sides padded, two adjacent sections
    would each contribute their own top+bottom, stacking into double the gap between
    them. Owning the gap from one side only keeps every section-to-section rhythm at
-   a uniform 200 (--space-12). */
-.section{padding-top:var(--space-12);}
+   a uniform 200 (--space-12). padding-bottom:0 explicitly overrides styles.css's own
+   .section{padding-block:var(--space-section)} rule — that rule sets both top AND
+   bottom, and only the top half was meant to be superseded here; the bottom half was
+   leaking through as an unwanted extra ~96–160px gap under every .section. */
+.section{padding-top:var(--space-12);padding-bottom:0;}
 
 /* ---------- nav: fixed so it stays visible on scroll; transparent while over the hero ---------- */
 .nav{position:fixed;top:0;left:0;right:0;z-index:50;background:transparent;transition:background .2s;}
