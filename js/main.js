@@ -26,6 +26,44 @@
   }
 })();
 
+// Features row: allow the card strip to be moved directly with a pointer drag.
+(function () {
+  const row = document.querySelector('.peek-row');
+  const track = row?.querySelector('.peek-track');
+  if (!row || !track) return;
+
+  let startX = 0;
+  let startScrollLeft = 0;
+  let dragging = false;
+
+  row.addEventListener('pointerdown', (event) => {
+    if (event.button !== 0) return;
+    dragging = true;
+    startX = event.clientX;
+    startScrollLeft = row.scrollLeft;
+    row.setPointerCapture(event.pointerId);
+    row.classList.add('is-dragging');
+    track.style.animationPlayState = 'paused';
+  });
+
+  row.addEventListener('pointermove', (event) => {
+    if (!dragging) return;
+    event.preventDefault();
+    row.scrollLeft = startScrollLeft - (event.clientX - startX);
+  });
+
+  const stopDragging = (event) => {
+    if (!dragging) return;
+    dragging = false;
+    if (row.hasPointerCapture(event.pointerId)) row.releasePointerCapture(event.pointerId);
+    row.classList.remove('is-dragging');
+    track.style.animationPlayState = '';
+  };
+
+  row.addEventListener('pointerup', stopDragging);
+  row.addEventListener('pointercancel', stopDragging);
+})();
+
 // Work section: arrow buttons page the scroll-snap row one card+gap at a time.
 (function () {
   const row = document.querySelector('.work-peek');

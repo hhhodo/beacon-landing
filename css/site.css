@@ -82,7 +82,7 @@ html,body{overflow-x:hidden;}
    at the row's own edge (overflow:hidden) and faded to opacity:.7. No padding-
    bottom here either: the next section's own top padding (200) is the single
    owner of that gap now, instead of the two stacking into 232+. */
-.hero__row{max-width:var(--container-narrow);margin-inline:auto;padding-inline:var(--gutter);
+.hero__row{width:100%;margin-inline:auto;padding-inline:var(--gutter);
   display:flex;align-items:stretch;justify-content:center;gap:var(--space-5);height:auto;}
 .hero__main,.hero__peek{flex:1 1 0;min-width:0;height:auto;aspect-ratio:16/10;opacity:1;}
 .hero__main .img,.hero__peek .img{width:100%;height:100%;object-fit:cover;border-radius:var(--radius-lg);}
@@ -110,7 +110,10 @@ html,body{overflow-x:hidden;}
 /* Auto-scrolling marquee: JS clones the track's card set once so it's exactly 2x
    wide, then the track animates from 0 to -50% — at -50% the clone is pixel-identical
    to the original start, so the loop is seamless with no jump/reset. */
-.peek-row{display:flex;align-items:center;height:530px;overflow:hidden;}
+.peek-row{display:flex;align-items:center;height:530px;overflow-x:auto;overflow-y:hidden;
+  cursor:grab;scrollbar-width:none;touch-action:pan-y;user-select:none;}
+.peek-row::-webkit-scrollbar{display:none;}
+.peek-row.is-dragging{cursor:grabbing;}
 .peek-track{display:flex;gap:var(--space-5);width:max-content;
   animation:peek-marquee 40s linear infinite;}
 .peek-row:hover .peek-track{animation-play-state:paused;}
@@ -145,7 +148,7 @@ html,body{overflow-x:hidden;}
 .work-card{flex:0 0 1280px;max-width:1280px;height:560px;display:flex;
   border-radius:var(--radius-lg);overflow:hidden;background:var(--color-canvas);
   scroll-snap-align:center;}
-.work-card__media{flex:1 1 0;min-width:0;position:relative;overflow:hidden;background:var(--color-placeholder);}
+.work-card__media{flex:0 0 50%;min-width:0;position:relative;overflow:hidden;background:var(--color-placeholder);}
 /* One real photo filling the whole media panel — the earlier scattered-corner
    treatment was for abstract glow icons, not actual case-study photography. */
 .work-card__photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
@@ -158,9 +161,9 @@ html,body{overflow-x:hidden;}
    than the tablet viewport itself. .work-peek's own overflow-x:auto keeps this from
    breaking the page layout, but it read as broken/uncentered rather than deliberately
    scrollable, so it's scaled down here too. */
-@media (max-width:1024px){
+@media (max-width:1200px){
   .work-peek{padding-inline:var(--gutter);}
-  .work-card{flex:0 0 90vw;max-width:90vw;}
+  .work-card{flex:0 0 90vw;max-width:90vw;height:480px;}
 }
 @media (max-width:768px){
   /* .work-card's 1280px flex-basis/max-width was never overridden here — on a
@@ -169,6 +172,7 @@ html,body{overflow-x:hidden;}
   .work-peek{padding-inline:var(--gutter);}
   .work-card{flex:0 0 88vw;max-width:88vw;flex-direction:column;height:auto;}
   .work-card__media{aspect-ratio:16/10;}
+  .work-card__photo{object-fit:cover;background:none;}
   .work-card__body{padding:var(--space-5);}
 }
 /* Buttons used as layout/interaction elements (not literal buttons) — reset the
@@ -202,7 +206,7 @@ html,body{overflow-x:hidden;}
   width:100%;padding-block:30px;text-align:left;}
 .faq__item span:first-child{font-size:26px;font-weight:var(--fw-strong);color:var(--text-default);}
 .faq__toggle{position:relative;flex-shrink:0;width:48px;height:48px;border-radius:var(--radius-circle);
-  background:#fff;box-shadow:0 1px 6px rgba(0,0,0,.15);transition:transform .2s;}
+  background:#fff;transition:transform .2s;}
 .faq__toggle::before,.faq__toggle::after{content:"";position:absolute;inset:0;margin:auto;
   width:22px;height:3px;border-radius:var(--radius-circle);background:#1a1a1a;}
 .faq__toggle::after{transform:rotate(90deg);}
@@ -235,7 +239,8 @@ html,body{overflow-x:hidden;}
    bg turned out too low-contrast to actually read at this size/screenshot
    compression — bumped to primary-500 for a watermark that's still muted but
    unambiguously visible as letters, not just a slightly-different-shade block. */
-.footer__wordmark{width:100%;text-align:center;font-size:22vw;font-weight:900;line-height:1;
+.footer__wordmark{position:relative;left:50%;width:max-content;transform:translateX(-50%);
+  text-align:center;font-size:26vw;font-weight:900;line-height:1;
   color:var(--color-primary-500);white-space:nowrap;letter-spacing:-.03em;
   padding-block: 0 var(--space-5);pointer-events:none;user-select:none;}
 /* Just the footer's own internal text spacing now — the FAQ->footer section gap
